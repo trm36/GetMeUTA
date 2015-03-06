@@ -1,15 +1,13 @@
 //
-//  FirstViewController.h
+//  JourneyViewController.h
 //  GetMeUTA
 //
-//  Created by Taylor Mott on 6.3.2015.
+//  Created by Julien Guanzon on 3/6/15.
 //  Copyright (c) 2015 Shelley-Guanzon-Henrie-Mott. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
-
+@interface JourneyViewController : UIViewController
 
 @end
-

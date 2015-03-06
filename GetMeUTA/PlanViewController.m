@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Shelley-Guanzon-Henrie-Mott. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "PlanViewController.h"
 
-@interface SecondViewController ()
+@interface PlanViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation PlanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
