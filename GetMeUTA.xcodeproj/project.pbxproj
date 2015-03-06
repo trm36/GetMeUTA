@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		344C76F41AAA5EFA00E2F205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F31AAA5EFA00E2F205 /* main.m */; };
+		344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F61AAA5EFB00E2F205 /* AppDelegate.m */; };
+		344C76FA1AAA5EFB00E2F205 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F91AAA5EFB00E2F205 /* FirstViewController.m */; };
+		344C76FD1AAA5EFB00E2F205 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76FC1AAA5EFB00E2F205 /* SecondViewController.m */; };
+		344C77001AAA5EFB00E2F205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344C76FE1AAA5EFB00E2F205 /* Main.storyboard */; };
+		344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344C77011AAA5EFB00E2F205 /* Images.xcassets */; };
+		344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */; };
+		344C77111AAA5EFB00E2F205 /* GetMeUTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		344C770B1AAA5EFB00E2F205 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 344C76E61AAA5EFA00E2F205 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 344C76ED1AAA5EFA00E2F205;
+			remoteInfo = GetMeUTA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		344C76EE1AAA5EFA00E2F205 /* GetMeUTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetMeUTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		344C76F21AAA5EFA00E2F205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		344C76F31AAA5EFA00E2F205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		344C76F51AAA5EFA00E2F205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		344C76F61AAA5EFB00E2F205 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		344C76F81AAA5EFB00E2F205 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		344C76F91AAA5EFB00E2F205 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		344C76FB1AAA5EFB00E2F205 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		344C76FC1AAA5EFB00E2F205 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		344C76FF1AAA5EFB00E2F205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		344C77011AAA5EFB00E2F205 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		344C77041AAA5EFB00E2F205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		344C770A1AAA5EFB00E2F205 /* GetMeUTATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetMeUTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		344C770F1AAA5EFB00E2F205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMeUTATests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		344C76EB1AAA5EFA00E2F205 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		344C77071AAA5EFB00E2F205 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		344C76E51AAA5EFA00E2F205 = {
+			isa = PBXGroup;
+			children = (
+				344C76F01AAA5EFA00E2F205 /* GetMeUTA */,
+				344C770D1AAA5EFB00E2F205 /* GetMeUTATests */,
+				344C76EF1AAA5EFA00E2F205 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		344C76EF1AAA5EFA00E2F205 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				344C76EE1AAA5EFA00E2F205 /* GetMeUTA.app */,
+				344C770A1AAA5EFB00E2F205 /* GetMeUTATests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		344C76F01AAA5EFA00E2F205 /* GetMeUTA */ = {
+			isa = PBXGroup;
+			children = (
+				344C76F51AAA5EFA00E2F205 /* AppDelegate.h */,
+				344C76F61AAA5EFB00E2F205 /* AppDelegate.m */,
+				344C76F81AAA5EFB00E2F205 /* FirstViewController.h */,
+				344C76F91AAA5EFB00E2F205 /* FirstViewController.m */,
+				344C76FB1AAA5EFB00E2F205 /* SecondViewController.h */,
+				344C76FC1AAA5EFB00E2F205 /* SecondViewController.m */,
+				344C76FE1AAA5EFB00E2F205 /* Main.storyboard */,
+				344C77011AAA5EFB00E2F205 /* Images.xcassets */,
+				344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */,
+				344C76F11AAA5EFA00E2F205 /* Supporting Files */,
+			);
+			path = GetMeUTA;
+			sourceTree = "<group>";
+		};
+		344C76F11AAA5EFA00E2F205 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				344C76F21AAA5EFA00E2F205 /* Info.plist */,
+				344C76F31AAA5EFA00E2F205 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		344C770D1AAA5EFB00E2F205 /* GetMeUTATests */ = {
+			isa = PBXGroup;
+			children = (
+				344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */,
+				344C770E1AAA5EFB00E2F205 /* Supporting Files */,
+			);
+			path = GetMeUTATests;
+			sourceTree = "<group>";
+		};
+		344C770E1AAA5EFB00E2F205 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				344C770F1AAA5EFB00E2F205 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		344C76ED1AAA5EFA00E2F205 /* GetMeUTA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 344C77141AAA5EFB00E2F205 /* Build configuration list for PBXNativeTarget "GetMeUTA" */;
+			buildPhases = (
+				344C76EA1AAA5EFA00E2F205 /* Sources */,
+				344C76EB1AAA5EFA00E2F205 /* Frameworks */,
+				344C76EC1AAA5EFA00E2F205 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GetMeUTA;
+			productName = GetMeUTA;
+			productReference = 344C76EE1AAA5EFA00E2F205 /* GetMeUTA.app */;
+			productType = "com.apple.product-type.application";
+		};
+		344C77091AAA5EFB00E2F205 /* GetMeUTATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 344C77171AAA5EFB00E2F205 /* Build configuration list for PBXNativeTarget "GetMeUTATests" */;
+			buildPhases = (
+				344C77061AAA5EFB00E2F205 /* Sources */,
+				344C77071AAA5EFB00E2F205 /* Frameworks */,
+				344C77081AAA5EFB00E2F205 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				344C770C1AAA5EFB00E2F205 /* PBXTargetDependency */,
+			);
+			name = GetMeUTATests;
+			productName = GetMeUTATests;
+			productReference = 344C770A1AAA5EFB00E2F205 /* GetMeUTATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		344C76E61AAA5EFA00E2F205 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Shelley-Guanzon-Henrie-Mott";
+				TargetAttributes = {
+					344C76ED1AAA5EFA00E2F205 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					344C77091AAA5EFB00E2F205 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 344C76ED1AAA5EFA00E2F205;
+					};
+				};
+			};
+			buildConfigurationList = 344C76E91AAA5EFA00E2F205 /* Build configuration list for PBXProject "GetMeUTA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 344C76E51AAA5EFA00E2F205;
+			productRefGroup = 344C76EF1AAA5EFA00E2F205 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				344C76ED1AAA5EFA00E2F205 /* GetMeUTA */,
+				344C77091AAA5EFB00E2F205 /* GetMeUTATests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		344C76EC1AAA5EFA00E2F205 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				344C77001AAA5EFB00E2F205 /* Main.storyboard in Resources */,
+				344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */,
+				344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		344C77081AAA5EFB00E2F205 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		344C76EA1AAA5EFA00E2F205 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				344C76FD1AAA5EFB00E2F205 /* SecondViewController.m in Sources */,
+				344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */,
+				344C76FA1AAA5EFB00E2F205 /* FirstViewController.m in Sources */,
+				344C76F41AAA5EFA00E2F205 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		344C77061AAA5EFB00E2F205 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				344C77111AAA5EFB00E2F205 /* GetMeUTATests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		344C770C1AAA5EFB00E2F205 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 344C76ED1AAA5EFA00E2F205 /* GetMeUTA */;
+			targetProxy = 344C770B1AAA5EFB00E2F205 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		344C76FE1AAA5EFB00E2F205 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				344C76FF1AAA5EFB00E2F205 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				344C77041AAA5EFB00E2F205 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		344C77121AAA5EFB00E2F205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		344C77131AAA5EFB00E2F205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		344C77151AAA5EFB00E2F205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = GetMeUTA/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		344C77161AAA5EFB00E2F205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = GetMeUTA/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		344C77181AAA5EFB00E2F205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GetMeUTATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetMeUTA.app/GetMeUTA";
+			};
+			name = Debug;
+		};
+		344C77191AAA5EFB00E2F205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GetMeUTATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetMeUTA.app/GetMeUTA";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		344C76E91AAA5EFA00E2F205 /* Build configuration list for PBXProject "GetMeUTA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				344C77121AAA5EFB00E2F205 /* Debug */,
+				344C77131AAA5EFB00E2F205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		344C77141AAA5EFB00E2F205 /* Build configuration list for PBXNativeTarget "GetMeUTA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				344C77151AAA5EFB00E2F205 /* Debug */,
+				344C77161AAA5EFB00E2F205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		344C77171AAA5EFB00E2F205 /* Build configuration list for PBXNativeTarget "GetMeUTATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				344C77181AAA5EFB00E2F205 /* Debug */,
+				344C77191AAA5EFB00E2F205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 344C76E61AAA5EFA00E2F205 /* Project object */;
+}
