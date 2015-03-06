@@ -9,15 +9,12 @@
 /* Begin PBXBuildFile section */
 		344C76F41AAA5EFA00E2F205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F31AAA5EFA00E2F205 /* main.m */; };
 		344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F61AAA5EFB00E2F205 /* AppDelegate.m */; };
-		344C76FA1AAA5EFB00E2F205 /* NowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F91AAA5EFB00E2F205 /* NowViewController.m */; };
-		344C76FD1AAA5EFB00E2F205 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76FC1AAA5EFB00E2F205 /* PlanViewController.m */; };
+		344C76FA1AAA5EFB00E2F205 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F91AAA5EFB00E2F205 /* FirstViewController.m */; };
+		344C76FD1AAA5EFB00E2F205 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76FC1AAA5EFB00E2F205 /* SecondViewController.m */; };
 		344C77001AAA5EFB00E2F205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344C76FE1AAA5EFB00E2F205 /* Main.storyboard */; };
 		344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344C77011AAA5EFB00E2F205 /* Images.xcassets */; };
 		344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */; };
 		344C77111AAA5EFB00E2F205 /* GetMeUTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */; };
-		FC737BE61AAA6A7400B12FC7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */; };
-		FC737BE91AAA6AD600B12FC7 /* JourneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BE81AAA6AD600B12FC7 /* JourneyViewController.m */; };
-		FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,22 +33,16 @@
 		344C76F31AAA5EFA00E2F205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		344C76F51AAA5EFA00E2F205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		344C76F61AAA5EFB00E2F205 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		344C76F81AAA5EFB00E2F205 /* NowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NowViewController.h; sourceTree = "<group>"; };
-		344C76F91AAA5EFB00E2F205 /* NowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowViewController.m; sourceTree = "<group>"; };
-		344C76FB1AAA5EFB00E2F205 /* PlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
-		344C76FC1AAA5EFB00E2F205 /* PlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
+		344C76F81AAA5EFB00E2F205 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		344C76F91AAA5EFB00E2F205 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		344C76FB1AAA5EFB00E2F205 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		344C76FC1AAA5EFB00E2F205 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		344C76FF1AAA5EFB00E2F205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		344C77011AAA5EFB00E2F205 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		344C77041AAA5EFB00E2F205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		344C770A1AAA5EFB00E2F205 /* GetMeUTATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetMeUTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C770F1AAA5EFB00E2F205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMeUTATests.m; sourceTree = "<group>"; };
-		FC737BE41AAA6A7400B12FC7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		FC737BE71AAA6AD600B12FC7 /* JourneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyViewController.h; sourceTree = "<group>"; };
-		FC737BE81AAA6AD600B12FC7 /* JourneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JourneyViewController.m; sourceTree = "<group>"; };
-		FC737BEA1AAA6AE300B12FC7 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
-		FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +86,10 @@
 			children = (
 				344C76F51AAA5EFA00E2F205 /* AppDelegate.h */,
 				344C76F61AAA5EFB00E2F205 /* AppDelegate.m */,
-				FC737BED1AAA6B5C00B12FC7 /* ViewControllers */,
+				344C76F81AAA5EFB00E2F205 /* FirstViewController.h */,
+				344C76F91AAA5EFB00E2F205 /* FirstViewController.m */,
+				344C76FB1AAA5EFB00E2F205 /* SecondViewController.h */,
+				344C76FC1AAA5EFB00E2F205 /* SecondViewController.m */,
 				344C76FE1AAA5EFB00E2F205 /* Main.storyboard */,
 				344C77011AAA5EFB00E2F205 /* Images.xcassets */,
 				344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */,
@@ -128,23 +122,6 @@
 				344C770F1AAA5EFB00E2F205 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FC737BED1AAA6B5C00B12FC7 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				344C76F81AAA5EFB00E2F205 /* NowViewController.h */,
-				344C76F91AAA5EFB00E2F205 /* NowViewController.m */,
-				344C76FB1AAA5EFB00E2F205 /* PlanViewController.h */,
-				344C76FC1AAA5EFB00E2F205 /* PlanViewController.m */,
-				FC737BE41AAA6A7400B12FC7 /* SettingsViewController.h */,
-				FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */,
-				FC737BE71AAA6AD600B12FC7 /* JourneyViewController.h */,
-				FC737BE81AAA6AD600B12FC7 /* JourneyViewController.m */,
-				FC737BEA1AAA6AE300B12FC7 /* ResultsViewController.h */,
-				FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */,
-			);
-			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,13 +224,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				344C76FD1AAA5EFB00E2F205 /* PlanViewController.m in Sources */,
-				FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */,
+				344C76FD1AAA5EFB00E2F205 /* SecondViewController.m in Sources */,
 				344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */,
-				FC737BE61AAA6A7400B12FC7 /* SettingsViewController.m in Sources */,
-				344C76FA1AAA5EFB00E2F205 /* NowViewController.m in Sources */,
+				344C76FA1AAA5EFB00E2F205 /* FirstViewController.m in Sources */,
 				344C76F41AAA5EFA00E2F205 /* main.m in Sources */,
-				FC737BE91AAA6AD600B12FC7 /* JourneyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +420,6 @@
 				344C77161AAA5EFB00E2F205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		344C77171AAA5EFB00E2F205 /* Build configuration list for PBXNativeTarget "GetMeUTATests" */ = {
 			isa = XCConfigurationList;
@@ -455,7 +428,6 @@
 				344C77191AAA5EFB00E2F205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

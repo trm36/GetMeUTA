@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Shelley-Guanzon-Henrie-Mott. All rights reserved.
 //
 
-#import "NowViewController.h"
+#import "FirstViewController.h"
 
-@interface NowViewController ()
+@interface FirstViewController ()
 
 @end
 
-@implementation NowViewController
+@implementation FirstViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
