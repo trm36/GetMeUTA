@@ -490,5 +490,20 @@
         <model>IPhone5</model>
       </controlProperties>
     </control>
+    <control controlID="93" controlTypeID="com.balsamiq.mockups::iPhone" x="1821" y="100" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="74" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="95" controlTypeID="com.balsamiq.mockups::Label" x="1862" y="210" w="-1" h="-1" measuredW="88" measuredH="21" zOrder="75" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Arrive%20by%2018%3A00</text>
+      </controlProperties>
+    </control>
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::TextArea" x="1862" y="242" w="200" h="320" measuredW="200" measuredH="140" zOrder="76" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*a%20table%20view%20of%20all%20the%20stops%20between%20the%20from%20and%20to%2C%20inclusive</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
