@@ -15,6 +15,8 @@
 		344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344C77011AAA5EFB00E2F205 /* Images.xcassets */; };
 		344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */; };
 		344C77111AAA5EFB00E2F205 /* GetMeUTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */; };
+		344C771C1AAB913600E2F205 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C771B1AAB913600E2F205 /* CHCSVParser.m */; };
+		344C771E1AAB918200E2F205 /* stops.csv in Resources */ = {isa = PBXBuildFile; fileRef = 344C771D1AAB918200E2F205 /* stops.csv */; };
 		FC737BE61AAA6A7400B12FC7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */; };
 		FC737BE91AAA6AD600B12FC7 /* JourneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BE81AAA6AD600B12FC7 /* JourneyViewController.m */; };
 		FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */; };
@@ -35,7 +37,7 @@
 		344C76F21AAA5EFA00E2F205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		344C76F31AAA5EFA00E2F205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		344C76F51AAA5EFA00E2F205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		344C76F61AAA5EFB00E2F205 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		344C76F61AAA5EFB00E2F205 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = /Users/taylor/Desktop/Mentor/code/GetMeUTA/GetMeUTA/AppDelegate.m; sourceTree = "<absolute>"; };
 		344C76F81AAA5EFB00E2F205 /* NowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NowViewController.h; sourceTree = "<group>"; };
 		344C76F91AAA5EFB00E2F205 /* NowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowViewController.m; sourceTree = "<group>"; };
 		344C76FB1AAA5EFB00E2F205 /* PlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
@@ -46,6 +48,9 @@
 		344C770A1AAA5EFB00E2F205 /* GetMeUTATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetMeUTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C770F1AAA5EFB00E2F205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMeUTATests.m; sourceTree = "<group>"; };
+		344C771A1AAB913600E2F205 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		344C771B1AAB913600E2F205 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		344C771D1AAB918200E2F205 /* stops.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.csv; sourceTree = "<group>"; usesTabs = 0; };
 		FC737BE41AAA6A7400B12FC7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FC737BE71AAA6AD600B12FC7 /* JourneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyViewController.h; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 		344C76F01AAA5EFA00E2F205 /* GetMeUTA */ = {
 			isa = PBXGroup;
 			children = (
+				344C771D1AAB918200E2F205 /* stops.csv */,
 				344C76F51AAA5EFA00E2F205 /* AppDelegate.h */,
 				344C76F61AAA5EFB00E2F205 /* AppDelegate.m */,
 				FC737BED1AAA6B5C00B12FC7 /* ViewControllers */,
@@ -107,6 +113,8 @@
 		344C76F11AAA5EFA00E2F205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				344C771A1AAB913600E2F205 /* CHCSVParser.h */,
+				344C771B1AAB913600E2F205 /* CHCSVParser.m */,
 				344C76F21AAA5EFA00E2F205 /* Info.plist */,
 				344C76F31AAA5EFA00E2F205 /* main.m */,
 			);
@@ -227,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				344C771E1AAB918200E2F205 /* stops.csv in Resources */,
 				344C77001AAA5EFB00E2F205 /* Main.storyboard in Resources */,
 				344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */,
 				344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */,
@@ -251,6 +260,7 @@
 				FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */,
 				344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */,
 				FC737BE61AAA6A7400B12FC7 /* SettingsViewController.m in Sources */,
+				344C771C1AAB913600E2F205 /* CHCSVParser.m in Sources */,
 				344C76FA1AAA5EFB00E2F205 /* NowViewController.m in Sources */,
 				344C76F41AAA5EFA00E2F205 /* main.m in Sources */,
 				FC737BE91AAA6AD600B12FC7 /* JourneyViewController.m in Sources */,

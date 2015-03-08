@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "CHCSVParser.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <CHCSVParserDelegate> {
+    NSMutableArray * currentRow;
+}
 
 @end
 
@@ -17,9 +20,57 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    //some comment
+    
+    NSURL *csvurl = [[NSBundle mainBundle] URLForResource:@"stops" withExtension:@"csv"];
+    
+    CHCSVParser *p = [[CHCSVParser alloc] initWithContentsOfCSVURL:csvurl];
+    p.delegate = self;
+    [p parse];
+
+    
+    
+//    NSURL *url = [NSURL fileURLWithPath:@"stops.csv"];
+//    
+//    CHCSVParser *parser = [[CHCSVParser alloc] initWithContentsOfCSVURL:url];
+//    parser.delegate = self;
+//    [parser parse];
+    
+//    NSInputStream *inputStream = [[NSInputStream alloc] initWithFileAtPath:@"stops.csv"];
+//    CHCSVParser *p = [[CHCSVParser alloc] initWithInputStream:inputStream usedEncoding:nil delimiter:COMMA];
+//    p.delegate = self;
+//    [p parse];
+
+    
+//    NSArray *rows = [NSArray arrayWithContentsOfCSVURL:csvurl];
+//    NSLog(@"%@", rows);
+
+//    CHCSVParser *parser = [[CHCSVParser alloc] initWithCSVString:@"taylor,cal,ross,wagner"];
+//    parser.delegate = self;
+//    
+//    [parser parse];
     return YES;
 }
+
+#pragma mark - CHCSVParser Delegate Methods
+
+-(void)parser:(CHCSVParser *)parser didBeginLine:(NSUInteger)recordNumber
+{
+    currentRow = [NSMutableArray new];
+}
+
+-(void)parser:(CHCSVParser *)parser didReadField:(NSString *)field atIndex:(NSInteger)fieldIndex
+{
+    [currentRow addObject:field];
+    NSLog(@"FIELD: %@", field);
+}
+
+-(void)parser:(CHCSVParser *)parser didEndLine:(NSUInteger)recordNumber
+{
+    NSLog(@"finished line! %lu", (unsigned long)recordNumber);
+    NSLog(@"%@", currentRow);
+    currentRow = nil;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
