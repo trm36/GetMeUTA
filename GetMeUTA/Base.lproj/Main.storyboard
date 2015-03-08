@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lSk-Wv-Dtp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Now-->
@@ -15,6 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Now" id="6mp-ab-adW"/>
                     <navigationItem key="navigationItem" title="Now" id="iuj-e3-hMm"/>
@@ -41,51 +44,63 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dL7-QN-8Bb">
-                                <rect key="frame" x="140" y="132" width="320" height="162"/>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6f-iG-BOe">
-                                <rect key="frame" x="262" y="88" width="76.5" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LC-fn-Viv">
-                                <rect key="frame" x="281" y="308" width="38.5" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h33-Lw-2J1">
-                                <rect key="frame" x="140" y="352" width="320" height="162"/>
-                            </pickerView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="8LC-fn-Viv" secondAttribute="centerX" id="8Jq-IF-DVr"/>
-                            <constraint firstAttribute="centerX" secondItem="dL7-QN-8Bb" secondAttribute="centerX" id="FqY-Qn-uVo"/>
-                            <constraint firstAttribute="centerX" secondItem="h33-Lw-2J1" secondAttribute="centerX" id="QGL-Wf-LFL"/>
-                            <constraint firstItem="dL7-QN-8Bb" firstAttribute="top" secondItem="I6f-iG-BOe" secondAttribute="bottom" constant="8" id="cr2-iB-AyK"/>
-                            <constraint firstItem="h33-Lw-2J1" firstAttribute="top" secondItem="8LC-fn-Viv" secondAttribute="bottom" constant="8" id="mZG-jy-g2c"/>
-                            <constraint firstAttribute="centerX" secondItem="I6f-iG-BOe" secondAttribute="centerX" id="qUu-HG-icp"/>
-                            <constraint firstItem="8LC-fn-Viv" firstAttribute="top" secondItem="dL7-QN-8Bb" secondAttribute="bottom" constant="14" id="ruU-2O-Q9U"/>
-                            <constraint firstItem="I6f-iG-BOe" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="24" id="wN3-gp-TfN"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Plan" id="gK3-dS-UTd"/>
-                    <navigationItem key="navigationItem" title="Plan" id="olD-ax-McE">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="EdH-nG-IWw">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pzA-Jh-Tty">
-                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38v-cm-9NU">
+                                <rect key="frame" x="263" y="415" width="75" height="43"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                                <state key="normal" title="Route">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Xtl-19-qMd" kind="show" id="Wgl-b1-yQb"/>
+                                    <segue destination="Xtl-19-qMd" kind="show" id="S5Q-AH-pQc"/>
                                 </connections>
                             </button>
-                        </barButtonItem>
-                    </navigationItem>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="from" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5A-Er-8gM">
+                                <rect key="frame" x="142" y="144" width="156" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="156" id="0yX-Jh-okW"/>
+                                    <constraint firstAttribute="height" constant="59" id="muH-Pq-maT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkH-nl-o8t">
+                                <rect key="frame" x="327" y="144" width="132" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="WtA-zh-Zjb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dL7-QN-8Bb">
+                                <rect key="frame" x="16" y="219" width="568" height="162"/>
+                                <accessibility key="accessibilityConfiguration" label="From">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BkH-nl-o8t" firstAttribute="leading" secondItem="l5A-Er-8gM" secondAttribute="trailing" constant="29" id="5DP-c9-YIn"/>
+                            <constraint firstItem="l5A-Er-8gM" firstAttribute="firstBaseline" secondItem="BkH-nl-o8t" secondAttribute="firstBaseline" id="61N-Br-dDG"/>
+                            <constraint firstItem="l5A-Er-8gM" firstAttribute="baseline" secondItem="BkH-nl-o8t" secondAttribute="baseline" id="63X-Un-kSC"/>
+                            <constraint firstItem="38v-cm-9NU" firstAttribute="top" secondItem="dL7-QN-8Bb" secondAttribute="bottom" constant="34" id="K74-Hf-Mb0"/>
+                            <constraint firstItem="dL7-QN-8Bb" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="KBK-aJ-Pke"/>
+                            <constraint firstItem="dL7-QN-8Bb" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="O39-7W-bAl"/>
+                            <constraint firstItem="dL7-QN-8Bb" firstAttribute="centerX" secondItem="38v-cm-9NU" secondAttribute="centerX" id="Qpe-AR-w4d"/>
+                            <constraint firstItem="dL7-QN-8Bb" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="ZfM-6N-835"/>
+                            <constraint firstItem="38v-cm-9NU" firstAttribute="leading" secondItem="l5A-Er-8gM" secondAttribute="trailing" constant="-35" id="edi-ML-Wka"/>
+                            <constraint firstItem="BkH-nl-o8t" firstAttribute="leading" secondItem="l5A-Er-8gM" secondAttribute="trailing" constant="29" id="hia-o7-POF"/>
+                            <constraint firstItem="dL7-QN-8Bb" firstAttribute="top" secondItem="l5A-Er-8gM" secondAttribute="bottom" constant="16" id="iJp-FE-7hZ"/>
+                            <constraint firstItem="BkH-nl-o8t" firstAttribute="width" secondItem="l5A-Er-8gM" secondAttribute="width" id="saX-Tc-h4H"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Plan" id="gK3-dS-UTd"/>
+                    <navigationItem key="navigationItem" title="Plan" id="olD-ax-McE"/>
+                    <connections>
+                        <outlet property="fromPicker" destination="dL7-QN-8Bb" id="M1g-Hd-UBS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -158,6 +173,7 @@
                     <view key="view" contentMode="scaleToFill" id="0FY-GY-VI9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="0xc-Ko-YYv"/>
                     <navigationItem key="navigationItem" title="Settings" id="nP6-qz-BNg"/>
