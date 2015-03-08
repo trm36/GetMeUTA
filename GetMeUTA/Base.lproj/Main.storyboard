@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Now" id="6mp-ab-adW"/>
-                    <navigationItem key="navigationItem" id="iuj-e3-hMm"/>
+                    <navigationItem key="navigationItem" title="Now" id="iuj-e3-hMm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -26,7 +26,7 @@
         <!--Plan-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="PlanViewController" sceneMemberID="viewController">
+                <viewController title="Plan" id="8rJ-Kc-sve" customClass="PlanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -35,26 +35,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dL7-QN-8Bb">
+                                <rect key="frame" x="140" y="132" width="320" height="162"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6f-iG-BOe">
+                                <rect key="frame" x="262" y="88" width="76.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LC-fn-Viv">
+                                <rect key="frame" x="281" y="308" width="38.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h33-Lw-2J1">
+                                <rect key="frame" x="140" y="352" width="320" height="162"/>
+                            </pickerView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstAttribute="centerX" secondItem="8LC-fn-Viv" secondAttribute="centerX" id="8Jq-IF-DVr"/>
+                            <constraint firstAttribute="centerX" secondItem="dL7-QN-8Bb" secondAttribute="centerX" id="FqY-Qn-uVo"/>
+                            <constraint firstAttribute="centerX" secondItem="h33-Lw-2J1" secondAttribute="centerX" id="QGL-Wf-LFL"/>
+                            <constraint firstItem="dL7-QN-8Bb" firstAttribute="top" secondItem="I6f-iG-BOe" secondAttribute="bottom" constant="8" id="cr2-iB-AyK"/>
+                            <constraint firstItem="h33-Lw-2J1" firstAttribute="top" secondItem="8LC-fn-Viv" secondAttribute="bottom" constant="8" id="mZG-jy-g2c"/>
+                            <constraint firstAttribute="centerX" secondItem="I6f-iG-BOe" secondAttribute="centerX" id="qUu-HG-icp"/>
+                            <constraint firstItem="8LC-fn-Viv" firstAttribute="top" secondItem="dL7-QN-8Bb" secondAttribute="bottom" constant="14" id="ruU-2O-Q9U"/>
+                            <constraint firstItem="I6f-iG-BOe" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="24" id="wN3-gp-TfN"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Plan" id="gK3-dS-UTd"/>
-                    <navigationItem key="navigationItem" id="olD-ax-McE"/>
+                    <navigationItem key="navigationItem" title="Plan" id="olD-ax-McE">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="EdH-nG-IWw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pzA-Jh-Tty">
+                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Xtl-19-qMd" kind="show" id="Wgl-b1-yQb"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-276" y="-2244"/>
         </scene>
-        <!--Journey View Controller-->
+        <!--Journey-->
         <scene sceneID="8vh-NY-Uhd">
             <objects>
                 <viewController id="Xtl-19-qMd" customClass="JourneyViewController" sceneMemberID="viewController">
@@ -67,10 +104,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Journey" id="d6d-pM-M08"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8t-VL-b1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="398" y="-2498"/>
+            <point key="canvasLocation" x="440" y="-2652"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Urs-ta-1VD">
@@ -102,7 +140,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="UdJ-cR-CGQ"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="kRu-G5-LOQ"/>
-                        <segue destination="hM1-gb-nQK" kind="relationship" relationship="viewControllers" id="lh0-3S-qWk"/>
+                        <segue destination="hM1-gb-nQK" kind="relationship" relationship="viewControllers" id="fmH-1b-gFa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPh-L0-mQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,6 +160,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="0xc-Ko-YYv"/>
+                    <navigationItem key="navigationItem" title="Settings" id="nP6-qz-BNg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxY-9V-gfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -143,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4U-4k-dWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="418" y="-1844"/>
+            <point key="canvasLocation" x="440" y="-1870"/>
         </scene>
     </scenes>
 </document>
