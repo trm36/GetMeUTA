@@ -33,13 +33,33 @@
 #define CHCSV_DEPRECATED(...) __attribute__((deprecated("" #__VA_ARGS__)))
 #endif
 
+#ifndef CHUNK_SIZE
 #define CHUNK_SIZE 512
+#endif
+
+#ifndef DOUBLE_QUOTE
 #define DOUBLE_QUOTE '"'
+#endif
+
+#ifndef COMMA
 #define COMMA ','
+#endif
+
+#ifndef OCTOTHORPE
 #define OCTOTHORPE '#'
+#endif
+
+#ifndef EQUAL
 #define EQUAL '='
+#endif
+
+#ifndef BACKSLASH
 #define BACKSLASH '\\'
+#endif
+
+#ifndef NULLCHAR
 #define NULLCHAR '\0'
+#endif
 
 extern NSString * const CHCSVErrorDomain;
 
