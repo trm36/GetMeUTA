@@ -16,7 +16,22 @@
 		344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */; };
 		344C77111AAA5EFB00E2F205 /* GetMeUTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */; };
 		344C771C1AAB913600E2F205 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C771B1AAB913600E2F205 /* CHCSVParser.m */; };
-		344C771E1AAB918200E2F205 /* stops.csv in Resources */ = {isa = PBXBuildFile; fileRef = 344C771D1AAB918200E2F205 /* stops.csv */; };
+		3460FF101AACEADC002C22C1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3460FF0E1AACEADC002C22C1 /* Model.xcdatamodeld */; };
+		349604431AAD5B97001A1F77 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349604421AAD5B97001A1F77 /* LoadingViewController.m */; };
+		349604491AAD60C5001A1F77 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 349604481AAD60C5001A1F77 /* Stack.m */; };
+		3496044B1AAD60EE001A1F77 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3496044A1AAD60EE001A1F77 /* CoreData.framework */; };
+		349604661AAD6344001A1F77 /* StopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349604651AAD6344001A1F77 /* StopController.m */; };
+		34FE1B031AAD6678009ADA54 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B021AAD6678009ADA54 /* Stop.m */; };
+		34FE1B151AAD6E9E009ADA54 /* Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B141AAD6E9E009ADA54 /* Calendar.m */; };
+		34FE1B181AAD6E9F009ADA54 /* StopTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B171AAD6E9F009ADA54 /* StopTime.m */; };
+		34FE1B1B1AAD6E9F009ADA54 /* CalendarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B1A1AAD6E9F009ADA54 /* CalendarDate.m */; };
+		34FE1B1E1AAD6E9F009ADA54 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B1D1AAD6E9F009ADA54 /* Trip.m */; };
+		34FE1B211AAD6E9F009ADA54 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B201AAD6E9F009ADA54 /* Route.m */; };
+		34FE1B231AADF62F009ADA54 /* stops.csv in Resources */ = {isa = PBXBuildFile; fileRef = 34FE1B221AADF62F009ADA54 /* stops.csv */; };
+		34FE1B261AADF7A8009ADA54 /* routes.csv in Resources */ = {isa = PBXBuildFile; fileRef = 34FE1B251AADF7A8009ADA54 /* routes.csv */; };
+		34FE1B291AADF808009ADA54 /* RouteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B281AADF808009ADA54 /* RouteController.m */; };
+		34FE1B2C1AADF9F4009ADA54 /* TripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE1B2B1AADF9F4009ADA54 /* TripController.m */; };
+		34FE1B2E1AAE0454009ADA54 /* trips.csv in Resources */ = {isa = PBXBuildFile; fileRef = 34FE1B2D1AAE0454009ADA54 /* trips.csv */; };
 		FC737BE61AAA6A7400B12FC7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */; };
 		FC737BE91AAA6AD600B12FC7 /* JourneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BE81AAA6AD600B12FC7 /* JourneyViewController.m */; };
 		FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */; };
@@ -50,7 +65,33 @@
 		344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMeUTATests.m; sourceTree = "<group>"; };
 		344C771A1AAB913600E2F205 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		344C771B1AAB913600E2F205 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
-		344C771D1AAB918200E2F205 /* stops.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.csv; sourceTree = "<group>"; usesTabs = 0; };
+		3460FF0F1AACEADC002C22C1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		349604411AAD5B97001A1F77 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
+		349604421AAD5B97001A1F77 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
+		349604471AAD60C5001A1F77 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		349604481AAD60C5001A1F77 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
+		3496044A1AAD60EE001A1F77 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		349604641AAD6344001A1F77 /* StopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StopController.h; path = GetMeUTA/StopController.h; sourceTree = "<group>"; };
+		349604651AAD6344001A1F77 /* StopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StopController.m; path = GetMeUTA/StopController.m; sourceTree = "<group>"; };
+		34FE1B011AAD6678009ADA54 /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop.h; sourceTree = "<group>"; };
+		34FE1B021AAD6678009ADA54 /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
+		34FE1B131AAD6E9E009ADA54 /* Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calendar.h; sourceTree = "<group>"; };
+		34FE1B141AAD6E9E009ADA54 /* Calendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calendar.m; sourceTree = "<group>"; };
+		34FE1B161AAD6E9F009ADA54 /* StopTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTime.h; sourceTree = "<group>"; };
+		34FE1B171AAD6E9F009ADA54 /* StopTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTime.m; sourceTree = "<group>"; };
+		34FE1B191AAD6E9F009ADA54 /* CalendarDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDate.h; sourceTree = "<group>"; };
+		34FE1B1A1AAD6E9F009ADA54 /* CalendarDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDate.m; sourceTree = "<group>"; };
+		34FE1B1C1AAD6E9F009ADA54 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		34FE1B1D1AAD6E9F009ADA54 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		34FE1B1F1AAD6E9F009ADA54 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		34FE1B201AAD6E9F009ADA54 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		34FE1B221AADF62F009ADA54 /* stops.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.csv; sourceTree = "<group>"; };
+		34FE1B251AADF7A8009ADA54 /* routes.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = routes.csv; sourceTree = "<group>"; };
+		34FE1B271AADF808009ADA54 /* RouteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RouteController.h; path = GetMeUTA/RouteController.h; sourceTree = "<group>"; };
+		34FE1B281AADF808009ADA54 /* RouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RouteController.m; path = GetMeUTA/RouteController.m; sourceTree = "<group>"; };
+		34FE1B2A1AADF9F4009ADA54 /* TripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TripController.h; path = GetMeUTA/TripController.h; sourceTree = "<group>"; };
+		34FE1B2B1AADF9F4009ADA54 /* TripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TripController.m; path = GetMeUTA/TripController.m; sourceTree = "<group>"; };
+		34FE1B2D1AAE0454009ADA54 /* trips.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = trips.csv; sourceTree = "<group>"; };
 		FC737BE41AAA6A7400B12FC7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FC737BE71AAA6AD600B12FC7 /* JourneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyViewController.h; sourceTree = "<group>"; };
@@ -64,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3496044B1AAD60EE001A1F77 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,13 +140,14 @@
 		344C76F01AAA5EFA00E2F205 /* GetMeUTA */ = {
 			isa = PBXGroup;
 			children = (
-				344C771D1AAB918200E2F205 /* stops.csv */,
 				344C76F51AAA5EFA00E2F205 /* AppDelegate.h */,
 				344C76F61AAA5EFB00E2F205 /* AppDelegate.m */,
 				FC737BED1AAA6B5C00B12FC7 /* ViewControllers */,
+				349604671AAD63AB001A1F77 /* Model Controllers */,
+				349604461AAD5E11001A1F77 /* Model */,
 				344C76FE1AAA5EFB00E2F205 /* Main.storyboard */,
-				344C77011AAA5EFB00E2F205 /* Images.xcassets */,
 				344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */,
+				344C77011AAA5EFB00E2F205 /* Images.xcassets */,
 				344C76F11AAA5EFA00E2F205 /* Supporting Files */,
 			);
 			path = GetMeUTA;
@@ -138,9 +181,59 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		349604461AAD5E11001A1F77 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				34FE1B1F1AAD6E9F009ADA54 /* Route.h */,
+				34FE1B201AAD6E9F009ADA54 /* Route.m */,
+				34FE1B1C1AAD6E9F009ADA54 /* Trip.h */,
+				34FE1B1D1AAD6E9F009ADA54 /* Trip.m */,
+				34FE1B191AAD6E9F009ADA54 /* CalendarDate.h */,
+				34FE1B1A1AAD6E9F009ADA54 /* CalendarDate.m */,
+				34FE1B161AAD6E9F009ADA54 /* StopTime.h */,
+				34FE1B171AAD6E9F009ADA54 /* StopTime.m */,
+				34FE1B131AAD6E9E009ADA54 /* Calendar.h */,
+				34FE1B141AAD6E9E009ADA54 /* Calendar.m */,
+				34FE1B011AAD6678009ADA54 /* Stop.h */,
+				34FE1B021AAD6678009ADA54 /* Stop.m */,
+				3496044A1AAD60EE001A1F77 /* CoreData.framework */,
+				349604471AAD60C5001A1F77 /* Stack.h */,
+				349604481AAD60C5001A1F77 /* Stack.m */,
+				3460FF0E1AACEADC002C22C1 /* Model.xcdatamodeld */,
+				34FE1B241AADF632009ADA54 /* GTFS CSV */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		349604671AAD63AB001A1F77 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				34FE1B271AADF808009ADA54 /* RouteController.h */,
+				34FE1B281AADF808009ADA54 /* RouteController.m */,
+				34FE1B2A1AADF9F4009ADA54 /* TripController.h */,
+				34FE1B2B1AADF9F4009ADA54 /* TripController.m */,
+				349604641AAD6344001A1F77 /* StopController.h */,
+				349604651AAD6344001A1F77 /* StopController.m */,
+			);
+			name = "Model Controllers";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		34FE1B241AADF632009ADA54 /* GTFS CSV */ = {
+			isa = PBXGroup;
+			children = (
+				34FE1B2D1AAE0454009ADA54 /* trips.csv */,
+				34FE1B251AADF7A8009ADA54 /* routes.csv */,
+				34FE1B221AADF62F009ADA54 /* stops.csv */,
+			);
+			name = "GTFS CSV";
+			sourceTree = "<group>";
+		};
 		FC737BED1AAA6B5C00B12FC7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				349604411AAD5B97001A1F77 /* LoadingViewController.h */,
+				349604421AAD5B97001A1F77 /* LoadingViewController.m */,
 				344C76F81AAA5EFB00E2F205 /* NowViewController.h */,
 				344C76F91AAA5EFB00E2F205 /* NowViewController.m */,
 				344C76FB1AAA5EFB00E2F205 /* PlanViewController.h */,
@@ -204,6 +297,7 @@
 				TargetAttributes = {
 					344C76ED1AAA5EFA00E2F205 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = B9KMJ3NRM7;
 					};
 					344C77091AAA5EFB00E2F205 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -235,10 +329,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				344C771E1AAB918200E2F205 /* stops.csv in Resources */,
+				34FE1B261AADF7A8009ADA54 /* routes.csv in Resources */,
+				34FE1B231AADF62F009ADA54 /* stops.csv in Resources */,
 				344C77001AAA5EFB00E2F205 /* Main.storyboard in Resources */,
 				344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */,
 				344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */,
+				34FE1B2E1AAE0454009ADA54 /* trips.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,13 +352,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34FE1B031AAD6678009ADA54 /* Stop.m in Sources */,
+				34FE1B1B1AAD6E9F009ADA54 /* CalendarDate.m in Sources */,
 				344C76FD1AAA5EFB00E2F205 /* PlanViewController.m in Sources */,
+				34FE1B211AAD6E9F009ADA54 /* Route.m in Sources */,
 				FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */,
 				344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */,
 				FC737BE61AAA6A7400B12FC7 /* SettingsViewController.m in Sources */,
+				349604661AAD6344001A1F77 /* StopController.m in Sources */,
 				344C771C1AAB913600E2F205 /* CHCSVParser.m in Sources */,
+				34FE1B1E1AAD6E9F009ADA54 /* Trip.m in Sources */,
+				34FE1B181AAD6E9F009ADA54 /* StopTime.m in Sources */,
+				34FE1B151AAD6E9E009ADA54 /* Calendar.m in Sources */,
+				3460FF101AACEADC002C22C1 /* Model.xcdatamodeld in Sources */,
 				344C76FA1AAA5EFB00E2F205 /* NowViewController.m in Sources */,
+				349604431AAD5B97001A1F77 /* LoadingViewController.m in Sources */,
 				344C76F41AAA5EFA00E2F205 /* main.m in Sources */,
+				34FE1B291AADF808009ADA54 /* RouteController.m in Sources */,
+				349604491AAD60C5001A1F77 /* Stack.m in Sources */,
+				34FE1B2C1AADF9F4009ADA54 /* TripController.m in Sources */,
 				FC737BE91AAA6AD600B12FC7 /* JourneyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +576,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3460FF0E1AACEADC002C22C1 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3460FF0F1AACEADC002C22C1 /* Model.xcdatamodel */,
+			);
+			currentVersion = 3460FF0F1AACEADC002C22C1 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 344C76E61AAA5EFA00E2F205 /* Project object */;
 }
