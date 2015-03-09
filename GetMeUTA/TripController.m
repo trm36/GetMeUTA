@@ -40,6 +40,8 @@
     if (matchingRoutes.firstObject) {
         trip.route = matchingRoutes.firstObject;
     }
+    
+    [[Stack sharedInstance].managedObjectContext save:NULL];
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "StopController.h"
 #import "RouteController.h"
 #import "TripController.h"
+#import "StopTimeController.h"
 
 @interface LoadingViewController ()
 
@@ -43,6 +44,9 @@
         [self setStops];
         [self setRoutes];
         [self setTrips];
+//        [self setStopTimes];
+//        [self setCalendar];
+//        [self setCalendarDates];
         
         [self setDataParsedValue:YES];
         
@@ -69,7 +73,16 @@
 
 - (void)setStopTimes
 {
+    NSURL *csvurl = [[NSBundle mainBundle] URLForResource:@"stop_times" withExtension:@"csv"];
     
+    NSArray *stopTimes = [NSArray arrayWithContentsOfCSVURL:csvurl options:CHCSVParserOptionsUsesFirstLineAsKeys];
+    
+    for (CHCSVOrderedDictionary *dictionary in stopTimes)
+    {
+        [[StopTimeController sharedInstance] addStopTimeWithCHCSVOrderedDictionary:dictionary];
+    }
+    
+    stopTimes = nil;
 }
 
 - (void)setRoutes
@@ -103,12 +116,12 @@
 
 - (void)setCalendarDates
 {
-    
+#warning implement this
 }
 
 - (void)setCalendar
 {
-    
+#warning implement this
 }
 
 - (void)didReceiveMemoryWarning {
