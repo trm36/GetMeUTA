@@ -11,7 +11,6 @@
 		344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F61AAA5EFB00E2F205 /* AppDelegate.m */; };
 		344C76FA1AAA5EFB00E2F205 /* NowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76F91AAA5EFB00E2F205 /* NowViewController.m */; };
 		344C76FD1AAA5EFB00E2F205 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C76FC1AAA5EFB00E2F205 /* PlanViewController.m */; };
-		344C77001AAA5EFB00E2F205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344C76FE1AAA5EFB00E2F205 /* Main.storyboard */; };
 		344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344C77011AAA5EFB00E2F205 /* Images.xcassets */; };
 		344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */; };
 		344C77111AAA5EFB00E2F205 /* GetMeUTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 344C77101AAA5EFB00E2F205 /* GetMeUTATests.m */; };
@@ -40,7 +39,6 @@
 		344C76F91AAA5EFB00E2F205 /* NowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowViewController.m; sourceTree = "<group>"; };
 		344C76FB1AAA5EFB00E2F205 /* PlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
 		344C76FC1AAA5EFB00E2F205 /* PlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
-		344C76FF1AAA5EFB00E2F205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		344C77011AAA5EFB00E2F205 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		344C77041AAA5EFB00E2F205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		344C770A1AAA5EFB00E2F205 /* GetMeUTATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetMeUTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +94,6 @@
 				344C76F51AAA5EFA00E2F205 /* AppDelegate.h */,
 				344C76F61AAA5EFB00E2F205 /* AppDelegate.m */,
 				FC737BED1AAA6B5C00B12FC7 /* ViewControllers */,
-				344C76FE1AAA5EFB00E2F205 /* Main.storyboard */,
 				344C77011AAA5EFB00E2F205 /* Images.xcassets */,
 				344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */,
 				344C76F11AAA5EFA00E2F205 /* Supporting Files */,
@@ -227,7 +224,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				344C77001AAA5EFB00E2F205 /* Main.storyboard in Resources */,
 				344C77051AAA5EFB00E2F205 /* LaunchScreen.xib in Resources */,
 				344C77021AAA5EFB00E2F205 /* Images.xcassets in Resources */,
 			);
@@ -276,14 +272,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		344C76FE1AAA5EFB00E2F205 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				344C76FF1AAA5EFB00E2F205 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
