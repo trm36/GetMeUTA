@@ -1,8 +1,8 @@
 //
-//  FirstViewController.h
+//  ViewController.h
 //  GetMeUTA
 //
-//  Created by Taylor Mott on 6.3.2015.
+//  Created by Paul Shelley on 3/10/15.
 //  Copyright (c) 2015 Shelley-Guanzon-Henrie-Mott. All rights reserved.
 //
 
