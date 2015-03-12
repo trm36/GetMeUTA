@@ -9,13 +9,11 @@
 #import <Foundation/Foundation.h>
 
 static NSString * const titleKey = @"title";
-static NSString * const actionKey = @"action";
 static NSString * const stationKey = @"station";
 
 @interface Button : NSObject
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *action;
 @property (nonatomic, strong) NSDate *station;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

@@ -16,7 +16,6 @@
     self = [super init];
     if (self) {
         self.title = dictionary[titleKey];
-        self.action = dictionary[actionKey];
         self.station = dictionary[stationKey];
     }
     return self;
@@ -27,9 +26,6 @@
     NSMutableDictionary *buttonDictionary = [NSMutableDictionary new];
     if (self.title) {
         [buttonDictionary setObject:self.title forKey:titleKey];
-    }
-    if (self.action) {
-        [buttonDictionary setObject:self.action forKey:actionKey];
     }
     if (self.station) {
         [buttonDictionary setObject:self.station forKey:stationKey];
