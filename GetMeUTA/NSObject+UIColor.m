@@ -37,4 +37,11 @@
     return color;
 }
 
+- (UIColor *)darkRed {
+    UIColor *color = [UIColor colorWithRed:0.722f green:0.153f blue:0.196f alpha:1.00f];
+    return color;
+}
+
+
+
 @end

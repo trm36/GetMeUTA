@@ -23,6 +23,22 @@
     
     self.view.backgroundColor = [UIColor lightBlue];
     
+    float viewWidth = self.view.bounds.size.width;
+    float viewHeight = self.view.bounds.size.height;
+    
+    float getMeWidth = viewWidth;
+    float getMeHeight = 60;
+    float getMeHorizontal = (viewWidth / 2) - (getMeWidth / 2);
+    float GetMeVerticle = viewHeight * .15;
+    
+    UILabel *getMe = [[UILabel alloc] initWithFrame:CGRectMake(getMeHorizontal, GetMeVerticle, getMeWidth, getMeHeight)];
+    getMe.text = @"Get Me";
+    getMe.textAlignment = NSTextAlignmentCenter;
+    [getMe setFont:[UIFont boldSystemFontOfSize:50]];
+    //getMe.backgroundColor = [UIColor whiteColor];
+    getMe.textColor = [UIColor darkRed];
+    [self.view addSubview:getMe];
+    
     UIButton *plusButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
     plusButton.titleLabel.font = [UIFont systemFontOfSize:50];
     [plusButton setTitle:@"+" forState:UIControlStateNormal];
@@ -30,8 +46,8 @@
     [plusButton addTarget:self action:@selector(plusButtonPressed)forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:plusButton];
     
-    for (int i = 0; i < 3; i++) {
-        [self drawAButtonWithName:@"home" numberOfButtons:3 buttonNumber:i];
+    for (int i = 0; i < 2; i++) {
+        [self drawAButtonWithName:@"home" numberOfButtons:2 buttonNumber:i];
     }
     
     
@@ -46,18 +62,16 @@
     float viewWidth = self.view.bounds.size.width;
     float viewHeight = self.view.bounds.size.height;
     
-    //float extraUp = numberOfButtons
-    
     float buttonWidth = viewWidth / 2.3;
     float buttonHeight = 40;
     float buttonHorizontal = (viewWidth / 2) - (buttonWidth / 2);
-    float startVerticle = (viewHeight / 2) - (buttonHeight / 2) - (numberOfButtons * 35);
-    float buttonVerticle = startVerticle + (buttonNumber * 100);
+    float startVerticle = (viewHeight / 2) - (buttonHeight / 2) - (numberOfButtons * 20);
+    float buttonVerticle = startVerticle + (buttonNumber * 90);
     
     UIColor *color;
     
     if (buttonNumber == numberOfButtons - 1) {
-        color = [UIColor blue];
+        color = [UIColor darkRed];
     } else {
         color = [UIColor darkBlue];
     }
