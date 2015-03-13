@@ -10,11 +10,14 @@
 
 static NSString * const titleKey = @"title";
 static NSString * const stationKey = @"station";
+static NSString * const needsSettupKey = @"needsSettup";
 
 @interface Button : NSObject
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSDate *station;
+@property (nonatomic, strong) NSString *station;
+@property (nonatomic, assign) NSString *needsSettup;
+
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)buttonDictionary;

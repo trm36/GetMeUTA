@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "NowViewController.h"
 
+static NSString *launchKey = @"launch";
+
 @interface AppDelegate ()
 
 @end
@@ -20,12 +22,27 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    NSInteger launchCount = [[NSUserDefaults standardUserDefaults] integerForKey:launchKey];
+    
+    if (launchCount) {
+        launchCount++;
+    } else {
+        launchCount = 1;
+    }
+    
+    NSLog(@"%ld", (long)launchCount);
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:launchCount forKey:launchKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     self.window.rootViewController = [NowViewController new];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

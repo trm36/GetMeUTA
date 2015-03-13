@@ -8,8 +8,6 @@
 
 #import "Button.h"
 
-//static NSString * const entriesKey = @"entries";
-
 @implementation Button
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
@@ -17,6 +15,7 @@
     if (self) {
         self.title = dictionary[titleKey];
         self.station = dictionary[stationKey];
+        self.needsSettup = dictionary[needsSettupKey];
     }
     return self;
 }
@@ -30,11 +29,12 @@
     if (self.station) {
         [buttonDictionary setObject:self.station forKey:stationKey];
     }
+    if (self.needsSettup) {
+        [buttonDictionary setObject:self.needsSettup forKey:needsSettupKey];
+    }
     
     return buttonDictionary;
     
 }
-
-
 
 @end

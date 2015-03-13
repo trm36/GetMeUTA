@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Button.h"
+@class Button;
 
 @interface ButtonController : NSObject
 
-@property (nonatomic , strong, readonly)NSArray * entries;
-
+@property (nonatomic , strong, readonly)NSArray * buttons;
 
 + (ButtonController *)sharedInstance;
 - (void)addButton:(Button *)button;

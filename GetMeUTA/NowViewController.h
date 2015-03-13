@@ -10,6 +10,5 @@
 
 @interface NowViewController : UIViewController
 
-
 @end
 

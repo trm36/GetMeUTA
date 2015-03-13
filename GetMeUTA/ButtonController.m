@@ -7,7 +7,9 @@
 //
 
 #import "ButtonController.h"
+#import "Button.h"
 
+static NSString *launchKey = @"launch";
 static NSString * const buttonListKey = @"buttonList";
 
 @interface ButtonController ()
@@ -20,11 +22,36 @@ static NSString * const buttonListKey = @"buttonList";
 
 + (ButtonController *)sharedInstance {
     static ButtonController *sharedInstance = nil;
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[ButtonController alloc] init];
+        
+        NSInteger launchCount = [[NSUserDefaults standardUserDefaults] integerForKey:launchKey];
+        
+        if (launchCount <= 1) {
+//            Button *defaultButtonInstance = [self defaultButton];
+//            [sharedInstance addButton:defaultButtonInstance];
+            NSArray *buttons = @[ @{titleKey: @"home", stationKey: @"station", needsSettupKey: @"YES"} ];
+            [[NSUserDefaults standardUserDefaults] setObject:buttons forKey:buttonListKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+        }
+        
+        [sharedInstance loadFromDefaults];
+        
     });
+    
     return sharedInstance;
+}
+
++ (Button *)defaultButton {
+    Button *defaultButton = [[Button alloc] init];
+    defaultButton.title = @"home";
+    defaultButton.station = @"Meadowbrook";
+    defaultButton.needsSettup = @"YES";
+    
+    return defaultButton;
 }
 
 - (void)addButton:(Button *)button {
@@ -38,7 +65,6 @@ static NSString * const buttonListKey = @"buttonList";
     
     self.buttons = mutableButtons;
     [self synchronize];
-    
 }
 
 - (void)removeButton:(Button *)button {
@@ -47,7 +73,7 @@ static NSString * const buttonListKey = @"buttonList";
         return;
     }
     
-    NSMutableArray *mutableButtons = self.entries.mutableCopy;
+    NSMutableArray *mutableButtons = self.buttons.mutableCopy;
     [mutableButtons removeObject:button];
     
     self.buttons = mutableButtons;
@@ -96,6 +122,9 @@ static NSString * const buttonListKey = @"buttonList";
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
+
+
+
 
 @end
 

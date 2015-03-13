@@ -8,10 +8,15 @@
 
 #import "NowViewController.h"
 #import "NSObject+UIColor.h"
+#import "ButtonController.h"
+#import "Button.h"
 
 @interface NowViewController ()
 
+@property (nonatomic, strong) UITextField *nameTextField;
+
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
+
 
 @end
 
@@ -43,13 +48,21 @@
     plusButton.titleLabel.font = [UIFont systemFontOfSize:50];
     [plusButton setTitle:@"+" forState:UIControlStateNormal];
     [plusButton setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
-    [plusButton addTarget:self action:@selector(plusButtonPressed)forControlEvents:UIControlEventTouchUpInside];
+    [plusButton addTarget:self action:@selector(addButtonPressed)forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:plusButton];
     
-    for (int i = 0; i < 2; i++) {
-        [self drawAButtonWithName:@"home" numberOfButtons:2 buttonNumber:i];
+    [ButtonController sharedInstance];
+    int count = [ButtonController sharedInstance].buttons.count;
+    int i = 0;
+    for (i = 0; i < count; i++) {
+        //ButtonController *controller = ;
+        NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
+        Button *button = arrayOfButtons[i];
+        NSString *title = button.title;
+        
+        [self drawAButtonWithName:title numberOfButtons:(count + 1) buttonNumber:i];
     }
-    
+    [self drawPlanButton:(count +1) buttonNumber:i];
     
 }
 
@@ -68,22 +81,34 @@
     float startVerticle = (viewHeight / 2) - (buttonHeight / 2) - (numberOfButtons * 20);
     float buttonVerticle = startVerticle + (buttonNumber * 90);
     
-    UIColor *color;
-    
-    if (buttonNumber == numberOfButtons - 1) {
-        color = [UIColor darkRed];
-    } else {
-        color = [UIColor darkBlue];
-    }
-    
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
-    button.backgroundColor = color;
+    button.backgroundColor = [UIColor darkBlue];
     button.layer.cornerRadius = 5;
     [button setTitle:name forState:UIControlStateNormal];
+    
+    [button addTarget:self action:@selector(addButtonPressed)forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:button];
 }
 
-- (void)plusButtonPressed {
+- (void)drawPlanButton:(int)numberOfButtons buttonNumber:(int)buttonNumber {
+    float viewWidth = self.view.bounds.size.width;
+    float viewHeight = self.view.bounds.size.height;
+    
+    float buttonWidth = viewWidth / 2.3;
+    float buttonHeight = 40;
+    float buttonHorizontal = (viewWidth / 2) - (buttonWidth / 2);
+    float startVerticle = (viewHeight / 2) - (buttonHeight / 2) - (numberOfButtons * 20);
+    float buttonVerticle = startVerticle + (buttonNumber * 90);
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
+    button.backgroundColor = [UIColor darkRed];
+    button.layer.cornerRadius = 5;
+    [button setTitle:@"plan" forState:UIControlStateNormal];
+    [self.view addSubview:button];
+}
+
+- (void)addButtonPressed {
     
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     
@@ -91,7 +116,7 @@
     self.blurEffectView.frame = self.view.frame;
     [self.view addSubview:self.blurEffectView];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 80, self.view.bounds.size.width * .8, self.view.bounds.size.height * .2)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 80, self.view.bounds.size.width * .8, self.view.bounds.size.height * .3)];
     view.backgroundColor = [UIColor colorWithRed:256 green:256 blue:256 alpha:.7];
     view.layer.cornerRadius = 10;
     [self.blurEffectView.contentView addSubview:view];
@@ -102,12 +127,51 @@
     [xButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
     [xButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
     [self.blurEffectView.contentView addSubview:xButton];
+    
+    
+    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 100, self.view.bounds.size.width * .8, 40)];
+    self.nameTextField.placeholder = @"button name";
+    self.nameTextField.backgroundColor = [UIColor whiteColor];
+    self.nameTextField.textAlignment = NSTextAlignmentCenter;
+    [self.blurEffectView.contentView addSubview:self.nameTextField];
+    
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 180, self.view.bounds.size.width * .8, 40)];
+    //saveButton.titleLabel.font = [UIFont systemFontOfSize:50];
+    saveButton.backgroundColor = [UIColor darkRed];
+    [saveButton setTitle:@"save" forState:UIControlStateNormal];
+    [saveButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(saveButton)forControlEvents:UIControlEventTouchUpInside];
+    [self.blurEffectView.contentView addSubview:saveButton];
+    
+    
 }
 
 - (void)xButtonPressed {
     [self.blurEffectView removeFromSuperview];
 }
 
+- (void)saveButton {
+    
+    if (self.nameTextField) {
+        
+        Button *newButton = [[Button alloc] init];
+        newButton.title = self.nameTextField.text;
+        newButton.station = @"Meadowbrook";
+        newButton.needsSettup = @"NO";
+        
+        [[ButtonController sharedInstance] addButton:newButton];
+        
+    }
+}
+
+//- (void)updateWithName:(Name *)name {
+//    self.name = name;
+//    self.nameField.text = name.name;
+//}
+//
+//- (void)refresh {
+//    [self updateWithName:self.name];
+//}
 
 
 @end
