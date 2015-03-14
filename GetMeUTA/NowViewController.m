@@ -14,7 +14,7 @@
 @interface NowViewController ()
 
 @property (nonatomic, strong) UITextField *nameTextField;
-
+@property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
 
 
@@ -26,7 +26,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.view.backgroundColor = [UIColor lightBlue];
+    [self drawMainView];
+    
+}
+
+- (void)drawMainView {
+    self.mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    self.mainView.backgroundColor = [UIColor lightBlue];
+    [self.view addSubview:self.mainView];
     
     float viewWidth = self.view.bounds.size.width;
     float viewHeight = self.view.bounds.size.height;
@@ -42,20 +49,20 @@
     [getMe setFont:[UIFont boldSystemFontOfSize:50]];
     //getMe.backgroundColor = [UIColor whiteColor];
     getMe.textColor = [UIColor darkRed];
-    [self.view addSubview:getMe];
+    [self.mainView addSubview:getMe];
     
     UIButton *plusButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
     plusButton.titleLabel.font = [UIFont systemFontOfSize:50];
+    plusButton.tag = 33;
     [plusButton setTitle:@"+" forState:UIControlStateNormal];
     [plusButton setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
-    [plusButton addTarget:self action:@selector(addButtonPressed)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:plusButton];
+    [plusButton addTarget:self action:@selector(addButtonPressedWithTag:)forControlEvents:UIControlEventTouchUpInside];
+    [self.mainView addSubview:plusButton];
     
     [ButtonController sharedInstance];
-    int count = [ButtonController sharedInstance].buttons.count;
+    int count = (int)[ButtonController sharedInstance].buttons.count;
     int i = 0;
     for (i = 0; i < count; i++) {
-        //ButtonController *controller = ;
         NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
         Button *button = arrayOfButtons[i];
         NSString *title = button.title;
@@ -63,7 +70,6 @@
         [self drawAButtonWithName:title numberOfButtons:(count + 1) buttonNumber:i];
     }
     [self drawPlanButton:(count +1) buttonNumber:i];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,11 +90,28 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
     button.backgroundColor = [UIColor darkBlue];
     button.layer.cornerRadius = 5;
+    button.tag = buttonNumber + 1;
     [button setTitle:name forState:UIControlStateNormal];
     
-    [button addTarget:self action:@selector(addButtonPressed)forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(favoritesButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:button];
+    [self.mainView addSubview:button];
+}
+
+- (void)favoritesButtonPressed:(id)sender {
+    
+    UIButton *buttonSent = [UIButton new];
+    buttonSent = sender;
+    
+    int tag = (int)buttonSent.tag -1;
+    
+    NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
+    Button *buttonSaved = arrayOfButtons[tag];
+    NSString *needsSetup = buttonSaved.needsSettup;
+    
+    if ([needsSetup isEqualToString:@"YES"]) {
+        [self addButtonPressedWithTag:tag];
+    }
 }
 
 - (void)drawPlanButton:(int)numberOfButtons buttonNumber:(int)buttonNumber {
@@ -105,10 +128,15 @@
     button.backgroundColor = [UIColor darkRed];
     button.layer.cornerRadius = 5;
     [button setTitle:@"plan" forState:UIControlStateNormal];
-    [self.view addSubview:button];
+    [self.mainView addSubview:button];
 }
 
-- (void)addButtonPressed {
+- (void)addButtonPressedWithTag:(int)tag {
+    
+    if ([ButtonController sharedInstance].buttons.count >= 3 && !(0 <= tag && tag <= 2) ) {
+        NSLog(@"You can't add more than three Fav buttons");
+        return;
+    }
     
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     
@@ -128,8 +156,17 @@
     [xButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
     [self.blurEffectView.contentView addSubview:xButton];
     
-    
     self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 100, self.view.bounds.size.width * .8, 40)];
+    
+    if (0 <= tag && tag <= 2) {
+        NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
+        Button *buttonSaved = arrayOfButtons[tag];
+        //NSString *buttonTitle = buttonSaved.title;
+        //NSString *station = buttonSaved.station;
+        
+        self.nameTextField.text = buttonSaved.title;
+    }
+    
     self.nameTextField.placeholder = @"button name";
     self.nameTextField.backgroundColor = [UIColor whiteColor];
     self.nameTextField.textAlignment = NSTextAlignmentCenter;
@@ -142,12 +179,12 @@
     [saveButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
     [saveButton addTarget:self action:@selector(saveButton)forControlEvents:UIControlEventTouchUpInside];
     [self.blurEffectView.contentView addSubview:saveButton];
-    
-    
 }
 
 - (void)xButtonPressed {
     [self.blurEffectView removeFromSuperview];
+    [self.mainView removeFromSuperview];
+    [self drawMainView];
 }
 
 - (void)saveButton {
@@ -160,7 +197,6 @@
         newButton.needsSettup = @"NO";
         
         [[ButtonController sharedInstance] addButton:newButton];
-        
     }
 }
 

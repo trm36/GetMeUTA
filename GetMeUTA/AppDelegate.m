@@ -30,7 +30,7 @@ static NSString *launchKey = @"launch";
         launchCount = 1;
     }
     
-    NSLog(@"%ld", (long)launchCount);
+    NSLog(@"App launch count: %ld", (long)launchCount);
     
     [[NSUserDefaults standardUserDefaults] setInteger:launchCount forKey:launchKey];
     [[NSUserDefaults standardUserDefaults] synchronize];

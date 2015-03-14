@@ -35,7 +35,6 @@ static NSString * const buttonListKey = @"buttonList";
             NSArray *buttons = @[ @{titleKey: @"home", stationKey: @"station", needsSettupKey: @"YES"} ];
             [[NSUserDefaults standardUserDefaults] setObject:buttons forKey:buttonListKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
         }
         
         [sharedInstance loadFromDefaults];
