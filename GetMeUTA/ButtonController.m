@@ -80,7 +80,7 @@ static NSString * const buttonListKey = @"buttonList";
     
 }
 
-- (void)replaceButton:(NSDictionary *)oldButton withButton:(NSDictionary *)newButton {
+- (void)replaceButton:(Button *)oldButton withButton:(Button *)newButton {
     
     if (!oldButton || !newButton) {
         return;
@@ -98,6 +98,23 @@ static NSString * const buttonListKey = @"buttonList";
     
 }
 
+//- (void)replaceButtonAtIndex:(int)oldButtonIndex withButton:(Button *)newButton {
+//    
+//    if (!newButton) {
+//        return;
+//    }
+//    
+//    NSMutableArray *mutableButtons = self.buttons.mutableCopy;
+//    [mutableButtons replaceObjectAtIndex:oldButtonIndex withObject:newButton];
+//    
+//    self.buttons = mutableButtons;
+//    
+//    
+//    
+//    [self synchronize];
+//    
+//}
+
 - (void)loadFromDefaults {
     
     NSArray *buttonDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:buttonListKey];
@@ -112,15 +129,31 @@ static NSString * const buttonListKey = @"buttonList";
 }
 
 - (void)synchronize {
+    
     NSMutableArray *buttonDictionaries = [NSMutableArray new];
     for (Button *button in self.buttons) {
         [buttonDictionaries addObject:[button buttonDictionary]];
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:buttonDictionaries forKey:buttonListKey];
+    
+    
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
+
+//- (void)synchronize {
+//    
+//    NSMutableArray *entryDictionaries = [NSMutableArray new];
+//    for (Entry *entry in self.entries) {
+//        [entryDictionaries addObject:[entry entryDictionary]];
+//    }
+//    
+//    [[NSUserDefaults standardUserDefaults] setObject:entryDictionaries forKey:entryListKey];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//    
+//}
 
 
 

@@ -56,7 +56,7 @@
     plusButton.tag = 33;
     [plusButton setTitle:@"+" forState:UIControlStateNormal];
     [plusButton setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
-    [plusButton addTarget:self action:@selector(addButtonPressedWithTag:)forControlEvents:UIControlEventTouchUpInside];
+    [plusButton addTarget:self action:@selector(addOrEditButtonWithTag:)forControlEvents:UIControlEventTouchUpInside];
     [self.mainView addSubview:plusButton];
     
     [ButtonController sharedInstance];
@@ -90,7 +90,7 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
     button.backgroundColor = [UIColor darkBlue];
     button.layer.cornerRadius = 5;
-    button.tag = buttonNumber + 1;
+    button.tag = buttonNumber;
     [button setTitle:name forState:UIControlStateNormal];
     
     [button addTarget:self action:@selector(favoritesButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
@@ -103,14 +103,14 @@
     UIButton *buttonSent = [UIButton new];
     buttonSent = sender;
     
-    int tag = (int)buttonSent.tag -1;
+    int tag = (int)buttonSent.tag;
     
     NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
     Button *buttonSaved = arrayOfButtons[tag];
     NSString *needsSetup = buttonSaved.needsSettup;
     
     if ([needsSetup isEqualToString:@"YES"]) {
-        [self addButtonPressedWithTag:tag];
+        [self addOrEditButtonWithTag:tag];
     }
 }
 
@@ -131,7 +131,7 @@
     [self.mainView addSubview:button];
 }
 
-- (void)addButtonPressedWithTag:(int)tag {
+- (void)addOrEditButtonWithTag:(int)tag {
     
     if ([ButtonController sharedInstance].buttons.count >= 3 && !(0 <= tag && tag <= 2) ) {
         NSLog(@"You can't add more than three Fav buttons");
@@ -175,9 +175,10 @@
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 180, self.view.bounds.size.width * .8, 40)];
     //saveButton.titleLabel.font = [UIFont systemFontOfSize:50];
     saveButton.backgroundColor = [UIColor darkRed];
+    saveButton.tag = tag;
     [saveButton setTitle:@"save" forState:UIControlStateNormal];
     [saveButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(saveButton)forControlEvents:UIControlEventTouchUpInside];
+    [saveButton addTarget:self action:@selector(saveButton:)forControlEvents:UIControlEventTouchUpInside];
     [self.blurEffectView.contentView addSubview:saveButton];
 }
 
@@ -187,16 +188,34 @@
     [self drawMainView];
 }
 
-- (void)saveButton {
+- (void)saveButton:(id)sender {
     
-    if (self.nameTextField) {
+    UIButton *buttonSent = [UIButton new];
+    buttonSent = sender;
+    
+    if (buttonSent.tag > 10) {
+        Button *newButton = [[Button alloc] init];
+        newButton.title = self.nameTextField.text;
+        newButton.station = @"Meadowbrook";
+        newButton.needsSettup = @"YES";
+        
+        [[ButtonController sharedInstance] addButton:newButton];
+        
+        [self xButtonPressed];
+    } else {
+        
+        NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
+        Button *oldButton = arrayOfButtons[buttonSent.tag];
         
         Button *newButton = [[Button alloc] init];
         newButton.title = self.nameTextField.text;
         newButton.station = @"Meadowbrook";
-        newButton.needsSettup = @"NO";
+        newButton.needsSettup = @"YES";
         
-        [[ButtonController sharedInstance] addButton:newButton];
+        //[[ButtonController sharedInstance] replaceButtonAtIndex:buttonSent.tag withButton:newButton];
+        [[ButtonController sharedInstance] replaceButton:oldButton withButton:newButton];
+        
+        [self xButtonPressed];
     }
 }
 
