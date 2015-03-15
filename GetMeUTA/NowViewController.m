@@ -139,6 +139,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     
     if ([ButtonController sharedInstance].buttons.count >= 3 && !(0 <= tag && tag <= 2) ) {
         NSLog(@"You can't add more than three Fav buttons");
+        [self tooManyButtons];
         return;
     }
     
@@ -202,6 +203,57 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     [saveButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
     [saveButton addTarget:self action:@selector(saveButton:)forControlEvents:UIControlEventTouchUpInside];
     [self.blurEffectView.contentView addSubview:saveButton];
+}
+
+- (void)tooManyButtons {
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    
+    self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    self.blurEffectView.frame = self.view.frame;
+    self.blurEffectView.alpha = 0.0;
+    [self.view addSubview:self.blurEffectView];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 80, self.view.bounds.size.width * .8, self.view.bounds.size.height * .3)];
+    view.backgroundColor = [UIColor colorWithRed:256 green:256 blue:256 alpha:.7];
+    view.layer.cornerRadius = 10;
+    [self.blurEffectView.contentView addSubview:view];
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    UIButton *xButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
+    xButton.titleLabel.font = [UIFont systemFontOfSize:50];
+    [xButton setTitle:@"+" forState:UIControlStateNormal];
+    [xButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
+    [xButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
+    [self.blurEffectView.contentView addSubview:xButton];
+    
+    /////////////////
+    
+    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(radians(45.0));
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        self.blurEffectView.alpha = 0.9;
+        self.plusButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
+        self.plusButton.transform = rotationTransform;
+        xButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
+        xButton.transform = rotationTransform;
+    }completion:^(BOOL finished) {
+    }];
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 100, self.view.bounds.size.width * .8, 40)];
+    message.text = @"too many buttons!";
+    message.textAlignment = NSTextAlignmentCenter;
+    [self.blurEffectView.contentView addSubview:message];
+    
+    UIButton *okButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 180, self.view.bounds.size.width * .8, 40)];
+    //saveButton.titleLabel.font = [UIFont systemFontOfSize:50];
+    okButton.backgroundColor = [UIColor darkRed];
+    [okButton setTitle:@"ok" forState:UIControlStateNormal];
+    [okButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
+    [okButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
+    [self.blurEffectView.contentView addSubview:okButton];
 }
 
 - (void)xButtonPressed {
