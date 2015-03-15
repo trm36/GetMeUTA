@@ -139,7 +139,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         [littleX setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
         [littleX setTitle:@"+" forState:UIControlStateNormal];
         
-        [littleX addTarget:self action:@selector(favoritesButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
+        [littleX addTarget:self action:@selector(deleteButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
         
         [self.mainView addSubview:littleX];
     }
@@ -168,12 +168,19 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         [editButton setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
         [editButton setTitle:@"edit" forState:UIControlStateNormal];
         
-        [editButton addTarget:self action:@selector(favoritesButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
+        [editButton addTarget:self action:@selector(editButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
         
         [self.mainView addSubview:editButton];
     }
     
     
+}
+
+- (void)editButtonPressed:(id)sender {
+    UIButton *buttonSent = [UIButton new];
+    buttonSent = sender;
+    int tag = (int)buttonSent.tag;
+    [self addOrEditButtonWithTag:tag];
 }
 
 - (void)favoritesButtonPressed:(id)sender {
@@ -190,6 +197,27 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     if ([needsSetup isEqualToString:@"YES"]) {
         [self addOrEditButtonWithTag:tag];
     }
+}
+
+- (void)deleteButtonPressed:(id)sender {
+    
+    UIButton *buttonSent = [UIButton new];
+    buttonSent = sender;
+    
+    
+    
+    NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
+    Button *oldButton = arrayOfButtons[buttonSent.tag];
+    
+//    Button *newButton = [[Button alloc] init];
+//    newButton.title = self.nameTextField.text;
+//    newButton.station = @"Meadowbrook";
+//    newButton.needsSettup = @"YES";
+    
+    //[[ButtonController sharedInstance] replaceButton:oldButton withButton:newButton];
+    [[ButtonController sharedInstance] removeButton:oldButton];
+    
+    [self xButtonPressed];
 }
 
 - (void)drawPlanButton:(int)numberOfButtons buttonNumber:(int)buttonNumber {
@@ -358,7 +386,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         Button *newButton = [[Button alloc] init];
         newButton.title = self.nameTextField.text;
         newButton.station = @"Meadowbrook";
-        newButton.needsSettup = @"YES";
+        newButton.needsSettup = @"NO";
         
         [[ButtonController sharedInstance] replaceButton:oldButton withButton:newButton];
         
