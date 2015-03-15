@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NowViewController.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -24,6 +25,20 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"FuIm9kw8MnVKs4ySbeNUxMeOTxM0BJIYTmw2rElS"
+                  clientKey:@"KtHqMUkNrUViuxnW9GUTFSYoUB3myKww332NgQtj"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
     return YES;
 }
 
