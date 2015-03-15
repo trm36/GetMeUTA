@@ -30,8 +30,6 @@ static NSString * const buttonListKey = @"buttonList";
         NSInteger launchCount = [[NSUserDefaults standardUserDefaults] integerForKey:launchKey];
         
         if (launchCount <= 1) {
-//            Button *defaultButtonInstance = [self defaultButton];
-//            [sharedInstance addButton:defaultButtonInstance];
             NSArray *buttons = @[ @{titleKey: @"home", stationKey: @"station", needsSettupKey: @"YES"} ];
             [[NSUserDefaults standardUserDefaults] setObject:buttons forKey:buttonListKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -98,23 +96,6 @@ static NSString * const buttonListKey = @"buttonList";
     
 }
 
-//- (void)replaceButtonAtIndex:(int)oldButtonIndex withButton:(Button *)newButton {
-//    
-//    if (!newButton) {
-//        return;
-//    }
-//    
-//    NSMutableArray *mutableButtons = self.buttons.mutableCopy;
-//    [mutableButtons replaceObjectAtIndex:oldButtonIndex withObject:newButton];
-//    
-//    self.buttons = mutableButtons;
-//    
-//    
-//    
-//    [self synchronize];
-//    
-//}
-
 - (void)loadFromDefaults {
     
     NSArray *buttonDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:buttonListKey];
@@ -143,23 +124,4 @@ static NSString * const buttonListKey = @"buttonList";
     
 }
 
-//- (void)synchronize {
-//    
-//    NSMutableArray *entryDictionaries = [NSMutableArray new];
-//    for (Entry *entry in self.entries) {
-//        [entryDictionaries addObject:[entry entryDictionary]];
-//    }
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:entryDictionaries forKey:entryListKey];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    
-//}
-
-
-
-
 @end
-
-
-
-

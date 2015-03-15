@@ -10,12 +10,17 @@
 #import "NSObject+UIColor.h"
 #import "ButtonController.h"
 #import "Button.h"
+#include <math.h>
+
+//            return |name-| pType   |param-| |-Function-------------------|
+static inline double radians (double degrees) {return degrees * M_PI / 180;}
 
 @interface NowViewController ()
 
 @property (nonatomic, strong) UITextField *nameTextField;
 @property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
+@property (nonatomic, strong) UIButton *plusButton;
 
 
 @end
@@ -47,17 +52,16 @@
     getMe.text = @"Get Me";
     getMe.textAlignment = NSTextAlignmentCenter;
     [getMe setFont:[UIFont boldSystemFontOfSize:50]];
-    //getMe.backgroundColor = [UIColor whiteColor];
     getMe.textColor = [UIColor darkRed];
     [self.mainView addSubview:getMe];
     
-    UIButton *plusButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
-    plusButton.titleLabel.font = [UIFont systemFontOfSize:50];
-    plusButton.tag = 33;
-    [plusButton setTitle:@"+" forState:UIControlStateNormal];
-    [plusButton setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
-    [plusButton addTarget:self action:@selector(addOrEditButtonWithTag:)forControlEvents:UIControlEventTouchUpInside];
-    [self.mainView addSubview:plusButton];
+    self.plusButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
+    self.plusButton.titleLabel.font = [UIFont systemFontOfSize:50];
+    self.plusButton.tag = 33;
+    [self.plusButton setTitle:@"+" forState:UIControlStateNormal];
+    [self.plusButton setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
+    [self.plusButton addTarget:self action:@selector(addOrEditButtonWithTag:)forControlEvents:UIControlEventTouchUpInside];
+    [self.mainView addSubview:self.plusButton];
     
     [ButtonController sharedInstance];
     int count = (int)[ButtonController sharedInstance].buttons.count;
@@ -142,12 +146,15 @@
     
     self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     self.blurEffectView.frame = self.view.frame;
+    self.blurEffectView.alpha = 0.0;
     [self.view addSubview:self.blurEffectView];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 80, self.view.bounds.size.width * .8, self.view.bounds.size.height * .3)];
     view.backgroundColor = [UIColor colorWithRed:256 green:256 blue:256 alpha:.7];
     view.layer.cornerRadius = 10;
     [self.blurEffectView.contentView addSubview:view];
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
     
     UIButton *xButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
     xButton.titleLabel.font = [UIFont systemFontOfSize:50];
@@ -156,13 +163,28 @@
     [xButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
     [self.blurEffectView.contentView addSubview:xButton];
     
+    /////////////////
+    
+    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(radians(45.0));
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        self.blurEffectView.alpha = 0.9;
+        self.plusButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
+        self.plusButton.transform = rotationTransform;
+        xButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
+        xButton.transform = rotationTransform;
+    }completion:^(BOOL finished) {
+    }];
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
     self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 100, self.view.bounds.size.width * .8, 40)];
     
     if (0 <= tag && tag <= 2) {
         NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
         Button *buttonSaved = arrayOfButtons[tag];
-        //NSString *buttonTitle = buttonSaved.title;
-        //NSString *station = buttonSaved.station;
         
         self.nameTextField.text = buttonSaved.title;
     }
@@ -212,21 +234,10 @@
         newButton.station = @"Meadowbrook";
         newButton.needsSettup = @"YES";
         
-        //[[ButtonController sharedInstance] replaceButtonAtIndex:buttonSent.tag withButton:newButton];
         [[ButtonController sharedInstance] replaceButton:oldButton withButton:newButton];
         
         [self xButtonPressed];
     }
 }
-
-//- (void)updateWithName:(Name *)name {
-//    self.name = name;
-//    self.nameField.text = name.name;
-//}
-//
-//- (void)refresh {
-//    [self updateWithName:self.name];
-//}
-
 
 @end

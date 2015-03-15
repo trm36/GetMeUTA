@@ -17,7 +17,6 @@
 - (void)addButton:(Button *)button;
 - (void)removeButton:(Button *)button;
 - (void)replaceButton:(Button *)oldButton withButton:(Button *)newButton;
-//- (void)replaceButtonAtIndex:(int)oldButtonIndex withButton:(Button *)newButton;
 - (void)loadFromDefaults;
 - (void)synchronize;
 
