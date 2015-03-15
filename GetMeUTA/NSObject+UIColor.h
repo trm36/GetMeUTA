@@ -16,5 +16,6 @@
 - (UIColor *)lightBlue;
 - (UIColor *)darkBlue;
 - (UIColor *)darkRed;
+- (UIColor *)clearWhite;
 
 @end

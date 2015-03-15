@@ -42,6 +42,11 @@
     return color;
 }
 
+- (UIColor *)clearWhite {
+    UIColor *color = [UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:0.8f];
+    return color;
+}
+
 
 
 @end

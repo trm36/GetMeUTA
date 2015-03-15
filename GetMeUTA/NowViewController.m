@@ -30,9 +30,11 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
     [self drawMainView];
-    
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 - (void)drawMainView {
@@ -72,6 +74,9 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         NSString *title = button.title;
         
         [self drawAButtonWithName:title numberOfButtons:(count + 1) buttonNumber:i];
+        
+        //[self drawDeleteButtons];
+        //[self drawEditButtons];
     }
     [self drawPlanButton:(count +1) buttonNumber:i];
 }
@@ -96,10 +101,79 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     button.layer.cornerRadius = 5;
     button.tag = buttonNumber;
     [button setTitle:name forState:UIControlStateNormal];
-    
     [button addTarget:self action:@selector(favoritesButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
     
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] init];
+    [longPress addTarget:self action:@selector(longPressButton)];
+    [button addGestureRecognizer:longPress];
+    //[longPress release];
+    
     [self.mainView addSubview:button];
+}
+
+- (void)longPressButton {
+    [self drawDeleteButtons];
+    [self drawEditButtons];
+}
+
+- (void)drawDeleteButtons {
+    float viewWidth = self.view.bounds.size.width;
+    float viewHeight = self.view.bounds.size.height;
+    
+    float buttonWidth = 26;
+    float buttonHeight = 26;
+    
+    int numberOfButtons = [ButtonController sharedInstance].buttons.count;
+    numberOfButtons = numberOfButtons + 1;
+    
+    for (int i = 0; i < (numberOfButtons - 1); i++) {
+        
+        float buttonHorizontal = (viewWidth / 4) - (buttonWidth / 4) + 5;
+        float startVerticle = (viewHeight / 2) - (buttonHeight / 2) - (numberOfButtons * 20);
+        float buttonVerticle = startVerticle + (i * 90) - 17;
+        
+        UIButton *littleX = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
+        littleX.backgroundColor = [UIColor clearWhite];
+        littleX.layer.cornerRadius = 13;
+        littleX.tag = i;
+        [littleX setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
+        [littleX setTitle:@"+" forState:UIControlStateNormal];
+        
+        [littleX addTarget:self action:@selector(favoritesButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.mainView addSubview:littleX];
+    }
+}
+
+- (void)drawEditButtons {
+    float viewWidth = self.view.bounds.size.width;
+    float viewHeight = self.view.bounds.size.height;
+    
+    float buttonWidth = 40;
+    float buttonHeight = 26;
+    
+    int numberOfButtons = [ButtonController sharedInstance].buttons.count;
+    numberOfButtons = numberOfButtons + 1;
+    
+    for (int i = 0; i < (numberOfButtons - 1); i++) {
+        
+        float buttonHorizontal = (viewWidth / 2) + (buttonWidth) + 5;
+        float startVerticle = (viewHeight / 2) - (buttonHeight / 2) - (numberOfButtons * 20);
+        float buttonVerticle = startVerticle + (i * 90) - 17;
+        
+        UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
+        editButton.backgroundColor = [UIColor clearWhite];
+        editButton.layer.cornerRadius = 13;
+        editButton.tag = i;
+        [editButton setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
+        [editButton setTitle:@"edit" forState:UIControlStateNormal];
+        
+        [editButton addTarget:self action:@selector(favoritesButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.mainView addSubview:editButton];
+    }
+    
+    
 }
 
 - (void)favoritesButtonPressed:(id)sender {
@@ -290,10 +364,6 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         
         [self xButtonPressed];
     }
-}
-
-- (BOOL)shouldAutorotate {
-    return NO;
 }
 
 @end
