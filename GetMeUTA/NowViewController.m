@@ -123,7 +123,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     float buttonWidth = 26;
     float buttonHeight = 26;
     
-    int numberOfButtons = [ButtonController sharedInstance].buttons.count;
+    int numberOfButtons = (int)[ButtonController sharedInstance].buttons.count;
     numberOfButtons = numberOfButtons + 1;
     
     for (int i = 0; i < (numberOfButtons - 1); i++) {
@@ -132,17 +132,36 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         float startVerticle = (viewHeight / 2) - (buttonHeight / 2) - (numberOfButtons * 20);
         float buttonVerticle = startVerticle + (i * 90) - 17;
         
+        UIButton *circle = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
+        circle.backgroundColor = [UIColor clearWhite];
+        circle.layer.cornerRadius = 13;
+        circle.tag = i;
+        //circle.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        [circle setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
+        [circle setTitle:@"" forState:UIControlStateNormal];
+        [circle addTarget:self action:@selector(deleteButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
+        [self.mainView addSubview:circle];
+        
         UIButton *littleX = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
-        littleX.backgroundColor = [UIColor clearWhite];
-        littleX.layer.cornerRadius = 13;
+        //littleX.backgroundColor = [UIColor clearWhite];
+        //littleX.layer.cornerRadius = 13;
         littleX.tag = i;
+        littleX.titleLabel.font = [UIFont boldSystemFontOfSize:25];
         [littleX setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
         [littleX setTitle:@"+" forState:UIControlStateNormal];
-        
         [littleX addTarget:self action:@selector(deleteButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
-        
         [self.mainView addSubview:littleX];
+        
+        CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(radians(45.0));
+        
+        [UIView animateWithDuration:0.0 animations:^{
+            littleX.center = CGPointMake(buttonHorizontal + 15, buttonVerticle + 12);
+            littleX.transform = rotationTransform;
+        }completion:^(BOOL finished) {
+        }];
     }
+    
+    
 }
 
 - (void)drawEditButtons {
@@ -152,7 +171,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     float buttonWidth = 40;
     float buttonHeight = 26;
     
-    int numberOfButtons = [ButtonController sharedInstance].buttons.count;
+    int numberOfButtons = (int)[ButtonController sharedInstance].buttons.count;
     numberOfButtons = numberOfButtons + 1;
     
     for (int i = 0; i < (numberOfButtons - 1); i++) {
@@ -172,8 +191,6 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         
         [self.mainView addSubview:editButton];
     }
-    
-    
 }
 
 - (void)editButtonPressed:(id)sender {
@@ -187,9 +204,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     
     UIButton *buttonSent = [UIButton new];
     buttonSent = sender;
-    
     int tag = (int)buttonSent.tag;
-    
     NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
     Button *buttonSaved = arrayOfButtons[tag];
     NSString *needsSetup = buttonSaved.needsSettup;
@@ -200,23 +215,11 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 }
 
 - (void)deleteButtonPressed:(id)sender {
-    
     UIButton *buttonSent = [UIButton new];
     buttonSent = sender;
-    
-    
-    
     NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
     Button *oldButton = arrayOfButtons[buttonSent.tag];
-    
-//    Button *newButton = [[Button alloc] init];
-//    newButton.title = self.nameTextField.text;
-//    newButton.station = @"Meadowbrook";
-//    newButton.needsSettup = @"YES";
-    
-    //[[ButtonController sharedInstance] replaceButton:oldButton withButton:newButton];
     [[ButtonController sharedInstance] removeButton:oldButton];
-    
     [self xButtonPressed];
 }
 
