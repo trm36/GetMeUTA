@@ -15,13 +15,13 @@
 //            return |name-| pType   |param-| |-Function-------------------|
 static inline double radians (double degrees) {return degrees * M_PI / 180;}
 
-@interface NowViewController ()
+@interface NowViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *nameTextField;
 @property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
 @property (nonatomic, strong) UIButton *plusButton;
-
+@property (nonatomic, strong) UIButton *xButton;
 
 @end
 
@@ -30,6 +30,9 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.plusButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
+    self.xButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
     [self drawMainView];
 }
 
@@ -38,7 +41,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 }
 
 - (void)drawMainView {
-    self.mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    self.mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.mainView.backgroundColor = [UIColor lightBlue];
     [self.view addSubview:self.mainView];
     
@@ -57,7 +60,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     getMe.textColor = [UIColor darkRed];
     [self.mainView addSubview:getMe];
     
-    self.plusButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
+    self.plusButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, 40, 40, 40)];
     self.plusButton.titleLabel.font = [UIFont systemFontOfSize:50];
     self.plusButton.tag = 33;
     [self.plusButton setTitle:@"+" forState:UIControlStateNormal];
@@ -74,9 +77,6 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         NSString *title = button.title;
         
         [self drawAButtonWithName:title numberOfButtons:(count + 1) buttonNumber:i];
-        
-        //[self drawDeleteButtons];
-        //[self drawEditButtons];
     }
     [self drawPlanButton:(count +1) buttonNumber:i];
 }
@@ -136,15 +136,12 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         circle.backgroundColor = [UIColor clearWhite];
         circle.layer.cornerRadius = 13;
         circle.tag = i;
-        //circle.titleLabel.font = [UIFont boldSystemFontOfSize:20];
         [circle setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
         [circle setTitle:@"" forState:UIControlStateNormal];
         [circle addTarget:self action:@selector(deleteButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
         [self.mainView addSubview:circle];
         
         UIButton *littleX = [[UIButton alloc] initWithFrame:CGRectMake(buttonHorizontal, buttonVerticle, buttonWidth, buttonHeight)];
-        //littleX.backgroundColor = [UIColor clearWhite];
-        //littleX.layer.cornerRadius = 13;
         littleX.tag = i;
         littleX.titleLabel.font = [UIFont boldSystemFontOfSize:25];
         [littleX setTitleColor:[UIColor darkBlue] forState:UIControlStateNormal];
@@ -220,7 +217,8 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
     Button *oldButton = arrayOfButtons[buttonSent.tag];
     [[ButtonController sharedInstance] removeButton:oldButton];
-    [self xButtonPressed];
+    
+    [self drawMainView];
 }
 
 - (void)drawPlanButton:(int)numberOfButtons buttonNumber:(int)buttonNumber {
@@ -248,45 +246,17 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         return;
     }
     
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    [self drawBlurEffectView];
+    [self drawXButton];
     
-    self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    self.blurEffectView.frame = self.view.frame;
-    self.blurEffectView.alpha = 0.0;
-    [self.view addSubview:self.blurEffectView];
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 80, self.view.bounds.size.width * .8, self.view.bounds.size.height * .3)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 80, self.view.frame.size.width * .8, self.view.bounds.size.height * .3)];
     view.backgroundColor = [UIColor colorWithRed:256 green:256 blue:256 alpha:.7];
     view.layer.cornerRadius = 10;
     [self.blurEffectView.contentView addSubview:view];
     
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    [self fadeInEffect];
     
-    UIButton *xButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
-    xButton.titleLabel.font = [UIFont systemFontOfSize:50];
-    [xButton setTitle:@"+" forState:UIControlStateNormal];
-    [xButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
-    [xButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
-    [self.blurEffectView.contentView addSubview:xButton];
-    
-    /////////////////
-    
-    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(radians(45.0));
-    
-    [UIView animateWithDuration:1.0 animations:^{
-        self.blurEffectView.alpha = 0.9;
-        self.plusButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
-        self.plusButton.transform = rotationTransform;
-        xButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
-        xButton.transform = rotationTransform;
-    }completion:^(BOOL finished) {
-    }];
-    
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
-    
-    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 100, self.view.bounds.size.width * .8, 40)];
+    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 100, self.view.frame.size.width * .8, 40)];
     
     if (0 <= tag && tag <= 2) {
         NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
@@ -300,7 +270,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     self.nameTextField.textAlignment = NSTextAlignmentCenter;
     [self.blurEffectView.contentView addSubview:self.nameTextField];
     
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 180, self.view.bounds.size.width * .8, 40)];
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 180, self.view.frame.size.width * .8, 40)];
     //saveButton.titleLabel.font = [UIFont systemFontOfSize:50];
     saveButton.backgroundColor = [UIColor darkRed];
     saveButton.tag = tag;
@@ -310,7 +280,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     [self.blurEffectView.contentView addSubview:saveButton];
 }
 
-- (void)tooManyButtons {
+- (void)drawBlurEffectView {
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     
     self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -318,53 +288,71 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     self.blurEffectView.alpha = 0.0;
     [self.view addSubview:self.blurEffectView];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 80, self.view.bounds.size.width * .8, self.view.bounds.size.height * .3)];
+}
+
+- (void)drawXButton {
+    self.xButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, 40, 40, 40)];
+    self.xButton.titleLabel.font = [UIFont systemFontOfSize:50];
+    [self.xButton setTitle:@"+" forState:UIControlStateNormal];
+    [self.xButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
+    [self.xButton addTarget:self action:@selector(fadeOut)forControlEvents:UIControlEventTouchUpInside];
+    [self.blurEffectView.contentView addSubview:self.xButton];
+}
+
+- (void)fadeInEffect {
+    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(radians(315.0));
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        self.blurEffectView.alpha = 0.9;
+        self.plusButton.transform = rotationTransform;
+        self.xButton.transform = rotationTransform;
+    }completion:^(BOOL finished) {
+    }];
+}
+
+- (void)tooManyButtons {
+    
+    [self drawBlurEffectView];
+    [self drawXButton];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 80, self.view.frame.size.width * .8, 210)];
     view.backgroundColor = [UIColor colorWithRed:256 green:256 blue:256 alpha:.7];
     view.layer.cornerRadius = 10;
     [self.blurEffectView.contentView addSubview:view];
     
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    [self fadeInEffect];
     
-    UIButton *xButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 40, 30, 30)];
-    xButton.titleLabel.font = [UIFont systemFontOfSize:50];
-    [xButton setTitle:@"+" forState:UIControlStateNormal];
-    [xButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
-    [xButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
-    [self.blurEffectView.contentView addSubview:xButton];
-    
-    /////////////////
-    
-    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(radians(45.0));
-    
-    [UIView animateWithDuration:1.0 animations:^{
-        self.blurEffectView.alpha = 0.9;
-        self.plusButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
-        self.plusButton.transform = rotationTransform;
-        xButton.center = CGPointMake(self.view.bounds.size.width - 42, 56);
-        xButton.transform = rotationTransform;
-    }completion:^(BOOL finished) {
-    }];
-    
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 100, self.view.bounds.size.width * .8, 40)];
-    message.text = @"too many buttons!";
+    UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 100, self.view.frame.size.width * .8, 40)];
+    message.text = @"Button Limit Reached";
+    [message setFont:[UIFont boldSystemFontOfSize:18]];
     message.textAlignment = NSTextAlignmentCenter;
     [self.blurEffectView.contentView addSubview:message];
     
-    UIButton *okButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * .1, 180, self.view.bounds.size.width * .8, 40)];
+    UILabel *messageBody = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .15, 130, self.view.frame.size.width * .7, 80)];
+    messageBody.text = @"Touch and hold a button to edit or delete it.";
+    messageBody.lineBreakMode = NSLineBreakByWordWrapping;
+    messageBody.numberOfLines = 0;
+    messageBody.textAlignment = NSTextAlignmentCenter;
+    [self.blurEffectView.contentView addSubview:messageBody];
+    
+    UIButton *okButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 220, self.view.frame.size.width * .8, 40)];
     //saveButton.titleLabel.font = [UIFont systemFontOfSize:50];
     okButton.backgroundColor = [UIColor darkRed];
     [okButton setTitle:@"ok" forState:UIControlStateNormal];
     [okButton setTitleColor:[UIColor colorWithRed:256 green:256 blue:256 alpha:.7] forState:UIControlStateNormal];
-    [okButton addTarget:self action:@selector(xButtonPressed)forControlEvents:UIControlEventTouchUpInside];
+    [okButton addTarget:self action:@selector(fadeOut)forControlEvents:UIControlEventTouchUpInside];
     [self.blurEffectView.contentView addSubview:okButton];
 }
 
-- (void)xButtonPressed {
-    [self.blurEffectView removeFromSuperview];
-    [self.mainView removeFromSuperview];
-    [self drawMainView];
+- (void)fadeOut {
+    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(radians(0.0));
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        self.blurEffectView.alpha = 0.0;
+        self.plusButton.transform = rotationTransform;
+        self.xButton.transform = rotationTransform;
+    }completion:^(BOOL finished) {
+    }];
 }
 
 - (void)saveButton:(id)sender {
@@ -380,7 +368,9 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         
         [[ButtonController sharedInstance] addButton:newButton];
         
-        [self xButtonPressed];
+        [self.nameTextField resignFirstResponder];
+        [self drawMainView];
+        [self fadeOut];
     } else {
         
         NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
@@ -393,8 +383,11 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         
         [[ButtonController sharedInstance] replaceButton:oldButton withButton:newButton];
         
-        [self xButtonPressed];
+        [self.nameTextField resignFirstResponder];
+        [self drawMainView];
+        [self fadeOut];
     }
 }
+
 
 @end
