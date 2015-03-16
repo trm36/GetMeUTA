@@ -10,6 +10,9 @@
 
 @interface StopController : NSObject
 
-+ (StopController *)sharedInstance;
+@property (nonatomic, readonly) NSArray *trips;
 
+
++ (StopController *)sharedInstance;
+- (void)pullStopTimesWithStopID:(NSNumber *) stopID;
 @end

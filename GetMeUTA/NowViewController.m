@@ -7,7 +7,7 @@
 //
 
 #import "NowViewController.h"
-#import <Parse/Parse.h>
+#import "StopController.h"
 
 @interface NowViewController ()
 
@@ -18,12 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [UIColor purpleColor];
+    [[StopController sharedInstance] pullStopTimesWithStopID:@18390]; //check method
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

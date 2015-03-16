@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "uta-trips"
+        }, 
+        "uta-trips": {
+            "applicationId": "FuIm9kw8MnVKs4ySbeNUxMeOTxM0BJIYTmw2rElS", 
+            "masterKey": "VW8mQ4Fx09mdhIAZCQJNjwCaL3N83Q6BFwTs0Ajb"
+        }
+    }
+}
