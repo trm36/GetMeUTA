@@ -12,6 +12,7 @@
 
 static NSString * const tripIDKey = @"tripID";
 static NSString * const stopTimeKey = @"stopTime";
+
 static NSString * const stopSequenceKey = @"stopSequence";
 static NSString * const stopIDKey = @"stopID";
 static NSString * const routeIDKey = @"routeID";
