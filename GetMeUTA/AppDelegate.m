@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NowViewController.h"
+#import <Parse/Parse.h>
 
 static NSString *launchKey = @"launch";
 
@@ -34,10 +35,23 @@ static NSString *launchKey = @"launch";
     
     [[NSUserDefaults standardUserDefaults] setInteger:launchCount forKey:launchKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"FuIm9kw8MnVKs4ySbeNUxMeOTxM0BJIYTmw2rElS"
+                  clientKey:@"KtHqMUkNrUViuxnW9GUTFSYoUB3myKww332NgQtj"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
     self.window.rootViewController = [NowViewController new];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     
     return YES;
 }
