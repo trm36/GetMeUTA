@@ -36,6 +36,11 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     [self drawMainView];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (BOOL)shouldAutorotate {
     return NO;
 }
@@ -78,12 +83,42 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         
         [self drawAButtonWithName:title numberOfButtons:(count + 1) buttonNumber:i];
     }
-    [self drawPlanButton:(count +1) buttonNumber:i];
+    [self drawPlanButton:(count + 1) buttonNumber:i];
+    
+    if (count < 3) {
+        [self drawHelpText];
+    }
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)drawHelpText {
+    
+//    UILabel *plusButtonHelp = [[UILabel alloc] initWithFrame:CGRectMake(10, 52, self.view.frame.size.width * .8, 20)];
+//    plusButtonHelp.text = @"tap to add quick route buttons ->";
+//    plusButtonHelp.textColor = [UIColor darkBlue];
+//    //[message setFont:[UIFont boldSystemFontOfSize:18]];
+//    plusButtonHelp.textAlignment = NSTextAlignmentCenter;
+//    [self.mainView addSubview:plusButtonHelp];
+    
+    //float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    float lableWidth = self.view.frame.size.width * 0.8;
+    float lableHorizontalPosition = self.view.frame.size.width *0.1;
+    
+    UILabel *helpLine1 = [[UILabel alloc] initWithFrame:CGRectMake(lableHorizontalPosition, height - 100, lableWidth, 40)];
+    helpLine1.text = @"find your way home,";
+    helpLine1.textColor = [UIColor darkBlue];
+    //[message setFont:[UIFont boldSystemFontOfSize:18]];
+    helpLine1.textAlignment = NSTextAlignmentCenter;
+    [self.mainView addSubview:helpLine1];
+
+    UILabel *helpLine2 = [[UILabel alloc] initWithFrame:CGRectMake(lableHorizontalPosition, height - 80, lableWidth, 40)];
+    helpLine2.text = @"or plan a one time trip.";
+    helpLine2.textColor = [UIColor darkBlue];
+    //[message setFont:[UIFont boldSystemFontOfSize:18]];
+    helpLine2.textAlignment = NSTextAlignmentCenter;
+    [self.mainView addSubview:helpLine2];
+    
 }
 
 - (void)drawAButtonWithName:(NSString *)name numberOfButtons:(int)numberOfButtons buttonNumber:(int)buttonNumber {
@@ -388,6 +423,5 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         [self fadeOut];
     }
 }
-
 
 @end
