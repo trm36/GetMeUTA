@@ -14,8 +14,12 @@
 
 
 + (StopController *)sharedInstance;
-- (void)pullStopTimesWithStopID:(NSNumber *) stopID;
-- (void)convertCurrentTimeFormat;
 
+- (void)pullStopTimesWithStopID:(NSNumber *) stopID;
+
+
+//for test
+- (void)convertCurrentTimeFormat;
+- (void)searchCalendar;
 
 @end

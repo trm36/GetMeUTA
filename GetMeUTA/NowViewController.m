@@ -19,7 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//    [[StopController sharedInstance] pullStopTimesWithStopID:@18390]; //check method
+    
+//for test
+    [[StopController sharedInstance] pullStopTimesWithStopID:@18390]; //check method
 //    [[StopController sharedInstance] convertCurrentTimeFormat];
 
 }

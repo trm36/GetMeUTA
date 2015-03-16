@@ -38,11 +38,12 @@ static NSString * const serviceIDKey = @"serviceID";
     return sharedInstance;
 }
 
+#pragma stopTimes Search
 - (void)pullStopTimesWithStopID:(NSNumber *) stopID {
     
     [self convertCurrentTimeFormat];
-//    NSLog(@"%@", self.currentTime); //check currentTime
-
+    // NSLog(@"%@", self.currentTime); //check currentTime
+    
     PFQuery *stopTimesQuery = [PFQuery queryWithClassName:@"stop_times" ];
     
     [stopTimesQuery whereKey:@"stop_id" equalTo:stopID];
@@ -53,13 +54,14 @@ static NSString * const serviceIDKey = @"serviceID";
     
     [stopTimesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
+            
             for (PFObject *pfObject in objects) {
-//                NSLog(@"%@ %@ %@", pfObject[@"trip_id"], pfObject[@"departure_time"], pfObject[@"stop_id"]); //test call to each pfobject queried
-//                NSLog(@"%@", pfObject[@"departure_time"]); // check all departure times based on filter and stop time (1)
+                // NSLog(@"%@ %@ %@", pfObject[@"trip_id"], pfObject[@"departure_time"], pfObject[@"stop_id"]); //test call to each pfobject queried
+                // NSLog(@"%@", pfObject[@"departure_time"]); // check all departure times based on filter and stop time (1)
                 [self addToDictionaryWithStopTime:pfObject[@"departure_time"] tripID:pfObject[@"trip_id"] stopID:pfObject[@"stop_id"]];
             }
             [self searchTrips];
-//            NSLog(@"%@", self.trips);//check dictionary pulled from stopTimes only (2)
+            // NSLog(@"%@", self.trips);//check dictionary pulled from stopTimes only (2)
         } else {
             NSLog(@"failed to retrieve from stopTimes");
         }
@@ -85,8 +87,8 @@ static NSString * const serviceIDKey = @"serviceID";
     
     NSString *timeString = [dateformatter stringFromDate:[NSDate date]]; // Convert date to string
     self.currentTime = timeString;
-//    NSLog(@"%@", timeString);
-
+    //    NSLog(@"%@", timeString);
+    
     
     NSDate *myDate = [NSDate date];
     double secondsInTwoHours = 2 * 60 * 60;
@@ -94,12 +96,11 @@ static NSString * const serviceIDKey = @"serviceID";
     NSDate *timeTwoHoursAhead = [myDate dateByAddingTimeInterval:interval];
     NSString *string = [dateformatter stringFromDate:timeTwoHoursAhead];
     self.timePlusTwo = string;
-//    NSLog(@"%@", string);
+    //    NSLog(@"%@", string);
     
 }
 
-
-
+#pragma trips Search
 - (void)searchTrips {
     
     for (NSDictionary *dictionary in self.trips) {
@@ -133,9 +134,48 @@ static NSString * const serviceIDKey = @"serviceID";
         NSLog(@"No route ID and service ID");
     }
     
-//    NSLog(@"%@", self.trips); //logs everytime route and service is added to dictionary. (3)
+    // NSLog(@"%@", self.trips); //logs everytime route and service is added to dictionary. (3)
+    
+}
 
+#pragma calendar Search
+- (void)searchCalendar {
+    NSLog(@"%@", self.trips);
+    for (NSDictionary *dictionary in self.trips) {
+        NSString *string = [dictionary valueForKey:serviceIDKey];
+        PFQuery *query = [PFQuery queryWithClassName:@"calendar"];
+        [query whereKey:@"service_id" equalTo:string];
+        [query selectKeys:@[@"sunday", @"monday", @"tuesday", @"wednesday", @"thursday", @"friday", @"saturday"]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                for (PFObject *object in objects) {
+                    NSLog(@"%@, %@, %@, %@, %@, %@, %@", object[@"sunday"], object[@"monday"], object[@"tuesday"], object[@"wednesday"], object[@"thursday"], object[@"friday"], object[@"saturday"]);
+                }
+            }
+            else {
+                NSLog(@"failed to retrieve from calendar");
+            }
+        }];
+    }
 }
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
