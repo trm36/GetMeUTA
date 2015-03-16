@@ -14,6 +14,8 @@ static NSString * const tripIDKey = @"tripID";
 static NSString * const stopTimeKey = @"stopTime";
 static NSString * const stopSequenceKey = @"stopSequence";
 static NSString * const stopIDKey = @"stopID";
+static NSString * const routeIDKey = @"routeID";
+static NSString * const serviceIDKey = @"serviceID";
 
 @interface StopController ()
 
@@ -38,7 +40,7 @@ static NSString * const stopIDKey = @"stopID";
 - (void)pullStopTimesWithStopID:(NSNumber *) stopID {
     
     [self convertCurrentTimeFormat];
-    
+
     PFQuery *stopTimesQuery = [PFQuery queryWithClassName:@"stop_times" ];
     
     [stopTimesQuery whereKey:@"stop_id" equalTo:stopID];
@@ -53,7 +55,8 @@ static NSString * const stopIDKey = @"stopID";
 //                NSLog(@"%@ %@ %@", pfObject[@"trip_id"], pfObject[@"departure_time"], pfObject[@"stop_id"]); //test call to each pfobject queried
                 [self addToDictionaryWithStopTime:pfObject[@"departure_time"] tripID:pfObject[@"trip_id"] stopID:pfObject[@"stop_id"]];
             }
-//            NSLog(@"%@", self.trips); //check trips array of dictionaries
+            [self searchTrips];
+
         } else {
             NSLog(@"failed to retrieve from stopTimes");
         }
@@ -80,7 +83,40 @@ static NSString * const stopIDKey = @"stopID";
     self.currentTime = timeString;
 }
 
+- (void)searchTrips {
+    
+    for (NSDictionary *dictionary in self.trips) {
+        NSString *string = [dictionary valueForKey:tripIDKey];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"trips"];
+        [query whereKey:@"trip_id" equalTo:string];
+        [query selectKeys:@[@"route_id",@"service_id"]];
+        [query setLimit:1000];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            if (!error) {
+                for (PFObject *pfObject in objects) {
+                    //                NSLog(@"%@", objects);
+                    [self addToDictionary:dictionary Route:pfObject[@"route_id"] service:pfObject[@"service_id"]];
+                }
+            } else {
+                NSLog(@"error with retrieving trips");
+            }
+        }];
+    }
+}
 
+- (void)addToDictionary:(NSDictionary *)dictionary Route:(NSString *)routeID service:(NSString *)serviceID {
+    if (routeID && serviceID) {
+        
+        [dictionary setValue:routeID forKey:routeIDKey];
+        [dictionary setValue:serviceID forKey:serviceIDKey];
+        
+    } else {
+        NSLog(@"No route ID and service ID");
+    }
+
+}
 
 
 @end

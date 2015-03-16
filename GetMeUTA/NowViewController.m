@@ -15,12 +15,14 @@
 
 @implementation NowViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [[StopController sharedInstance] pullStopTimesWithStopID:@18390]; //check method
-    
+
 }
+
 
 
 
