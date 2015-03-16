@@ -15,4 +15,7 @@
 
 + (StopController *)sharedInstance;
 - (void)pullStopTimesWithStopID:(NSNumber *) stopID;
+- (void)convertCurrentTimeFormat;
+
+
 @end

@@ -20,6 +20,7 @@ static NSString * const serviceIDKey = @"serviceID";
 @interface StopController ()
 
 @property (nonatomic, strong) NSString *currentTime;
+@property (nonatomic, strong) NSString *timePlusTwo;
 @property (nonatomic, strong) NSArray *trips;
 
 @end
@@ -40,12 +41,13 @@ static NSString * const serviceIDKey = @"serviceID";
 - (void)pullStopTimesWithStopID:(NSNumber *) stopID {
     
     [self convertCurrentTimeFormat];
+//    NSLog(@"%@", self.currentTime); //check currentTime
 
     PFQuery *stopTimesQuery = [PFQuery queryWithClassName:@"stop_times" ];
     
     [stopTimesQuery whereKey:@"stop_id" equalTo:stopID];
     [stopTimesQuery whereKey:@"departure_time" greaterThanOrEqualTo:self.currentTime];
-    [stopTimesQuery whereKey:@"arrival_time" lessThanOrEqualTo:@"24:00:00"];
+    [stopTimesQuery whereKey:@"arrival_time" lessThanOrEqualTo:self.timePlusTwo];
     [stopTimesQuery setLimit:1000];
     [stopTimesQuery selectKeys:@[@"trip_id", @"stop_id", @"departure_time"]];
     
@@ -53,10 +55,11 @@ static NSString * const serviceIDKey = @"serviceID";
         if (!error) {
             for (PFObject *pfObject in objects) {
 //                NSLog(@"%@ %@ %@", pfObject[@"trip_id"], pfObject[@"departure_time"], pfObject[@"stop_id"]); //test call to each pfobject queried
+//                NSLog(@"%@", pfObject[@"departure_time"]); // check all departure times based on filter and stop time (1)
                 [self addToDictionaryWithStopTime:pfObject[@"departure_time"] tripID:pfObject[@"trip_id"] stopID:pfObject[@"stop_id"]];
             }
             [self searchTrips];
-
+//            NSLog(@"%@", self.trips);//check dictionary pulled from stopTimes only (2)
         } else {
             NSLog(@"failed to retrieve from stopTimes");
         }
@@ -79,9 +82,23 @@ static NSString * const serviceIDKey = @"serviceID";
 - (void)convertCurrentTimeFormat {
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc]init];
     dateformatter.dateFormat = @"HH:mm:ss"; // Date formatter
+    
     NSString *timeString = [dateformatter stringFromDate:[NSDate date]]; // Convert date to string
     self.currentTime = timeString;
+//    NSLog(@"%@", timeString);
+
+    
+    NSDate *myDate = [NSDate date];
+    double secondsInTwoHours = 2 * 60 * 60;
+    NSTimeInterval  interval = secondsInTwoHours;
+    NSDate *timeTwoHoursAhead = [myDate dateByAddingTimeInterval:interval];
+    NSString *string = [dateformatter stringFromDate:timeTwoHoursAhead];
+    self.timePlusTwo = string;
+//    NSLog(@"%@", string);
+    
 }
+
+
 
 - (void)searchTrips {
     
@@ -115,6 +132,8 @@ static NSString * const serviceIDKey = @"serviceID";
     } else {
         NSLog(@"No route ID and service ID");
     }
+    
+//    NSLog(@"%@", self.trips); //logs everytime route and service is added to dictionary. (3)
 
 }
 
