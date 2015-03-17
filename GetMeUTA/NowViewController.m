@@ -34,6 +34,9 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     self.plusButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
     self.xButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
     [self drawMainView];
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
