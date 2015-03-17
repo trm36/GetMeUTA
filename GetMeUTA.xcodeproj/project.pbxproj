@@ -17,6 +17,7 @@
 		DAB11DA51AB20A5E00B7F0FF /* NSObject+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DA41AB20A5E00B7F0FF /* NSObject+UIColor.m */; };
 		DAB11DA81AB220F000B7F0FF /* ButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DA71AB220F000B7F0FF /* ButtonController.m */; };
 		DAB11DAB1AB220FC00B7F0FF /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DAA1AB220FC00B7F0FF /* Button.m */; };
+		DAB667C11AB8C8BE00A10914 /* StationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB667C01AB8C8BE00A10914 /* StationViewCell.m */; };
 		FC7034AA1AB54FBC00B19AC0 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7034A91AB54FBC00B19AC0 /* Stop.m */; };
 		FC7034AD1AB54FCD00B19AC0 /* StopController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7034AC1AB54FCD00B19AC0 /* StopController.m */; };
 		FC7034AF1AB551D400B19AC0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7034AE1AB551D400B19AC0 /* Parse.framework */; };
@@ -68,6 +69,8 @@
 		DAB11DA71AB220F000B7F0FF /* ButtonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonController.m; sourceTree = "<group>"; };
 		DAB11DA91AB220FC00B7F0FF /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
 		DAB11DAA1AB220FC00B7F0FF /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
+		DAB667BF1AB8C8BE00A10914 /* StationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationViewCell.h; path = ../StationViewCell.h; sourceTree = "<group>"; };
+		DAB667C01AB8C8BE00A10914 /* StationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationViewCell.m; path = ../StationViewCell.m; sourceTree = "<group>"; };
 		FC7034A81AB54FBC00B19AC0 /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop.h; sourceTree = "<group>"; };
 		FC7034A91AB54FBC00B19AC0 /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
 		FC7034AB1AB54FCD00B19AC0 /* StopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopController.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */,
 				FC737BE71AAA6AD600B12FC7 /* JourneyViewController.h */,
 				FC737BE81AAA6AD600B12FC7 /* JourneyViewController.m */,
+				DAB667BF1AB8C8BE00A10914 /* StationViewCell.h */,
+				DAB667C01AB8C8BE00A10914 /* StationViewCell.m */,
 				FC737BEA1AAA6AE300B12FC7 /* ResultsViewController.h */,
 				FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */,
 			);
@@ -329,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB667C11AB8C8BE00A10914 /* StationViewCell.m in Sources */,
 				344C76FD1AAA5EFB00E2F205 /* PlanViewController.m in Sources */,
 				FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */,
 				344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */,
