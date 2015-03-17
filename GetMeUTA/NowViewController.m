@@ -47,7 +47,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 
 - (void)drawMainView {
     self.mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    self.mainView.backgroundColor = [UIColor lightBlue];
+    self.mainView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.mainView];
     
     float viewWidth = self.view.bounds.size.width;
