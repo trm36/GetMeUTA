@@ -10,16 +10,15 @@
 
 @interface StopController : NSObject
 
-@property (nonatomic, readonly) NSArray *trips;
+@property (atomic, readonly) NSArray *trips;
 
+- (void)calculateRoute;
 
 + (StopController *)sharedInstance;
 
 - (void)pullStopTimesWithStopID:(NSNumber *) stopID;
 
 
-//for test
-- (void)convertCurrentTimeFormat;
-- (void)searchCalendar;
+
 
 @end

@@ -10,12 +10,12 @@
 
 @interface Stop : NSObject
 
-@property (nonatomic, strong) NSString *stopID;
-@property (nonatomic, strong) NSString *stopName;
-@property (nonatomic, strong) NSString *stopLatitude;
-@property (nonatomic, strong) NSString *stopLongitude;
+@property (atomic, strong) NSString *stopID;
+@property (atomic, strong) NSString *stopName;
+@property (atomic, strong) NSString *stopLatitude;
+@property (atomic, strong) NSString *stopLongitude;
 
-@property (nonatomic, strong) NSArray *stopTimes;
+@property (atomic, strong) NSArray *stopTimes;
 
 
 @end

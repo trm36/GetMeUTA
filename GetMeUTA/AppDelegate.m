@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NowViewController.h"
 #import <Parse/Parse.h>
+#import "StopController.h"
 
 static NSString *launchKey = @"launch";
 
@@ -23,6 +24,8 @@ static NSString *launchKey = @"launch";
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+
+
     NSInteger launchCount = [[NSUserDefaults standardUserDefaults] integerForKey:launchKey];
     
     if (launchCount) {
@@ -52,6 +55,7 @@ static NSString *launchKey = @"launch";
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    [[StopController sharedInstance] calculateRoute] ;
     
     return YES;
 }
