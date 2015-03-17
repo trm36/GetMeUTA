@@ -12,11 +12,11 @@
 
 static NSString * const tripIDKey = @"tripID";
 static NSString * const stopTimeKey = @"stopTime";
-
-static NSString * const stopSequenceKey = @"stopSequence";
 static NSString * const stopIDKey = @"stopID";
+
 static NSString * const routeIDKey = @"routeID";
 static NSString * const serviceIDKey = @"serviceID";
+static NSString * const stopNameKey = @"stopName";
 
 @interface StopController ()
 
@@ -47,11 +47,17 @@ static NSString * const serviceIDKey = @"serviceID";
     [self findServiceIDForToday];
     [self timeFilterForStopTimes];
     
-    [self pullStopTimesWithStopID:@18390];
+    NSArray *stops = [self searchDuplicateStopsWithStopID:@23571];
+    for (NSNumber *stop in stops) {
+        [self pullStopTimesWithStopID:stop];
+    }
+    
     [self searchTrips];
     [self filterTrips];
     
     NSLog(@"The calculateRoute trips is: %@", self.trips);
+    
+    
     
 }
 
@@ -65,6 +71,38 @@ static NSString * const serviceIDKey = @"serviceID";
     self.trips = filteredArray;
 
 }
+
+#pragma stops Search Duplicates
+- (NSArray *)searchDuplicateStopsWithStopID:(NSNumber *)stopID {
+    
+    NSString *stopName = [NSString new];
+
+    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stops"];
+    [stopIDQuery whereKey:@"stop_id" equalTo:stopID];
+    [stopIDQuery selectKeys:@[@"stop_name"]];
+    
+    NSArray *objectsIDArray = [[NSArray alloc] initWithArray:[stopIDQuery findObjects]];
+    
+    for (PFObject *pfObject in objectsIDArray) {
+        
+        stopName =pfObject[@"stop_name"];
+        NSLog(@"%@", pfObject[@"stop_name"]);
+    }
+    
+    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stops"];
+    [stopNameQuery whereKey:@"stop_name" equalTo:stopName];
+    
+    NSArray *objectsNameArray = [[NSArray alloc] initWithArray:[stopNameQuery findObjects]];
+    
+    NSMutableArray *stopIDArray = [NSMutableArray new];
+    for (PFObject *pfObject in objectsNameArray) {
+        [stopIDArray addObject:pfObject[@"stop_id"]];
+        NSLog(@"%@", stopIDArray);
+    }
+    return stopIDArray;
+    
+}
+
 
 #pragma stopTimes Search
 - (void)pullStopTimesWithStopID:(NSNumber *) stopID {
