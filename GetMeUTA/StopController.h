@@ -12,13 +12,6 @@
 
 @property (atomic, readonly) NSArray *trips;
 
-- (void)calculateRoute;
-
-+ (StopController *)sharedInstance;
-
-- (void)pullStopTimesWithStopID:(NSNumber *) stopID;
-
-
-
+- (void)getStopDataWithStopID:(NSNumber *)stopID;
 
 @end

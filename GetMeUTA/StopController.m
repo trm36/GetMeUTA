@@ -7,13 +7,11 @@
 //
 
 #import "StopController.h"
-#import "Stop.h"
 #import <Parse/Parse.h>
 
 static NSString * const tripIDKey = @"tripID";
 static NSString * const stopTimeKey = @"stopTime";
 static NSString * const stopIDKey = @"stopID";
-
 static NSString * const routeIDKey = @"routeID";
 static NSString * const serviceIDKey = @"serviceID";
 static NSString * const stopNameKey = @"stopName";
@@ -23,7 +21,6 @@ static NSString * const stopNameKey = @"stopName";
 @property (atomic, strong) NSString *currentTime;
 @property (atomic, strong) NSString *timePlusTwo;
 @property (atomic, strong) NSArray *trips;
-
 @property (atomic, assign) NSNumber *todayServiceID;
 
 @end
@@ -31,23 +28,22 @@ static NSString * const stopNameKey = @"stopName";
 
 @implementation StopController
 
-+ (StopController *)sharedInstance {
-    static StopController *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [StopController new];
-    });
-    return sharedInstance;
-}
+//+ (StopController *)sharedInstance {
+//    static StopController *sharedInstance = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sharedInstance = [StopController new];
+//    });
+//    return sharedInstance;
+//}  @23080
 
-- (void)calculateRoute {
+- (void)getStopDataWithStopID:(NSNumber *)stopID {
     
     self.trips = [NSArray new];
-    
     [self findServiceIDForToday];
     [self timeFilterForStopTimes];
     
-    NSArray *stops = [self searchDuplicateStopsWithStopID:@23571];
+    NSArray *stops = [self searchDuplicateStopsWithStopID:stopID];
     for (NSNumber *stop in stops) {
         [self pullStopTimesWithStopID:stop];
     }
