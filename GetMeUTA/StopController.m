@@ -52,9 +52,6 @@ static NSString * const stopNameKey = @"stopName";
     [self filterTrips];
     
     NSLog(@"The calculateRoute trips is: %@", self.trips);
-    
-    
-    
 }
 
 #pragma filter trips
