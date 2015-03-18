@@ -66,7 +66,7 @@ static NSString * const stopNameKey = @"stopName";
     
     NSMutableArray *filteredArray = [NSMutableArray new];
     NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];//keySelected is NSString itself
-    NSLog(@"predicate %@", predicateString);
+//    NSLog(@"predicate %@", predicateString);
     filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
     self.trips = filteredArray;
 
@@ -86,7 +86,7 @@ static NSString * const stopNameKey = @"stopName";
     for (PFObject *pfObject in objectsIDArray) {
         
         stopName =pfObject[@"stop_name"];
-        NSLog(@"%@", pfObject[@"stop_name"]);
+//        NSLog(@"%@", pfObject[@"stop_name"]);
     }
     
     PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stops"];
@@ -97,7 +97,7 @@ static NSString * const stopNameKey = @"stopName";
     NSMutableArray *stopIDArray = [NSMutableArray new];
     for (PFObject *pfObject in objectsNameArray) {
         [stopIDArray addObject:pfObject[@"stop_id"]];
-        NSLog(@"%@", stopIDArray);
+//        NSLog(@"%@", stopIDArray);
     }
     return stopIDArray;
     
