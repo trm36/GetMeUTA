@@ -17,7 +17,7 @@
 		DAB11DA51AB20A5E00B7F0FF /* NSObject+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DA41AB20A5E00B7F0FF /* NSObject+UIColor.m */; };
 		DAB11DA81AB220F000B7F0FF /* ButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DA71AB220F000B7F0FF /* ButtonController.m */; };
 		DAB11DAB1AB220FC00B7F0FF /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DAA1AB220FC00B7F0FF /* Button.m */; };
-		FC7034AA1AB54FBC00B19AC0 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7034A91AB54FBC00B19AC0 /* Stop.m */; };
+		FC5B129F1ABB1BA80062E792 /* TripController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B129E1ABB1BA80062E792 /* TripController.m */; };
 		FC7034AD1AB54FCD00B19AC0 /* StopController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7034AC1AB54FCD00B19AC0 /* StopController.m */; };
 		FC7034AF1AB551D400B19AC0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7034AE1AB551D400B19AC0 /* Parse.framework */; };
 		FC7034B11AB551DB00B19AC0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7034B01AB551DB00B19AC0 /* Bolts.framework */; };
@@ -68,8 +68,8 @@
 		DAB11DA71AB220F000B7F0FF /* ButtonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonController.m; sourceTree = "<group>"; };
 		DAB11DA91AB220FC00B7F0FF /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
 		DAB11DAA1AB220FC00B7F0FF /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
-		FC7034A81AB54FBC00B19AC0 /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop.h; sourceTree = "<group>"; };
-		FC7034A91AB54FBC00B19AC0 /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
+		FC5B129D1ABB1BA80062E792 /* TripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripController.h; sourceTree = "<group>"; };
+		FC5B129E1ABB1BA80062E792 /* TripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripController.m; sourceTree = "<group>"; };
 		FC7034AB1AB54FCD00B19AC0 /* StopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopController.h; sourceTree = "<group>"; };
 		FC7034AC1AB54FCD00B19AC0 /* StopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopController.m; sourceTree = "<group>"; };
 		FC7034AE1AB551D400B19AC0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
@@ -150,8 +150,8 @@
 				DAB11DAC1AB2210400B7F0FF /* Defults */,
 				FC7034AB1AB54FCD00B19AC0 /* StopController.h */,
 				FC7034AC1AB54FCD00B19AC0 /* StopController.m */,
-				FC7034A81AB54FBC00B19AC0 /* Stop.h */,
-				FC7034A91AB54FBC00B19AC0 /* Stop.m */,
+				FC5B129D1ABB1BA80062E792 /* TripController.h */,
+				FC5B129E1ABB1BA80062E792 /* TripController.m */,
 				FC737BED1AAA6B5C00B12FC7 /* ViewControllers */,
 				344C77011AAA5EFB00E2F205 /* Images.xcassets */,
 				344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */,
@@ -335,12 +335,12 @@
 				FC737BE61AAA6A7400B12FC7 /* SettingsViewController.m in Sources */,
 				344C76FA1AAA5EFB00E2F205 /* NowViewController.m in Sources */,
 				DAB11DA51AB20A5E00B7F0FF /* NSObject+UIColor.m in Sources */,
+				FC5B129F1ABB1BA80062E792 /* TripController.m in Sources */,
 				344C76F41AAA5EFA00E2F205 /* main.m in Sources */,
 				DAB11DAB1AB220FC00B7F0FF /* Button.m in Sources */,
 				FC737BE91AAA6AD600B12FC7 /* JourneyViewController.m in Sources */,
 				DAB11DA81AB220F000B7F0FF /* ButtonController.m in Sources */,
 				FC7034AD1AB54FCD00B19AC0 /* StopController.m in Sources */,
-				FC7034AA1AB54FBC00B19AC0 /* Stop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
