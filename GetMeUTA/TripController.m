@@ -13,6 +13,7 @@
 static NSString * const tripTimesKey = @"tripTime";
 static NSString * const stopIDKey = @"stopID";
 static NSString * const tripIDKey = @"tripID";
+static NSString * const stopSequenceKey = @"stopSequence";
 static NSString * const stopNameKey = @"stopName";
 
 @implementation TripController
@@ -22,19 +23,21 @@ static NSString * const stopNameKey = @"stopName";
 - (void)stopTimeSearchWithTripID:(NSNumber *)tripID {
     PFQuery *timesQuery = [PFQuery queryWithClassName:@"stop_times"];
     [timesQuery whereKey:@"trip_id" equalTo:tripID];
-    [timesQuery selectKeys:@[@"departure_time", @"stop_id", @"trip_id"]];
+    [timesQuery selectKeys:@[@"departure_time", @"stop_id", @"stop_sequence", @"trip_id",]];
     NSArray *timesArray = [[NSArray alloc] initWithArray:[timesQuery findObjects]];
     for (PFObject *timesObject in timesArray) {
-        [self addToDictionaryStopTimes:timesObject[@"departure_time"] stopID:timesObject[@"stop_id"] forTrip:timesObject[@"trip_id"]];
+        [self addToDictionaryStopTimes:timesObject[@"departure_time"] stopID:timesObject[@"stop_id"] stopSequence:timesObject[@"stop_sequence"] forTrip:timesObject[@"trip_id"]];
     }
 }
 
--(void)addToDictionaryStopTimes:(NSString *)times stopID:(NSString *)stopID forTrip:(NSString *)tripID {
+-(void)addToDictionaryStopTimes:(NSString *)times stopID:(NSString *)stopID stopSequence:(NSString *)stopSequence forTrip:(NSString *)tripID {
     
     NSMutableDictionary *stopTimesDictionary = [NSMutableDictionary new];
     [stopTimesDictionary setValue:times forKey:tripTimesKey];
     [stopTimesDictionary setValue:stopID forKey:stopIDKey];
     [stopTimesDictionary setValue:tripID forKey:tripIDKey];
+    [stopTimesDictionary setValue:stopSequence forKey:stopSequenceKey];
+    
     
     NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:self.timesForSelectedTrip];
     [tempArray addObject:stopTimesDictionary];
