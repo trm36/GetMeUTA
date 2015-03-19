@@ -28,15 +28,6 @@ static NSString * const stopNameKey = @"stopName";
 
 @implementation StopController
 
-//+ (StopController *)sharedInstance {
-//    static StopController *sharedInstance = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        sharedInstance = [StopController new];
-//    });
-//    return sharedInstance;
-//}  @23080
-
 - (void)getStopDataWithStopID:(NSNumber *)stopID {
     
     self.trips = [NSArray new];
@@ -64,6 +55,28 @@ static NSString * const stopNameKey = @"stopName";
     self.trips = filteredArray;
 }
 
+#pragma convert time to NSDate
+- (NSDate *)convertTimeToNSDate:(NSString *)time {
+    //Gets current month day and year
+    NSDateFormatter *monthDayYear = [[NSDateFormatter alloc] init];
+    [monthDayYear setDateFormat:@"yyyy-MM-dd"];
+    NSString *stringNewDate = [monthDayYear stringFromDate:[NSDate date]];
+    
+    //Adds the two strings togeather
+    stringNewDate = [stringNewDate stringByAppendingString:@" "];
+    stringNewDate = [stringNewDate stringByAppendingString:time];
+    NSLog(@"Stop String: %@", stringNewDate);
+    
+    //Converts NewDate string to an NSDate (GMT)
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *dateFromString = [[NSDate alloc] init];
+    dateFromString = [dateFormatter dateFromString:stringNewDate];
+    NSLog(@"New Date: %@", dateFromString);
+    
+    return dateFromString;
+}
+
 #pragma remove routes
 - (void)removeRoute:(NSArray *)route {
     
@@ -83,12 +96,20 @@ static NSString * const stopNameKey = @"stopName";
 }
 
 #pragma missed trips
-- (void)removeMissedTrips:(NSNumber *)trip {
+- (void)removeMissedTrips:(NSArray *)trip {
     
     NSMutableArray *filteredArray = [NSMutableArray new];
-    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K != %@", tripIDKey, trip];//keySelected is NSString itself
-    NSLog(@"predicate %@", predicateString);
-    filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
+    
+    for (int i = 0; i < self.trips.count; i++) {
+        
+        for (int x = 0; x < trip.count; x++) {
+            
+            if (self.trips[i][tripIDKey] == trip[x]) {
+                [filteredArray addObject:self.trips[i]];
+            }
+        }
+    }
+    
     self.trips = filteredArray;
 }
 
@@ -139,12 +160,15 @@ static NSString * const stopNameKey = @"stopName";
     objectsArray = [stopTimesQuery findObjects];
     
     for (PFObject *pfObject in objectsArray) {
-        [self addToDictionaryWithStopTime:pfObject[@"departure_time"] tripID:pfObject[@"trip_id"] stopID:pfObject[@"stop_id"]];
+        
+        NSDate *date = [self convertTimeToNSDate:pfObject[@"departure_time"]];
+        
+        [self addToDictionaryWithStopTime:date tripID:pfObject[@"trip_id"] stopID:pfObject[@"stop_id"]];
     }
 }
 
 
-- (void)addToDictionaryWithStopTime:(NSString *)time tripID:(NSString *)tripID stopID:(NSString *)stopID{
+- (void)addToDictionaryWithStopTime:(NSDate *)time tripID:(NSString *)tripID stopID:(NSString *)stopID{
     
     NSMutableDictionary *tempDictionary = [NSMutableDictionary new];
     [tempDictionary setValue:tripID forKey:tripIDKey];

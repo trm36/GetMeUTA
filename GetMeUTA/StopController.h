@@ -14,6 +14,6 @@
 
 - (void)getStopDataWithStopID:(NSNumber *)stopID;
 - (void)removeRoute:(NSArray *)route;
-- (void)removeMissedTrips:(NSNumber *)trip;
+- (void)removeMissedTrips:(NSArray *)trip;
 
 @end
