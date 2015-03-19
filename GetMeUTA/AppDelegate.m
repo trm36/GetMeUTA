@@ -10,8 +10,6 @@
 #import "NowViewController.h"
 #import <Parse/Parse.h>
 
-#import "TripController.h"
-
 static NSString *launchKey = @"launch";
 
 @interface AppDelegate ()
@@ -55,10 +53,6 @@ static NSString *launchKey = @"launch";
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
-    TripController *tripController = [TripController new];
-    [tripController stopTimeSearchWithTripID:@2120219];
-    NSLog(@"%@",tripController.timesForSelectedTrip);
     
     return YES;
 }

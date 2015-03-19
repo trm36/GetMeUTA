@@ -18,6 +18,7 @@ static NSString * const stopNameKey = @"stopName";
     
     PFQuery *stationsQuery = [PFQuery queryWithClassName:@"stations"];
     [stationsQuery selectKeys:@[@"stop_id", @"stop_name"]];
+    [stationsQuery orderByAscending:@"stop_name"];
     NSArray *stationsArray = [[NSArray alloc] initWithArray:[stationsQuery findObjects]];
     for (PFObject *pfObject in stationsArray) {
         [self addToDictionaryStopID:pfObject[@"stop_id"] stopName:pfObject[@"stop_name"]];
