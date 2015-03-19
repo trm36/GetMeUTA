@@ -14,11 +14,6 @@
 
 - (void)calculateRoute;
 
-+ (StopController *)sharedInstance;
-
-- (void)pullStopTimesWithStopID:(NSNumber *) stopID;
-
-
 
 
 @end

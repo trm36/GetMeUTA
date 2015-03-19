@@ -44,6 +44,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     // Dispose of any resources that can be recreated.
 }
 
+
 - (BOOL)shouldAutorotate {
     return NO;
 }
@@ -295,6 +296,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     [self fadeInEffect];
     
     self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 100, self.view.frame.size.width * .8, 40)];
+    self.nameTextField.delegate = self;
     
     if (0 <= tag && tag <= 2) {
         NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
@@ -426,5 +428,11 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         [self fadeOut];
     }
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 @end
