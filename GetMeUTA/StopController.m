@@ -62,7 +62,34 @@ static NSString * const stopNameKey = @"stopName";
     NSLog(@"predicate %@", predicateString);
     filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
     self.trips = filteredArray;
+}
 
+#pragma remove routes
+- (void)removeRoute:(NSArray *)route {
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    
+    for (int i = 0; i < self.trips.count; i++) {
+        
+        for (int x = 0; x < route.count; x++) {
+            
+            if (self.trips[i][routeIDKey] == route[x]) {
+                [filteredArray addObject:self.trips[i]];
+            }
+        }
+    }
+    
+    self.trips = filteredArray;
+}
+
+#pragma missed trips
+- (void)removeMissedTrips:(NSNumber *)trip {
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K != %@", tripIDKey, trip];//keySelected is NSString itself
+    NSLog(@"predicate %@", predicateString);
+    filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
+    self.trips = filteredArray;
 }
 
 #pragma stops Search Duplicates

@@ -13,5 +13,7 @@
 @property (atomic, readonly) NSArray *trips;
 
 - (void)getStopDataWithStopID:(NSNumber *)stopID;
+- (void)removeRoute:(NSArray *)route;
+- (void)removeMissedTrips:(NSNumber *)trip;
 
 @end
