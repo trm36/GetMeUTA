@@ -7,7 +7,6 @@
 //
 
 #import "StopController.h"
-#import "Stop.h"
 #import <Parse/Parse.h>
 
 static NSString * const tripIDKey = @"tripID";
@@ -18,12 +17,12 @@ static NSString * const routeIDKey = @"routeID";
 static NSString * const serviceIDKey = @"serviceID";
 static NSString * const stopNameKey = @"stopName";
 
+
 @interface StopController ()
 
 @property (atomic, strong) NSString *currentTime;
 @property (atomic, strong) NSString *timePlusTwo;
 @property (atomic, strong) NSArray *trips;
-
 @property (atomic, assign) NSNumber *todayServiceID;
 
 @end
@@ -31,23 +30,15 @@ static NSString * const stopNameKey = @"stopName";
 
 @implementation StopController
 
-+ (StopController *)sharedInstance {
-    static StopController *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [StopController new];
-    });
-    return sharedInstance;
-}
 
 - (void)calculateRoute {
-    
+//this is called on appDelegate to run first.
     self.trips = [NSArray new];
     
     [self findServiceIDForToday];
     [self timeFilterForStopTimes];
     
-    NSArray *stops = [self searchDuplicateStopsWithStopID:@23571];
+    NSArray *stops = [self searchDuplicateStopsWithStopID:@18409];
     for (NSNumber *stop in stops) {
         [self pullStopTimesWithStopID:stop];
     }
@@ -55,18 +46,15 @@ static NSString * const stopNameKey = @"stopName";
     [self searchTrips];
     [self filterTrips];
     
-    NSLog(@"The calculateRoute trips is: %@", self.trips);
-    
-    
-    
+//    NSLog(@"The calculateRoute trips is: %@", self.trips);
 }
+
 
 #pragma filter trips
 - (void)filterTrips {
     
     NSMutableArray *filteredArray = [NSMutableArray new];
-    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];//keySelected is NSString itself
-//    NSLog(@"predicate %@", predicateString);
+    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];
     filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
     self.trips = filteredArray;
 
@@ -77,7 +65,7 @@ static NSString * const stopNameKey = @"stopName";
     
     NSString *stopName = [NSString new];
 
-    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stops"];
+    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stations"];
     [stopIDQuery whereKey:@"stop_id" equalTo:stopID];
     [stopIDQuery selectKeys:@[@"stop_name"]];
     
@@ -89,7 +77,7 @@ static NSString * const stopNameKey = @"stopName";
 //        NSLog(@"%@", pfObject[@"stop_name"]);
     }
     
-    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stops"];
+    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stations"];
     [stopNameQuery whereKey:@"stop_name" equalTo:stopName];
     
     NSArray *objectsNameArray = [[NSArray alloc] initWithArray:[stopNameQuery findObjects]];
@@ -145,7 +133,6 @@ static NSString * const stopNameKey = @"stopName";
     self.currentTime = timeString;
     //    NSLog(@"%@", timeString);
     
-    
     NSDate *myDate = [NSDate date];
     double secondsInTwoHours = 2 * 60 * 60;
     NSTimeInterval  interval = secondsInTwoHours;
@@ -157,8 +144,7 @@ static NSString * const stopNameKey = @"stopName";
 }
 
 #pragma trips Search
-- (void)searchTrips
-{
+- (void)searchTrips {
     
     for (NSDictionary *dictionary in self.trips)
     {
@@ -168,7 +154,7 @@ static NSString * const stopNameKey = @"stopName";
         [query selectKeys:@[@"route_id",@"service_id"]];
         [query setLimit:1000];
         
-        NSArray *objectsArray = [[NSArray alloc] initWithArray:[query findObjects]];
+        NSArray *objectsArray = [[NSArray alloc] initWithArray:[query findObjects]];//all objects queried returned process in main thread
         for (PFObject *pfObject in objectsArray)
         {
             [self addToDictionaryWithDictionary:dictionary Route:pfObject[@"route_id"] service:pfObject[@"service_id"]];
@@ -196,11 +182,9 @@ static NSString * const stopNameKey = @"stopName";
     if (weekdayNumber >= 2 && weekdayNumber <= 6) {    //Week days
         self.todayServiceID = @4;
     }
-    
     if (weekdayNumber == 1) {  //Sunday
         self.todayServiceID = @3;
     }
-    
     if (weekdayNumber == 7) { //Saturday
         self.todayServiceID = @2;
     }
