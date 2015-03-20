@@ -10,14 +10,7 @@
 
 @interface StopController : NSObject
 
-<<<<<<< HEAD
-@property (atomic, readonly) NSArray *trips;
-
-- (void)calculateRoute;
-
-=======
 @property (atomic, readwrite) NSArray *trips;
->>>>>>> feature/JourneyCalculator
 
 - (void)getStopDataWithStopID:(NSNumber *)stopID;
 - (void)removeRoute:(NSArray *)route;

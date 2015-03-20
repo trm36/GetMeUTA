@@ -17,9 +17,12 @@
 		DAB11DA51AB20A5E00B7F0FF /* NSObject+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DA41AB20A5E00B7F0FF /* NSObject+UIColor.m */; };
 		DAB11DA81AB220F000B7F0FF /* ButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DA71AB220F000B7F0FF /* ButtonController.m */; };
 		DAB11DAB1AB220FC00B7F0FF /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB11DAA1AB220FC00B7F0FF /* Button.m */; };
-		DAB667C11AB8C8BE00A10914 /* StationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB667C01AB8C8BE00A10914 /* StationViewCell.m */; };
-		DAB667C81AB9CA5C00A10914 /* JourneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB667C71AB9CA5C00A10914 /* JourneyCalculator.m */; };
+<<<<<<< HEAD
 		FC5B129F1ABB1BA80062E792 /* TripController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B129E1ABB1BA80062E792 /* TripController.m */; };
+=======
+		DAB667C11AB8C8BE00A10914 /* StationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB667C01AB8C8BE00A10914 /* StationViewCell.m */; };
+		FC7034AA1AB54FBC00B19AC0 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7034A91AB54FBC00B19AC0 /* Stop.m */; };
+>>>>>>> feature/JourneyView
 		FC7034AD1AB54FCD00B19AC0 /* StopController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7034AC1AB54FCD00B19AC0 /* StopController.m */; };
 		FC7034AF1AB551D400B19AC0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7034AE1AB551D400B19AC0 /* Parse.framework */; };
 		FC7034B11AB551DB00B19AC0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7034B01AB551DB00B19AC0 /* Bolts.framework */; };
@@ -71,12 +74,15 @@
 		DAB11DA71AB220F000B7F0FF /* ButtonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonController.m; sourceTree = "<group>"; };
 		DAB11DA91AB220FC00B7F0FF /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
 		DAB11DAA1AB220FC00B7F0FF /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
-		DAB667BF1AB8C8BE00A10914 /* StationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationViewCell.h; path = ../StationViewCell.h; sourceTree = "<group>"; };
-		DAB667C01AB8C8BE00A10914 /* StationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationViewCell.m; path = ../StationViewCell.m; sourceTree = "<group>"; };
-		DAB667C61AB9CA5C00A10914 /* JourneyCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JourneyCalculator.h; path = ../JourneyCalculator.h; sourceTree = "<group>"; };
-		DAB667C71AB9CA5C00A10914 /* JourneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JourneyCalculator.m; path = ../JourneyCalculator.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		FC5B129D1ABB1BA80062E792 /* TripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripController.h; sourceTree = "<group>"; };
 		FC5B129E1ABB1BA80062E792 /* TripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripController.m; sourceTree = "<group>"; };
+=======
+		DAB667BF1AB8C8BE00A10914 /* StationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationViewCell.h; path = ../StationViewCell.h; sourceTree = "<group>"; };
+		DAB667C01AB8C8BE00A10914 /* StationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationViewCell.m; path = ../StationViewCell.m; sourceTree = "<group>"; };
+		FC7034A81AB54FBC00B19AC0 /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop.h; sourceTree = "<group>"; };
+		FC7034A91AB54FBC00B19AC0 /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
+>>>>>>> feature/JourneyView
 		FC7034AB1AB54FCD00B19AC0 /* StopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopController.h; sourceTree = "<group>"; };
 		FC7034AC1AB54FCD00B19AC0 /* StopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopController.m; sourceTree = "<group>"; };
 		FC7034AE1AB551D400B19AC0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
@@ -157,7 +163,12 @@
 				344C76F51AAA5EFA00E2F205 /* AppDelegate.h */,
 				344C76F61AAA5EFB00E2F205 /* AppDelegate.m */,
 				DAB11DAC1AB2210400B7F0FF /* Defults */,
-				DAB667C91AB9CA7000A10914 /* JourneyCalculator */,
+				FC7B70AB1ABB84EB00F0A5E2 /* PlanController.h */,
+				FC7B70AC1ABB84EB00F0A5E2 /* PlanController.m */,
+				FC7034AB1AB54FCD00B19AC0 /* StopController.h */,
+				FC7034AC1AB54FCD00B19AC0 /* StopController.m */,
+				FC5B129D1ABB1BA80062E792 /* TripController.h */,
+				FC5B129E1ABB1BA80062E792 /* TripController.m */,
 				FC737BED1AAA6B5C00B12FC7 /* ViewControllers */,
 				344C77011AAA5EFB00E2F205 /* Images.xcassets */,
 				344C77031AAA5EFB00E2F205 /* LaunchScreen.xib */,
@@ -214,21 +225,6 @@
 				DAB11DAA1AB220FC00B7F0FF /* Button.m */,
 			);
 			name = Defults;
-			sourceTree = "<group>";
-		};
-		DAB667C91AB9CA7000A10914 /* JourneyCalculator */ = {
-			isa = PBXGroup;
-			children = (
-				DAB667C61AB9CA5C00A10914 /* JourneyCalculator.h */,
-				DAB667C71AB9CA5C00A10914 /* JourneyCalculator.m */,
-				FC7034AB1AB54FCD00B19AC0 /* StopController.h */,
-				FC7034AC1AB54FCD00B19AC0 /* StopController.m */,
-				FC5B129D1ABB1BA80062E792 /* TripController.h */,
-				FC5B129E1ABB1BA80062E792 /* TripController.m */,
-				FC7B70AB1ABB84EB00F0A5E2 /* PlanController.h */,
-				FC7B70AC1ABB84EB00F0A5E2 /* PlanController.m */,
-			);
-			name = JourneyCalculator;
 			sourceTree = "<group>";
 		};
 		FC737BED1AAA6B5C00B12FC7 /* ViewControllers */ = {
@@ -353,7 +349,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAB667C11AB8C8BE00A10914 /* StationViewCell.m in Sources */,
-				DAB667C81AB9CA5C00A10914 /* JourneyCalculator.m in Sources */,
 				344C76FD1AAA5EFB00E2F205 /* PlanViewController.m in Sources */,
 				FC737BEC1AAA6AE300B12FC7 /* ResultsViewController.m in Sources */,
 				344C76F71AAA5EFB00E2F205 /* AppDelegate.m in Sources */,
