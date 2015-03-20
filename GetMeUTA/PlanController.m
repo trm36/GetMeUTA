@@ -16,7 +16,7 @@ static NSString * const stopNameKey = @"stopName";
 
 - (void)searchStationsForName {
     
-    PFQuery *stationsQuery = [PFQuery queryWithClassName:@"stations"];
+    PFQuery *stationsQuery = [PFQuery queryWithClassName:@"singleStations"];
     [stationsQuery selectKeys:@[@"stop_id", @"stop_name"]];
     [stationsQuery orderByAscending:@"stop_name"];
     NSArray *stationsArray = [[NSArray alloc] initWithArray:[stationsQuery findObjects]];

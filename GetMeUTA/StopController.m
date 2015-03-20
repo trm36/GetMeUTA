@@ -76,7 +76,7 @@ static NSString * const stopNameKey = @"stopName";
 //        NSLog(@"%@", pfObject[@"stop_name"]);
     }
     
-    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stops"];
+    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stations"];
     [stopNameQuery whereKey:@"stop_name" equalTo:stopName];
     
     NSArray *objectsNameArray = [[NSArray alloc] initWithArray:[stopNameQuery findObjects]];
