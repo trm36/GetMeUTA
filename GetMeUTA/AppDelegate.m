@@ -9,8 +9,7 @@
 #import "AppDelegate.h"
 #import "NowViewController.h"
 #import <Parse/Parse.h>
-
-#import "StopController.h"
+#import "JourneyCalculator.h"
 
 static NSString *launchKey = @"launch";
 
@@ -56,8 +55,8 @@ static NSString *launchKey = @"launch";
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    StopController *stopController = [StopController new];
-    [stopController calculateRoute];
+    [JourneyCalculator calculateJourney];
+    
     
     return YES;
 }

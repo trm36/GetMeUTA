@@ -12,17 +12,15 @@
 static NSString * const tripIDKey = @"tripID";
 static NSString * const stopTimeKey = @"stopTime";
 static NSString * const stopIDKey = @"stopID";
-
 static NSString * const routeIDKey = @"routeID";
 static NSString * const serviceIDKey = @"serviceID";
 static NSString * const stopNameKey = @"stopName";
-
 
 @interface StopController ()
 
 @property (atomic, strong) NSString *currentTime;
 @property (atomic, strong) NSString *timePlusTwo;
-@property (atomic, strong) NSArray *trips;
+//@property (atomic, strong) NSArray *trips;
 @property (atomic, assign) NSNumber *todayServiceID;
 
 @end
@@ -30,15 +28,13 @@ static NSString * const stopNameKey = @"stopName";
 
 @implementation StopController
 
-
-- (void)calculateRoute {
-//this is called on appDelegate to run first.
-    self.trips = [NSArray new];
+- (void)getStopDataWithStopID:(NSNumber *)stopID {
     
+    self.trips = [NSArray new];
     [self findServiceIDForToday];
     [self timeFilterForStopTimes];
     
-    NSArray *stops = [self searchDuplicateStopsWithStopID:@18377];
+    NSArray *stops = [self searchDuplicateStopsWithStopID:stopID];
     for (NSNumber *stop in stops) {
         [self pullStopTimesWithStopID:stop];
     }
@@ -49,15 +45,72 @@ static NSString * const stopNameKey = @"stopName";
     NSLog(@"The calculateRoute trips is: %@", self.trips);
 }
 
-
 #pragma filter trips
 - (void)filterTrips {
     
     NSMutableArray *filteredArray = [NSMutableArray new];
-    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];
+    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];//keySelected is NSString itself
+    NSLog(@"predicate %@", predicateString);
     filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
     self.trips = filteredArray;
+}
 
+#pragma convert time to NSDate
+- (NSDate *)convertTimeToNSDate:(NSString *)time {
+    //Gets current month day and year
+    NSDateFormatter *monthDayYear = [[NSDateFormatter alloc] init];
+    [monthDayYear setDateFormat:@"yyyy-MM-dd"];
+    NSString *stringNewDate = [monthDayYear stringFromDate:[NSDate date]];
+    
+    //Adds the two strings togeather
+    stringNewDate = [stringNewDate stringByAppendingString:@" "];
+    stringNewDate = [stringNewDate stringByAppendingString:time];
+    NSLog(@"Stop String: %@", stringNewDate);
+    
+    //Converts NewDate string to an NSDate (GMT)
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *dateFromString = [[NSDate alloc] init];
+    dateFromString = [dateFormatter dateFromString:stringNewDate];
+    NSLog(@"New Date: %@", dateFromString);
+    
+    return dateFromString;
+}
+
+#pragma remove routes
+- (void)removeRoute:(NSArray *)route {
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    
+    for (int i = 0; i < self.trips.count; i++) {
+        
+        for (int x = 0; x < route.count; x++) {
+            
+            if (self.trips[i][routeIDKey] == route[x]) {
+                [filteredArray addObject:self.trips[i]];
+            }
+        }
+    }
+    
+    self.trips = filteredArray;
+}
+
+#pragma missed trips
+- (void)removeMissedTrips:(NSArray *)trip {
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    
+    for (int i = 0; i < self.trips.count; i++) {
+        
+        for (int x = 0; x < trip.count; x++) {
+            
+            if (self.trips[i][tripIDKey] == trip[x]) {
+                [filteredArray addObject:self.trips[i]];
+            }
+        }
+    }
+    
+    self.trips = filteredArray;
 }
 
 #pragma stops Search Duplicates
@@ -65,18 +118,19 @@ static NSString * const stopNameKey = @"stopName";
     
     NSString *stopName = [NSString new];
 
-    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stations"];
+    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stops"];
     [stopIDQuery whereKey:@"stop_id" equalTo:stopID];
     [stopIDQuery selectKeys:@[@"stop_name"]];
     
     NSArray *objectsIDArray = [[NSArray alloc] initWithArray:[stopIDQuery findObjects]];
+    
     for (PFObject *pfObject in objectsIDArray) {
         
         stopName =pfObject[@"stop_name"];
-//        NSLog(@"%@", pfObject[@"stop_name"]);
+        NSLog(@"%@", pfObject[@"stop_name"]);
     }
     
-    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stations"];
+    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stops"];
     [stopNameQuery whereKey:@"stop_name" equalTo:stopName];
     
     NSArray *objectsNameArray = [[NSArray alloc] initWithArray:[stopNameQuery findObjects]];
@@ -84,7 +138,7 @@ static NSString * const stopNameKey = @"stopName";
     NSMutableArray *stopIDArray = [NSMutableArray new];
     for (PFObject *pfObject in objectsNameArray) {
         [stopIDArray addObject:pfObject[@"stop_id"]];
-//        NSLog(@"%@", stopIDArray);
+        NSLog(@"%@", stopIDArray);
     }
     return stopIDArray;
     
@@ -106,12 +160,15 @@ static NSString * const stopNameKey = @"stopName";
     objectsArray = [stopTimesQuery findObjects];
     
     for (PFObject *pfObject in objectsArray) {
-        [self addToDictionaryWithStopTime:pfObject[@"departure_time"] tripID:pfObject[@"trip_id"] stopID:pfObject[@"stop_id"]];
+        
+        NSDate *date = [self convertTimeToNSDate:pfObject[@"departure_time"]];
+        
+        [self addToDictionaryWithStopTime:date tripID:pfObject[@"trip_id"] stopID:pfObject[@"stop_id"]];
     }
 }
 
 
-- (void)addToDictionaryWithStopTime:(NSString *)time tripID:(NSString *)tripID stopID:(NSString *)stopID{
+- (void)addToDictionaryWithStopTime:(NSDate *)time tripID:(NSString *)tripID stopID:(NSString *)stopID{
     
     NSMutableDictionary *tempDictionary = [NSMutableDictionary new];
     [tempDictionary setValue:tripID forKey:tripIDKey];
@@ -132,6 +189,7 @@ static NSString * const stopNameKey = @"stopName";
     self.currentTime = timeString;
     //    NSLog(@"%@", timeString);
     
+    
     NSDate *myDate = [NSDate date];
     double secondsInTwoHours = 2 * 60 * 60;
     NSTimeInterval  interval = secondsInTwoHours;
@@ -143,7 +201,8 @@ static NSString * const stopNameKey = @"stopName";
 }
 
 #pragma trips Search
-- (void)searchTrips {
+- (void)searchTrips
+{
     
     for (NSDictionary *dictionary in self.trips)
     {
@@ -153,14 +212,13 @@ static NSString * const stopNameKey = @"stopName";
         [query selectKeys:@[@"route_id",@"service_id"]];
         [query setLimit:1000];
         
-        NSArray *objectsArray = [[NSArray alloc] initWithArray:[query findObjects]];//all objects queried returned process in main thread
+        NSArray *objectsArray = [[NSArray alloc] initWithArray:[query findObjects]];
         for (PFObject *pfObject in objectsArray)
         {
             [self addToDictionaryWithDictionary:dictionary Route:pfObject[@"route_id"] service:pfObject[@"service_id"]];
         }
     }
 }
-
 
 - (void)addToDictionaryWithDictionary:(NSDictionary *)dictionary Route:(NSString *)routeID service:(NSString *)serviceID {
         [dictionary setValue:routeID forKey:routeIDKey];
@@ -181,15 +239,18 @@ static NSString * const stopNameKey = @"stopName";
     if (weekdayNumber >= 2 && weekdayNumber <= 6) {    //Week days
         self.todayServiceID = @4;
     }
+    
     if (weekdayNumber == 1) {  //Sunday
         self.todayServiceID = @3;
     }
+    
     if (weekdayNumber == 7) { //Saturday
         self.todayServiceID = @2;
     }
     
 //    NSLog(@"%ld", (long)self.todayServiceID);
 }
+
 
 
 @end
