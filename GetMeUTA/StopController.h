@@ -10,7 +10,7 @@
 
 @interface StopController : NSObject
 
-@property (atomic, readonly) NSArray *trips;
+@property (atomic, readwrite) NSArray *trips;
 
 - (void)getStopDataWithStopID:(NSNumber *)stopID;
 - (void)removeRoute:(NSArray *)route;

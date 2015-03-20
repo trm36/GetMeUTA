@@ -30,18 +30,16 @@ static NSString * const stopNameKey = @"stopName";
     [startStation removeRoute:routes];
     [endStation removeRoute:routes];
     
-//    NSMutableSet *startTrips = [self commonRoutsWithStartStation:startStation andEndStation:endStation];
-//    for (NSNumber *number in startTrips) {
-//        [startStation removeRoute:number];
-//    }
-//    
-//    NSMutableSet *endTrips = [self commonRoutsWithStartStation:endStation andEndStation:startStation];
-//    for (NSNumber *number in endTrips) {
-//        [endStation removeRoute:number];
-//    }
+//    NSArray *trips = [self filterMissedTripsWithStartStation:startStation andEndStation:endStation];
+//    [endStation removeMissedTrips:trips];
+//    [startStation removeMissedTrips:trips];
+    
+    [self directionFilterForStartStation:startStation andEndStation:endStation];
+    [self directionFilterForStartStation:endStation andEndStation:startStation];
     
     NSLog(@"startStation Object: %@", startStation.trips);
     NSLog(@"endStation Object: %@", endStation.trips);
+    
 }
 
 
@@ -52,7 +50,7 @@ static NSString * const stopNameKey = @"stopName";
     NSSet *endSet = [[NSMutableSet alloc] initWithArray:[endStation.trips valueForKey:routeIDKey]];
     
     [startSet intersectSet:endSet];
-    NSLog(@"Routes Array: %@", startSet);
+    //NSLog(@"Routes Array: %@", startSet);
     
     NSOrderedSet *commonSet = [[NSOrderedSet alloc] initWithSet:startSet];
     NSArray *commonRoutes = [[NSArray alloc] initWithArray:[commonSet array]];
@@ -60,18 +58,18 @@ static NSString * const stopNameKey = @"stopName";
     return commonRoutes;
 }
 
-- (NSMutableSet *)filterMissedTripsWithStartStation:(StopController *)firstStation andEndStation:(StopController *)secondStation {
++ (NSArray *)filterMissedTripsWithStartStation:(StopController *)startStation andEndStation:(StopController *)endStation {
     
-    NSMutableSet *firstSet = [[NSMutableSet alloc] initWithArray:[firstStation.trips valueForKey:tripIDKey]];
-    NSSet *secondSet = [[NSMutableSet alloc] initWithArray:[secondStation.trips valueForKey:tripIDKey]];
+    NSMutableSet *startSet = [[NSMutableSet alloc] initWithArray:[startStation.trips valueForKey:tripIDKey]];
+    NSSet *endSet = [[NSMutableSet alloc] initWithArray:[endStation.trips valueForKey:tripIDKey]];
     
-    [firstSet intersectSet:secondSet];
-    NSLog(@"Routes Array: %@", firstSet);
+    [startSet intersectSet:endSet];
+    NSLog(@"Common Trips Array: %@", startSet);
     
-    NSMutableSet *subtractSet = [[NSMutableSet alloc] initWithArray:[firstStation.trips valueForKey:routeIDKey]];
-    [subtractSet minusSet:firstSet];
+    NSOrderedSet *commonSet = [[NSOrderedSet alloc] initWithSet:startSet];
+    NSArray *commonTrips = [[NSArray alloc] initWithArray:[commonSet array]];
     
-    return subtractSet;
+    return commonTrips;
 }
 
 - (void)convertStringtoDate {
@@ -82,11 +80,34 @@ static NSString * const stopNameKey = @"stopName";
     //Sort descriptor
 }
 
-- (void)directionFilter {
-    
++ (void)directionFilterForStartStation:(StopController *)startStation andEndStation:(StopController *)endStation {
     //search tripID in both start and end, take the trip that endTime > startTime
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    
+    //loop through endStation
+    
+    
+    for (int i = 0; i < startStation.trips.count; i++) {
+        
+        for (int x = 0; x < endStation.trips.count; x++) {
+            
+            if (endStation.trips[x][tripIDKey] == startStation.trips[i][tripIDKey]) {
+                
+                if (endStation.trips[x][stopTimeKey] > startStation.trips[i][stopTimeKey]) {
+                    [filteredArray addObject:startStation.trips[i]];
+                }
+            }
+        }
+    }
+    
+    startStation.trips = filteredArray;
+    
+    //For every trip search for the same trip in startStation
+    //if the endStation time is greater than the startStation time then coppy dictionary to new array.
+    //save the new array to self.trips
+    
 }
-
 
 
 - (void)sortByTime {

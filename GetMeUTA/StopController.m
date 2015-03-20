@@ -20,7 +20,7 @@ static NSString * const stopNameKey = @"stopName";
 
 @property (atomic, strong) NSString *currentTime;
 @property (atomic, strong) NSString *timePlusTwo;
-@property (atomic, strong) NSArray *trips;
+//@property (atomic, strong) NSArray *trips;
 @property (atomic, assign) NSNumber *todayServiceID;
 
 @end
@@ -220,7 +220,6 @@ static NSString * const stopNameKey = @"stopName";
     }
 }
 
-
 - (void)addToDictionaryWithDictionary:(NSDictionary *)dictionary Route:(NSString *)routeID service:(NSString *)serviceID {
         [dictionary setValue:routeID forKey:routeIDKey];
         [dictionary setValue:serviceID forKey:serviceIDKey];
@@ -251,6 +250,7 @@ static NSString * const stopNameKey = @"stopName";
     
 //    NSLog(@"%ld", (long)self.todayServiceID);
 }
+
 
 
 @end
