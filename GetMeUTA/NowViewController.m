@@ -29,15 +29,53 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+	    // Do any additional setup after loading the view, typically from a nib.
     
     self.plusButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
     self.xButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
     [self drawMainView];
     
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.delegate = self;
+	self.locationManager.distanceFilter = kCLDistanceFilterNone;
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	
+	
+	[self.locationManager requestAlwaysAuthorization];
+	
+ 
+	[self.locationManager startUpdatingLocation];
+ 
+}
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+	switch (status) {
+		case kCLAuthorizationStatusNotDetermined: {
+			NSLog(@"User still thinking..");
+		} break;
+		case kCLAuthorizationStatusDenied: {
+			NSLog(@"User hates you");
+		} break;
+		case kCLAuthorizationStatusAuthorizedWhenInUse:
+		case kCLAuthorizationStatusAuthorizedAlways: {
+			NSLog(@"User allowed access");
+			[self.locationManager startUpdatingLocation];
+		} break;
+		default:
+			break;
+	}
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+	CLLocation *location = [locations objectAtIndex:0];
+	[self.locationManager stopUpdatingLocation];
+	NSLog(@"lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
+}
+
+
 
     
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
