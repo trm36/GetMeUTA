@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSArray* stationsList;
 
-- (void)searchStationsForName;
++ (PlanController *)sharedInstance;
+//- (NSArray *)searchStationsForName;
 
 @end

@@ -301,11 +301,11 @@
 				TargetAttributes = {
 					344C76ED1AAA5EFA00E2F205 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 6WU87W7HP6;
+						DevelopmentTeam = LHF96LH65T;
 					};
 					344C77091AAA5EFB00E2F205 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 6WU87W7HP6;
+						DevelopmentTeam = LHF96LH65T;
 						TestTargetID = 344C76ED1AAA5EFA00E2F205;
 					};
 				};

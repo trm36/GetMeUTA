@@ -12,16 +12,23 @@
 #import "Button.h"
 #include <math.h>
 
+//These three lines for pickerview
+#import "PlanController.h"
+static NSString * const stopIDKey = @"stopID";
+static NSString * const stopNameKey = @"stopName";
+
 //            return |name-| pType   |param-| |-Function-------------------|
 static inline double radians (double degrees) {return degrees * M_PI / 180;}
 
-@interface NowViewController () <UITextFieldDelegate>
+@interface NowViewController () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UITextField *nameTextField;
 @property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
 @property (nonatomic, strong) UIButton *plusButton;
 @property (nonatomic, strong) UIButton *xButton;
+
+@property (nonatomic, strong) NSArray *stations;
 
 @end
 
@@ -30,6 +37,9 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 - (void)viewDidLoad {
     [super viewDidLoad];
 	    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.stations = [PlanController sharedInstance].stationsList;
+    NSLog(@"Stations List: %@", self.stations);
     
     self.plusButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
     self.xButton.center = CGPointMake(self.view.frame.size.width - 42, 56);
@@ -326,7 +336,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     [self drawBlurEffectView];
     [self drawXButton];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 80, self.view.frame.size.width * .8, self.view.bounds.size.height * .3)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 80, self.view.frame.size.width * .8, self.view.bounds.size.height * .7)];
     view.backgroundColor = [UIColor colorWithRed:256 green:256 blue:256 alpha:.7];
     view.layer.cornerRadius = 10;
     [self.blurEffectView.contentView addSubview:view];
@@ -348,7 +358,12 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     self.nameTextField.textAlignment = NSTextAlignmentCenter;
     [self.blurEffectView.contentView addSubview:self.nameTextField];
     
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 180, self.view.frame.size.width * .8, 40)];
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, 160, self.view.frame.size.width * .8, 300)];
+    [picker setDataSource: self];
+    [picker setDelegate: self];
+    [self.blurEffectView.contentView addSubview:picker];
+    
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .1, ((self.view.bounds.size.height * .8) -50 ), self.view.frame.size.width * .8, 40)];
     //saveButton.titleLabel.font = [UIFont systemFontOfSize:50];
     saveButton.backgroundColor = [UIColor darkRed];
     saveButton.tag = tag;
@@ -470,6 +485,24 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma picker -
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.stations[row][stopNameKey];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.stations.count;
 }
 
 
