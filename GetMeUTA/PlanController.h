@@ -10,7 +10,8 @@
 
 @interface PlanController : NSObject
 
-- (void)searchStationsForName;
 @property (nonatomic, strong) NSArray* stationsList;
+
+- (void)searchStationsForName;
 
 @end

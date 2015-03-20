@@ -10,6 +10,8 @@
 #import "NowViewController.h"
 #import <Parse/Parse.h>
 
+#import "StopController.h"
+
 static NSString *launchKey = @"launch";
 
 @interface AppDelegate ()
@@ -53,6 +55,9 @@ static NSString *launchKey = @"launch";
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    StopController *stopController = [StopController new];
+    [stopController calculateRoute];
     
     return YES;
 }

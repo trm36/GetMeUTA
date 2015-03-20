@@ -38,7 +38,7 @@ static NSString * const stopNameKey = @"stopName";
     [self findServiceIDForToday];
     [self timeFilterForStopTimes];
     
-    NSArray *stops = [self searchDuplicateStopsWithStopID:@18409];
+    NSArray *stops = [self searchDuplicateStopsWithStopID:@18377];
     for (NSNumber *stop in stops) {
         [self pullStopTimesWithStopID:stop];
     }
@@ -46,7 +46,7 @@ static NSString * const stopNameKey = @"stopName";
     [self searchTrips];
     [self filterTrips];
     
-//    NSLog(@"The calculateRoute trips is: %@", self.trips);
+    NSLog(@"The calculateRoute trips is: %@", self.trips);
 }
 
 
@@ -70,14 +70,13 @@ static NSString * const stopNameKey = @"stopName";
     [stopIDQuery selectKeys:@[@"stop_name"]];
     
     NSArray *objectsIDArray = [[NSArray alloc] initWithArray:[stopIDQuery findObjects]];
-    
     for (PFObject *pfObject in objectsIDArray) {
         
         stopName =pfObject[@"stop_name"];
 //        NSLog(@"%@", pfObject[@"stop_name"]);
     }
     
-    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stations"];
+    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stops"];
     [stopNameQuery whereKey:@"stop_name" equalTo:stopName];
     
     NSArray *objectsNameArray = [[NSArray alloc] initWithArray:[stopNameQuery findObjects]];
