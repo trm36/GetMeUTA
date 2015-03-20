@@ -98,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC7034B91AB5521D00B19AC0 /* CoreLocation.framework in Frameworks */,
 				FC7034C71AB5525A00B19AC0 /* libsqlite3.dylib in Frameworks */,
 				FC7034C51AB5524D00B19AC0 /* libz.dylib in Frameworks */,
 				FC7034C31AB5524400B19AC0 /* SystemConfiguration.framework in Frameworks */,
@@ -105,7 +106,6 @@
 				FC7034BF1AB5523500B19AC0 /* Security.framework in Frameworks */,
 				FC7034BD1AB5522E00B19AC0 /* QuartzCore.framework in Frameworks */,
 				FC7034BB1AB5522500B19AC0 /* MobileCoreServices.framework in Frameworks */,
-				FC7034B91AB5521D00B19AC0 /* CoreLocation.framework in Frameworks */,
 				FC7034B71AB5521700B19AC0 /* CoreGraphics.framework in Frameworks */,
 				FC7034B51AB5520D00B19AC0 /* CFNetwork.framework in Frameworks */,
 				FC7034B31AB5520600B19AC0 /* AudioToolbox.framework in Frameworks */,
@@ -278,10 +278,11 @@
 				TargetAttributes = {
 					344C76ED1AAA5EFA00E2F205 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = LHF96LH65T;
+						DevelopmentTeam = 6WU87W7HP6;
 					};
 					344C77091AAA5EFB00E2F205 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 6WU87W7HP6;
 						TestTargetID = 344C76ED1AAA5EFA00E2F205;
 					};
 				};
