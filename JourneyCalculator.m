@@ -21,10 +21,10 @@ static NSString * const stopNameKey = @"stopName";
 
 + (void)calculateJourney {
     StopController *startStation = [StopController new];
-    [startStation getStopDataWithStopID:@18393];
+//    [startStation getStopDataWithStopID:@18393];
     
     StopController *endStation = [StopController new];
-    [endStation getStopDataWithStopID:@23565];
+//    [endStation getStopDataWithStopID:@23565];
     
     NSArray *routes = [self commonRoutsWithStartStation:startStation andEndStation:endStation];
     [startStation removeRoute:routes];

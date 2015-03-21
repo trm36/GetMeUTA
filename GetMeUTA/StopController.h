@@ -12,8 +12,10 @@
 
 @property (atomic, readwrite) NSArray *trips;
 
-- (void)getStopDataWithStopID:(NSNumber *)stopID;
+- (void)getStopDataWithStopName:(NSString *)stopName;
 - (void)removeRoute:(NSArray *)route;
 - (void)removeMissedTrips:(NSArray *)trip;
+
+
 
 @end

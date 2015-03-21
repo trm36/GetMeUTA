@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 #import "JourneyCalculator.h"
 
+#import "StopController.h"
+
 static NSString *launchKey = @"launch";
 
 @interface AppDelegate ()
@@ -55,8 +57,10 @@ static NSString *launchKey = @"launch";
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [JourneyCalculator calculateJourney];
+//    [JourneyCalculator calculateJourney];
     
+    StopController *stopController = [StopController new];
+    [stopController getStopDataWithStopName:@"SALT LAKE CENTRAL STATION"];
     
     return YES;
 }
