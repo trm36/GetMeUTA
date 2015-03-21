@@ -60,7 +60,7 @@ static NSString *launchKey = @"launch";
 //    [JourneyCalculator calculateJourney];
     
     StopController *stopController = [StopController new];
-    [stopController getStopDataWithStopName:@"SALT LAKE CENTRAL STATION"];
+    [stopController getStopDataWithStopName:@"CENTRAL POINTE STATION"];
     
     return YES;
 }
