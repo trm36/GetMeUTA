@@ -29,6 +29,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 @property (nonatomic, strong) UIButton *xButton;
 
 @property (nonatomic, strong) NSArray *stations;
+@property (nonatomic, strong) NSNumber *pickerSeletedStopID;
 
 @end
 
@@ -291,10 +292,11 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     int tag = (int)buttonSent.tag;
     NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
     Button *buttonSaved = arrayOfButtons[tag];
-    NSString *needsSetup = buttonSaved.needsSettup;
     
-    if ([needsSetup isEqualToString:@"YES"]) {
+    if ([buttonSaved.needsSettup isEqualToString:@"YES"]) {
         [self addOrEditButtonWithTag:tag];
+    } else {
+        NSLog(@"Go to Journey View");
     }
 }
 
@@ -446,18 +448,17 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         self.xButton.transform = rotationTransform;
     }completion:^(BOOL finished) {
     }];
+    
+    
 }
 
-- (void)saveButton:(id)sender {
+- (void)saveButton:(UIButton *)buttonSender {
     
-    UIButton *buttonSent = [UIButton new];
-    buttonSent = sender;
-    
-    if (buttonSent.tag > 10) {
+    if (buttonSender.tag > 10) {
         Button *newButton = [[Button alloc] init];
         newButton.title = self.nameTextField.text;
-        newButton.station = @"Meadowbrook";
-        newButton.needsSettup = @"YES";
+        newButton.stationID = nil;
+//        newButton.needsSettup = @"YES";
         
         [[ButtonController sharedInstance] addButton:newButton];
         
@@ -467,12 +468,12 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     } else {
         
         NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
-        Button *oldButton = arrayOfButtons[buttonSent.tag];
-        
+        Button *oldButton = arrayOfButtons[buttonSender.tag];
+        NSLog(@"old button: %@ (tag: %@)", oldButton.title, @(buttonSender.tag));
         Button *newButton = [[Button alloc] init];
         newButton.title = self.nameTextField.text;
-        newButton.station = @"Meadowbrook";
-        newButton.needsSettup = @"NO";
+        newButton.stationID = self.pickerSeletedStopID;
+//        newButton.needsSettup = @"NO";
         
         [[ButtonController sharedInstance] replaceButton:oldButton withButton:newButton];
         
@@ -490,7 +491,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 #pragma picker -
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
+    self.pickerSeletedStopID = self.stations[row][stopIDKey];
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {

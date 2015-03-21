@@ -10,31 +10,22 @@
 
 @implementation Button
 
-- (id)initWithDictionary:(NSDictionary *)dictionary {
-    self = [super init];
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [self init];
     if (self) {
-        self.title = dictionary[titleKey];
-        self.station = dictionary[stationKey];
-        self.needsSettup = dictionary[needsSettupKey];
+        self.title = [aDecoder decodeObjectForKey:titleKey];
+        self.stationID = [aDecoder decodeObjectForKey:stationIDKey];
+        self.needsSettup = [aDecoder decodeObjectForKey:needsSettupKey];
     }
     return self;
 }
 
-- (NSDictionary *)buttonDictionary {
-    
-    NSMutableDictionary *buttonDictionary = [NSMutableDictionary new];
-    if (self.title) {
-        [buttonDictionary setObject:self.title forKey:titleKey];
-    }
-    if (self.station) {
-        [buttonDictionary setObject:self.station forKey:stationKey];
-    }
-    if (self.needsSettup) {
-        [buttonDictionary setObject:self.needsSettup forKey:needsSettupKey];
-    }
-    
-    return buttonDictionary;
-    
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.title forKey:titleKey];
+    [aCoder encodeObject:self.stationID forKey:stationIDKey];
+    [aCoder encodeObject:self.needsSettup forKey:needsSettupKey];
 }
 
 @end

@@ -9,19 +9,13 @@
 #import <Foundation/Foundation.h>
 
 static NSString * const titleKey = @"title";
-static NSString * const stationKey = @"station";
+static NSString * const stationIDKey = @"stationID";
 static NSString * const needsSettupKey = @"needsSettup";
 
-@interface Button : NSObject
+@interface Button : NSObject <NSCoding>
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *station;
-@property (nonatomic, assign) NSString *needsSettup;
-
-
-- (id)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary *)buttonDictionary;
-
-
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSNumber *stationID;
+@property (nonatomic, copy) NSString *needsSettup;
 
 @end

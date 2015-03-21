@@ -10,7 +10,7 @@
 #import "Button.h"
 
 static NSString *launchKey = @"launch";
-static NSString * const buttonListKey = @"buttonList";
+static NSString * const buttonListKey = @"listOfButtons";
 
 @interface ButtonController ()
 
@@ -27,15 +27,16 @@ static NSString * const buttonListKey = @"buttonList";
     dispatch_once(&onceToken, ^{
         sharedInstance = [[ButtonController alloc] init];
         
-        NSInteger launchCount = [[NSUserDefaults standardUserDefaults] integerForKey:launchKey];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:buttonListKey];
+//        return;
         
-        if (launchCount <= 1) {
-            NSArray *buttons = @[ @{titleKey: @"home", stationKey: @"station", needsSettupKey: @"YES"} ];
-            [[NSUserDefaults standardUserDefaults] setObject:buttons forKey:buttonListKey];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+        NSArray *buttonDatas = [[NSUserDefaults standardUserDefaults] objectForKey:buttonListKey];
+        if (!buttonDatas) {
+            sharedInstance.buttons = @[[self defaultButton]];
+            [sharedInstance synchronize];
+        } else {
+            [sharedInstance loadFromDefaults];
         }
-        
-        [sharedInstance loadFromDefaults];
         
     });
     
@@ -45,7 +46,7 @@ static NSString * const buttonListKey = @"buttonList";
 + (Button *)defaultButton {
     Button *defaultButton = [[Button alloc] init];
     defaultButton.title = @"home";
-    defaultButton.station = @"Meadowbrook";
+    defaultButton.stationID = nil;
     defaultButton.needsSettup = @"YES";
     
     return defaultButton;
@@ -98,11 +99,12 @@ static NSString * const buttonListKey = @"buttonList";
 
 - (void)loadFromDefaults {
     
-    NSArray *buttonDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:buttonListKey];
+    NSArray *buttonDatas = [[NSUserDefaults standardUserDefaults] objectForKey:buttonListKey];
     
     NSMutableArray *buttons = [NSMutableArray new];
-    for (NSDictionary *button in buttonDictionaries) {
-        [buttons addObject:[[Button alloc] initWithDictionary:button]];
+    for (NSData *buttonData in buttonDatas) {
+        Button *button = [NSKeyedUnarchiver unarchiveObjectWithData:buttonData];
+        [buttons addObject:button];
     }
     
     self.buttons = buttons;
@@ -111,15 +113,12 @@ static NSString * const buttonListKey = @"buttonList";
 
 - (void)synchronize {
     
-    NSMutableArray *buttonDictionaries = [NSMutableArray new];
+    NSMutableArray *buttons = [NSMutableArray array];
     for (Button *button in self.buttons) {
-        [buttonDictionaries addObject:[button buttonDictionary]];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:button];
+        [buttons addObject:data];
     }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:buttonDictionaries forKey:buttonListKey];
-    
-    
-    
+    [[NSUserDefaults standardUserDefaults] setObject:buttons forKey:buttonListKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
