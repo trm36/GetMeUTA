@@ -7,10 +7,12 @@
 //
 
 #import "NowViewController.h"
+#import "JourneyViewController.h"
 #import "NSObject+UIColor.h"
 #import "ButtonController.h"
 #import "Button.h"
 #include <math.h>
+
 
 //These three lines for pickerview
 #import "PlanController.h"
@@ -299,6 +301,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     if (!buttonSaved.stationID) {
         [self addOrEditButtonWithTag:tag];
     } else {
+        [self presentViewController:[JourneyViewController new] animated:YES completion:nil];
         NSLog(@"Go to Journey View");
     }
 }
