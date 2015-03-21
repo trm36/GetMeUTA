@@ -10,8 +10,7 @@
 
 @implementation Button
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [self init];
     if (self) {
         self.title = [aDecoder decodeObjectForKey:titleKey];
@@ -21,11 +20,26 @@
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
+- (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.title forKey:titleKey];
     [aCoder encodeObject:self.stationID forKey:stationIDKey];
-    [aCoder encodeObject:self.needsSettup forKey:needsSettupKey];
+    [aCoder encodeObject:@"YES" forKey:needsSettupKey];
+    
+    if (self.title) {
+        [aCoder encodeObject:self.title forKey:titleKey];
+        [aCoder encodeObject:@"NO" forKey:needsSettupKey];
+    }
+    if (self.stationID) {
+        [aCoder encodeObject:self.stationID forKey:stationIDKey];
+        [aCoder encodeObject:@"NO" forKey:needsSettupKey];
+    }
+    if (!self.title) {
+        [aCoder encodeObject:@"YES" forKey:needsSettupKey];
+    }
+    if (!self.stationID) {
+        [aCoder encodeObject:@"YES" forKey:needsSettupKey];
+    }
+    
 }
 
 @end

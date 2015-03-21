@@ -35,6 +35,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 
 @implementation NowViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	    // Do any additional setup after loading the view, typically from a nib.
@@ -293,7 +294,9 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     NSArray *arrayOfButtons = [ButtonController sharedInstance].buttons;
     Button *buttonSaved = arrayOfButtons[tag];
     
-    if ([buttonSaved.needsSettup isEqualToString:@"YES"]) {
+    
+    
+    if (!buttonSaved.stationID) {
         [self addOrEditButtonWithTag:tag];
     } else {
         NSLog(@"Go to Journey View");
@@ -353,6 +356,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         Button *buttonSaved = arrayOfButtons[tag];
         
         self.nameTextField.text = buttonSaved.title;
+        self.pickerSeletedStopID = buttonSaved.stationID;
     }
     
     self.nameTextField.placeholder = @"button name";
@@ -448,8 +452,6 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
         self.xButton.transform = rotationTransform;
     }completion:^(BOOL finished) {
     }];
-    
-    
 }
 
 - (void)saveButton:(UIButton *)buttonSender {
@@ -457,7 +459,7 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     if (buttonSender.tag > 10) {
         Button *newButton = [[Button alloc] init];
         newButton.title = self.nameTextField.text;
-        newButton.stationID = nil;
+        newButton.stationID = self.pickerSeletedStopID;
 //        newButton.needsSettup = @"YES";
         
         [[ButtonController sharedInstance] addButton:newButton];
