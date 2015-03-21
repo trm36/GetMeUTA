@@ -74,9 +74,6 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 
 
 
-    
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

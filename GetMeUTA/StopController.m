@@ -152,7 +152,7 @@ static NSString * const stopNameKey = @"stopName";
     
     [stopTimesQuery whereKey:@"stop_id" equalTo:stopID];
     [stopTimesQuery whereKey:@"departure_time" greaterThanOrEqualTo:self.currentTime];
-    [stopTimesQuery whereKey:@"arrival_time" lessThanOrEqualTo:self.timePlusTwo];
+    [stopTimesQuery whereKey:@"departure_time" lessThanOrEqualTo:self.timePlusTwo];
     [stopTimesQuery setLimit:1000];
     [stopTimesQuery selectKeys:@[@"trip_id", @"stop_id", @"departure_time"]];
 

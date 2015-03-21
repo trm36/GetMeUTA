@@ -10,8 +10,9 @@
 
 @interface TripController : NSObject
 
-@property (nonatomic, strong) NSArray *timesForSelectedTrip;
+@property (nonatomic, strong) NSArray *selectedTripInfo;
 
-- (void)stopTimeSearchWithTripID:(NSNumber *)tripID;
+- (void)stopTimeSearchWithTripID:(NSNumber *)tripID startStation:(NSNumber *)startStopID endStation:(NSNumber *)endStopID;
+
 
 @end

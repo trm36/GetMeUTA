@@ -55,8 +55,7 @@ static NSString *launchKey = @"launch";
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [JourneyCalculator calculateJourney];
-    
+//    [JourneyCalculator calculateJourney];
     
     return YES;
 }

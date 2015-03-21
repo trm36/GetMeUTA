@@ -219,14 +219,14 @@
 		DAB667C91AB9CA7000A10914 /* JourneyCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FC7B70AB1ABB84EB00F0A5E2 /* PlanController.h */,
+				FC7B70AC1ABB84EB00F0A5E2 /* PlanController.m */,
 				DAB667C61AB9CA5C00A10914 /* JourneyCalculator.h */,
 				DAB667C71AB9CA5C00A10914 /* JourneyCalculator.m */,
 				FC7034AB1AB54FCD00B19AC0 /* StopController.h */,
 				FC7034AC1AB54FCD00B19AC0 /* StopController.m */,
 				FC5B129D1ABB1BA80062E792 /* TripController.h */,
 				FC5B129E1ABB1BA80062E792 /* TripController.m */,
-				FC7B70AB1ABB84EB00F0A5E2 /* PlanController.h */,
-				FC7B70AC1ABB84EB00F0A5E2 /* PlanController.m */,
 			);
 			name = JourneyCalculator;
 			sourceTree = "<group>";

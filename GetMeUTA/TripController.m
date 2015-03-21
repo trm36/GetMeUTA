@@ -20,7 +20,7 @@ static NSString * const stopNameKey = @"stopName";
 
 
 #pragma stopTimes search with TRIPID
-- (void)stopTimeSearchWithTripID:(NSNumber *)tripID {
+- (void)stopTimeSearchWithTripID:(NSNumber *)tripID startStation:(NSNumber *)startStopID endStation:(NSNumber *)endStopID {
     PFQuery *timesQuery = [PFQuery queryWithClassName:@"stop_times"];
     [timesQuery whereKey:@"trip_id" equalTo:tripID];
     [timesQuery selectKeys:@[@"departure_time", @"stop_id", @"stop_sequence", @"trip_id",]];
@@ -28,6 +28,8 @@ static NSString * const stopNameKey = @"stopName";
     for (PFObject *timesObject in timesArray) {
         [self addToDictionaryStopTimes:timesObject[@"departure_time"] stopID:timesObject[@"stop_id"] stopSequence:timesObject[@"stop_sequence"] forTrip:timesObject[@"trip_id"]];
     }
+    [self pullStopNamesForTrips];
+    [self findCompleteTripWithStartStation:startStopID endStation:endStopID];
 }
 
 -(void)addToDictionaryStopTimes:(NSString *)times stopID:(NSString *)stopID stopSequence:(NSString *)stopSequence forTrip:(NSString *)tripID {
@@ -39,16 +41,16 @@ static NSString * const stopNameKey = @"stopName";
     [stopTimesDictionary setValue:stopSequence forKey:stopSequenceKey];
     
     
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:self.timesForSelectedTrip];
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:self.selectedTripInfo];
     [tempArray addObject:stopTimesDictionary];
-    self.timesForSelectedTrip = tempArray;
+    self.selectedTripInfo = tempArray;
 }
 
 #pragma stopName search
 
 -(void)pullStopNamesForTrips {
     
-    for (NSDictionary *dictionary in self.timesForSelectedTrip) {
+    for (NSDictionary *dictionary in self.selectedTripInfo) {
         NSString *stopID = [dictionary valueForKey:stopIDKey];
         
         PFQuery *stopsQuery = [PFQuery queryWithClassName:@"stations"];
@@ -66,9 +68,31 @@ static NSString * const stopNameKey = @"stopName";
     [dictionary setValue:stopName forKey:stopNameKey];
 }
 
+#pragma find complete trip between start and end station
+
+- (void)findCompleteTripWithStartStation:(NSNumber *)startStopID endStation:(NSNumber *)endStopID {
+    
+    //pulling the dictionary from trips with the start and end station
+    NSMutableArray *stopIDArray = [NSMutableArray new];
+    NSPredicate *stopIDPredicate = [NSPredicate predicateWithFormat:@"(%K == %@) OR (%K == %@) ", stopIDKey, startStopID, stopIDKey, endStopID];
+    stopIDArray = [NSMutableArray arrayWithArray:[self.selectedTripInfo filteredArrayUsingPredicate:stopIDPredicate]];
+
+    //pulling the stop sequence for the start and end station
+    NSNumber *startStopSequence = [stopIDArray[0] valueForKey:stopSequenceKey];
+    NSNumber *endStopSequence = [stopIDArray[1] valueForKey:stopSequenceKey];
+    
+    //removing the trips with stop sequence before the start stop sequence and after the end stop sequence
+    NSMutableArray *tripsArray = [[NSMutableArray alloc] initWithArray:self.selectedTripInfo];
+    for (NSDictionary *dictionary in self.selectedTripInfo) {
+        NSNumber *stopSequenceValue = [dictionary valueForKey:stopSequenceKey];
+        if ( (stopSequenceValue < startStopSequence) || (stopSequenceValue > endStopSequence)) {
+            [tripsArray removeObject:dictionary];
+        }
+    }
+    self.selectedTripInfo = tripsArray;
+//    NSLog(@"Stop sequence filtered %@", self.selectedTripInfo);
+}
+
+
 @end
-
-
-
-
 
