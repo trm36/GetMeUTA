@@ -240,14 +240,14 @@
 				DAB11DA41AB20A5E00B7F0FF /* NSObject+UIColor.m */,
 				344C76FB1AAA5EFB00E2F205 /* PlanViewController.h */,
 				344C76FC1AAA5EFB00E2F205 /* PlanViewController.m */,
-				FC737BE41AAA6A7400B12FC7 /* SettingsViewController.h */,
-				FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */,
+				FC737BEA1AAA6AE300B12FC7 /* ResultsViewController.h */,
+				FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */,
 				FC737BE71AAA6AD600B12FC7 /* JourneyViewController.h */,
 				FC737BE81AAA6AD600B12FC7 /* JourneyViewController.m */,
 				DAB667BF1AB8C8BE00A10914 /* StationViewCell.h */,
 				DAB667C01AB8C8BE00A10914 /* StationViewCell.m */,
-				FC737BEA1AAA6AE300B12FC7 /* ResultsViewController.h */,
-				FC737BEB1AAA6AE300B12FC7 /* ResultsViewController.m */,
+				FC737BE41AAA6A7400B12FC7 /* SettingsViewController.h */,
+				FC737BE51AAA6A7400B12FC7 /* SettingsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
