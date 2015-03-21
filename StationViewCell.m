@@ -7,10 +7,12 @@
 //
 
 #import "StationViewCell.h"
+#import "NSObject+UIColor.h"
 
 @interface StationViewCell()
 
 @property (strong,nonatomic) UILabel *stopLabel;
+@property (strong,nonatomic) UILabel *timeLable;
 
 @end
 
@@ -22,9 +24,14 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
-    self.stopLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 44)];
-    self.stopLabel.text = @" 'Next Station Here'";
+    self.timeLable = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 100, 44)];
+    self.timeLable.text = @"8:15 pm";
+    self.timeLable.textColor = [UIColor darkBlue];
+    [self.contentView addSubview:self.timeLable];
     
+    self.stopLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 0, self.contentView.frame.size.width, 44)];
+    self.stopLabel.text = @"Court House Station";
+    self.stopLabel.textColor = [UIColor darkBlue];
     [self.contentView addSubview:self.stopLabel];
     
     

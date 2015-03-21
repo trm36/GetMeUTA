@@ -61,8 +61,8 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 	[self.locationManager startUpdatingLocation];
  
 }
-- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
+
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 	switch (status) {
 		case kCLAuthorizationStatusNotDetermined: {
 			NSLog(@"User still thinking..");
@@ -80,16 +80,11 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
 	}
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
 	CLLocation *location = [locations objectAtIndex:0];
 	[self.locationManager stopUpdatingLocation];
 	NSLog(@"lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
 }
-
-
-
-    
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -301,8 +296,10 @@ static inline double radians (double degrees) {return degrees * M_PI / 180;}
     if (!buttonSaved.stationID) {
         [self addOrEditButtonWithTag:tag];
     } else {
-        [self presentViewController:[JourneyViewController new] animated:YES completion:nil];
-        NSLog(@"Go to Journey View");
+        JourneyViewController *journeyVC = [JourneyViewController new];
+        journeyVC.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:journeyVC animated:YES completion:nil];
+//        NSLog(@"Go to Journey View");
     }
 }
 
