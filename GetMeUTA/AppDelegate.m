@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 #import "JourneyCalculator.h"
 
+#import "TripController.h"
+
 static NSString *launchKey = @"launch";
 
 @interface AppDelegate ()
@@ -56,6 +58,9 @@ static NSString *launchKey = @"launch";
     [self.window makeKeyAndVisible];
     
 //    [JourneyCalculator calculateJourney];
+    
+//    TripController *tripController = [TripController new];
+//    [tripController stopTimeSearchWithTripID:@2120219 startStation:@23113 endStation:@23071 ];
     
     return YES;
 }

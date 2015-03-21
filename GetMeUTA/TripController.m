@@ -76,12 +76,13 @@ static NSString * const stopNameKey = @"stopName";
     NSMutableArray *stopIDArray = [NSMutableArray new];
     NSPredicate *stopIDPredicate = [NSPredicate predicateWithFormat:@"(%K == %@) OR (%K == %@) ", stopIDKey, startStopID, stopIDKey, endStopID];
     stopIDArray = [NSMutableArray arrayWithArray:[self.selectedTripInfo filteredArrayUsingPredicate:stopIDPredicate]];
+//    NSLog(@"%@", stopIDArray);
 
-    //pulling the stop sequence for the start and end station
+//    pulling the stop sequence for the start and end station
     NSNumber *startStopSequence = [stopIDArray[0] valueForKey:stopSequenceKey];
     NSNumber *endStopSequence = [stopIDArray[1] valueForKey:stopSequenceKey];
     
-    //removing the trips with stop sequence before the start stop sequence and after the end stop sequence
+//    removing the trips with stop sequence before the start stop sequence and after the end stop sequence
     NSMutableArray *tripsArray = [[NSMutableArray alloc] initWithArray:self.selectedTripInfo];
     for (NSDictionary *dictionary in self.selectedTripInfo) {
         NSNumber *stopSequenceValue = [dictionary valueForKey:stopSequenceKey];
@@ -90,7 +91,7 @@ static NSString * const stopNameKey = @"stopName";
         }
     }
     self.selectedTripInfo = tripsArray;
-//    NSLog(@"Stop sequence filtered %@", self.selectedTripInfo);
+    NSLog(@"Stop sequence filtered %@", self.selectedTripInfo);
 }
 
 
