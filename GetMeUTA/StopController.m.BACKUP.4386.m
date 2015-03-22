@@ -22,6 +22,11 @@ static NSString * const stopNameKey = @"stopName";
 @interface StopController ()
 
 @property (atomic, strong) NSString *currentTime;
+<<<<<<< HEAD
+=======
+@property (atomic, strong) NSString *timePlusTwo;
+//@property (atomic, strong) NSArray *trips;
+>>>>>>> feature/TripAndJourneyView
 @property (atomic, assign) NSString *todayServiceID;
 
 @end
@@ -29,7 +34,11 @@ static NSString * const stopNameKey = @"stopName";
 
 @implementation StopController
 
+<<<<<<< HEAD
 - (void)getStopDataWithStopName:(NSString *)stopName {
+=======
+- (void)getStopDataWithStopID:(NSString *)stopID {
+>>>>>>> feature/TripAndJourneyView
     
     self.trips = [NSArray new];
     [self findServiceIDForToday];
@@ -42,12 +51,19 @@ static NSString * const stopNameKey = @"stopName";
     
     [self searchTrips];
     [self filterTrips];
+<<<<<<< HEAD
+=======
 //
+>>>>>>> feature/TripAndJourneyView
     NSLog(@"The calculateRoute trips is: %@", self.trips);
 //    NSLog(@"todaysServiceID %@", self.todayServiceID);
+
+<<<<<<< HEAD
 }
-    
-    
+
+
+=======
+>>>>>>> feature/TripAndJourneyView
 #pragma convert time to NSDate
 - (NSDate *)convertTimeToNSDate:(NSString *)time {
     //Gets current month day and year
@@ -106,6 +122,7 @@ static NSString * const stopNameKey = @"stopName";
     self.trips = filteredArray;
 }
 
+<<<<<<< HEAD
 #pragma stop times search
 - (NSArray *)stopIDSearchByStopName:(NSString *)stopName {
     //search stop name for more than 1 stop ID
@@ -124,6 +141,53 @@ static NSString * const stopNameKey = @"stopName";
     [stopTimes addObjectsFromArray:[PFCloud callFunction:@"get_stop_times"
                                           withParameters:@{@"stop_id" : [NSString stringWithFormat:@"%@", stopID],
                                                            @"current_time" : self.currentTime }]];
+=======
+#pragma stops Search Duplicates
+- (NSArray *)searchDuplicateStopsWithStopID:(NSString *)stopID {
+    
+    NSString *stopName = [NSString new];
+
+    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stations"];
+    [stopIDQuery whereKey:@"stop_id" equalTo:stopID];
+    [stopIDQuery selectKeys:@[@"stop_name"]];
+    
+    NSArray *objectsIDArray = [[NSArray alloc] initWithArray:[stopIDQuery findObjects]];
+    
+    for (PFObject *pfObject in objectsIDArray) {
+        
+        stopName =pfObject[@"stop_name"];
+//        NSLog(@"%@", pfObject[@"stop_name"]);
+    }
+    
+    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stations"];
+    [stopNameQuery whereKey:@"stop_name" equalTo:stopName];
+    
+    NSArray *objectsNameArray = [[NSArray alloc] initWithArray:[stopNameQuery findObjects]];
+    
+    NSMutableArray *stopIDArray = [NSMutableArray new];
+    for (PFObject *pfObject in objectsNameArray) {
+        [stopIDArray addObject:pfObject[@"stop_id"]];
+//        NSLog(@"%@", stopIDArray);
+    }
+    return stopIDArray;
+    
+}
+
+
+#pragma stopTimes Search
+- (void)pullStopTimesWithStopID:(NSNumber *) stopID {
+
+    PFQuery *stopTimesQuery = [PFQuery queryWithClassName:@"ltd_stop_times"];
+    
+    [stopTimesQuery whereKey:@"stop_id" equalTo:stopID];
+    [stopTimesQuery whereKey:@"departure_time" greaterThanOrEqualTo:self.currentTime];
+    [stopTimesQuery whereKey:@"departure_time" lessThanOrEqualTo:self.timePlusTwo];
+    [stopTimesQuery setLimit:1000];
+    [stopTimesQuery selectKeys:@[@"trip_id", @"stop_id", @"departure_time"]];
+
+    NSArray *objectsArray = [NSArray new];
+    objectsArray = [stopTimesQuery findObjects];
+>>>>>>> feature/TripAndJourneyView
     
     for (PFObject *pfObject in stopTimes) {
         [self addToDictionaryWithStopID:pfObject[@"stop_id"] departure:pfObject[@"departure_time"] arrival:pfObject[@"arrival_time"]  tripID:pfObject[@"trip_id"]  stopSequence:pfObject[@"stop_sequence"]];
@@ -166,12 +230,25 @@ static NSString * const stopNameKey = @"stopName";
 
     for (NSDictionary *dictionary in self.trips)
     {
+<<<<<<< HEAD
         tripIDValue = [dictionary valueForKey:tripIDKey];
         [tripsSearch addObjectsFromArray:[PFCloud callFunction:@"get_trips"
                                                 withParameters:@{@"trip_id" : tripIDValue}]];
         for (PFObject *pfObject in tripsSearch) {
                     [self addToDictionaryWithDictionary:dictionary route:pfObject[@"route_id"] service:pfObject[@"service_id"]];
             
+=======
+        PFQuery *query = [PFQuery queryWithClassName:@"ltd_trips"];
+        NSString *string = [dictionary valueForKey:tripIDKey];
+        [query whereKey:@"trip_id" equalTo:string];
+        [query selectKeys:@[@"route_id",@"service_id"]];
+        [query setLimit:1000];
+        
+        NSArray *objectsArray = [[NSArray alloc] initWithArray:[query findObjects]];
+        for (PFObject *pfObject in objectsArray)
+        {
+            [self addToDictionaryWithDictionary:dictionary Route:pfObject[@"route_id"] service:pfObject[@"service_id"]];
+>>>>>>> feature/TripAndJourneyView
         }
     }
     
@@ -216,6 +293,17 @@ static NSString * const stopNameKey = @"stopName";
     NSMutableArray *filteredArray = [NSMutableArray new];
     NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];
     NSLog(@"predicate %@", predicateString);
+    filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
+    self.trips = filteredArray;
+}
+
+
+#pragma filter trips
+- (void)filterTrips {
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];
+//    NSLog(@"predicate %@", predicateString);
     filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
     self.trips = filteredArray;
 }

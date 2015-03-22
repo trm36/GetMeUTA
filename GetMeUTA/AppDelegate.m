@@ -63,14 +63,13 @@ static NSString *launchKey = @"launch";
     
 //    [JourneyCalculator calculateJourney];
     
-    PlanController *planController = [PlanController new];
-    [planController searchStationsForName];
-    
+//    PlanController *planController = [PlanController new];
+//    [planController searchStationsForName];
+//    
 //    StopController *stopController = [StopController new];
 //    [stopController getStopDataWithStopName:@"CENTRAL POINTE STATION"];
     TripController *tripController = [TripController new];
-    [tripController stopTimeSearchWithTripID:@"2065837"];
-
+    [tripController stopTimeSearchWithTripID:@"2065780" startStation:@"18406" endStation:@"18414"];
     
     return YES;
 }

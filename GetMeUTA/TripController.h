@@ -12,11 +12,6 @@
 
 @property (nonatomic, strong) NSArray *selectedTripInfo;
 
-- (void)stopTimeSearchWithTripID:(NSNumber *)tripID startStation:(NSNumber *)startStopID endStation:(NSNumber *)endStopID;
-
-<<<<<<< HEAD
-- (void)stopTimeSearchWithTripID:(NSString *)tripID;
-=======
->>>>>>> feature/TripAndJourneyView
+- (void)stopTimeSearchWithTripID:(NSString *)tripID startStation:(NSString *)startStopID endStation:(NSString *)endStopID;
 
 @end

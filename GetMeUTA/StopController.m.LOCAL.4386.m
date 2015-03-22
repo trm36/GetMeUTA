@@ -42,12 +42,12 @@ static NSString * const stopNameKey = @"stopName";
     
     [self searchTrips];
     [self filterTrips];
-//
     NSLog(@"The calculateRoute trips is: %@", self.trips);
 //    NSLog(@"todaysServiceID %@", self.todayServiceID);
+
 }
-    
-    
+
+
 #pragma convert time to NSDate
 - (NSDate *)convertTimeToNSDate:(NSString *)time {
     //Gets current month day and year
@@ -58,14 +58,14 @@ static NSString * const stopNameKey = @"stopName";
     //Adds the two strings togeather
     stringNewDate = [stringNewDate stringByAppendingString:@" "];
     stringNewDate = [stringNewDate stringByAppendingString:time];
-//    NSLog(@"Stop String: %@", stringNewDate);
+    NSLog(@"Stop String: %@", stringNewDate);
     
     //Converts NewDate string to an NSDate (GMT)
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *dateFromString = [[NSDate alloc] init];
     dateFromString = [dateFormatter dateFromString:stringNewDate];
-//    NSLog(@"New Date: %@", dateFromString);
+    NSLog(@"New Date: %@", dateFromString);
     
     return dateFromString;
 }
