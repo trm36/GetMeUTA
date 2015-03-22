@@ -58,13 +58,13 @@ static NSString *launchKey = @"launch";
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-//    [JourneyCalculator calculateJourney];
+    [JourneyCalculator calculateJourney];
     
 //    TripController *tripController = [TripController new];
 //    [tripController stopTimeSearchWithTripID:@2120219 startStation:@23113 endStation:@23071 ];
     
-    StopController *stopController = [StopController new];
-    [stopController getStopDataWithStopID:@"23565"];
+//    StopController *stopController = [StopController new];
+//    [stopController getStopDataWithStopID:@"23565"];
     
     return YES;
 }

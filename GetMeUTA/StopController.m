@@ -41,18 +41,8 @@ static NSString * const stopNameKey = @"stopName";
     
     [self searchTrips];
     [self filterTrips];
-    
+//
     NSLog(@"The calculateRoute trips is: %@", self.trips);
-}
-
-#pragma filter trips
-- (void)filterTrips {
-    
-    NSMutableArray *filteredArray = [NSMutableArray new];
-    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];
-    NSLog(@"predicate %@", predicateString);
-    filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
-    self.trips = filteredArray;
 }
 
 #pragma convert time to NSDate
@@ -65,14 +55,14 @@ static NSString * const stopNameKey = @"stopName";
     //Adds the two strings togeather
     stringNewDate = [stringNewDate stringByAppendingString:@" "];
     stringNewDate = [stringNewDate stringByAppendingString:time];
-    NSLog(@"Stop String: %@", stringNewDate);
+//    NSLog(@"Stop String: %@", stringNewDate);
     
     //Converts NewDate string to an NSDate (GMT)
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *dateFromString = [[NSDate alloc] init];
     dateFromString = [dateFormatter dateFromString:stringNewDate];
-    NSLog(@"New Date: %@", dateFromString);
+//    NSLog(@"New Date: %@", dateFromString);
     
     return dateFromString;
 }
@@ -127,7 +117,7 @@ static NSString * const stopNameKey = @"stopName";
     for (PFObject *pfObject in objectsIDArray) {
         
         stopName =pfObject[@"stop_name"];
-        NSLog(@"%@", pfObject[@"stop_name"]);
+//        NSLog(@"%@", pfObject[@"stop_name"]);
     }
     
     PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stations"];
@@ -138,7 +128,7 @@ static NSString * const stopNameKey = @"stopName";
     NSMutableArray *stopIDArray = [NSMutableArray new];
     for (PFObject *pfObject in objectsNameArray) {
         [stopIDArray addObject:pfObject[@"stop_id"]];
-        NSLog(@"%@", stopIDArray);
+//        NSLog(@"%@", stopIDArray);
     }
     return stopIDArray;
     
@@ -251,6 +241,17 @@ static NSString * const stopNameKey = @"stopName";
 //    NSLog(@"%ld", (long)self.todayServiceID);
 }
 
+
+
+#pragma filter trips
+- (void)filterTrips {
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];
+//    NSLog(@"predicate %@", predicateString);
+    filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
+    self.trips = filteredArray;
+}
 
 
 @end
