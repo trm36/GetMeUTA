@@ -21,14 +21,14 @@ static NSString * const stopNameKey = @"stopName";
 @property (atomic, strong) NSString *currentTime;
 @property (atomic, strong) NSString *timePlusTwo;
 //@property (atomic, strong) NSArray *trips;
-@property (atomic, assign) NSNumber *todayServiceID;
+@property (atomic, assign) NSString *todayServiceID;
 
 @end
 
 
 @implementation StopController
 
-- (void)getStopDataWithStopID:(NSNumber *)stopID {
+- (void)getStopDataWithStopID:(NSString *)stopID {
     
     self.trips = [NSArray new];
     [self findServiceIDForToday];
@@ -49,7 +49,7 @@ static NSString * const stopNameKey = @"stopName";
 - (void)filterTrips {
     
     NSMutableArray *filteredArray = [NSMutableArray new];
-    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];//keySelected is NSString itself
+    NSPredicate *predicateString = [NSPredicate predicateWithFormat:@"%K == %@", serviceIDKey, self.todayServiceID];
     NSLog(@"predicate %@", predicateString);
     filteredArray = [NSMutableArray arrayWithArray:[self.trips filteredArrayUsingPredicate:predicateString]];
     self.trips = filteredArray;
@@ -114,11 +114,11 @@ static NSString * const stopNameKey = @"stopName";
 }
 
 #pragma stops Search Duplicates
-- (NSArray *)searchDuplicateStopsWithStopID:(NSNumber *)stopID {
+- (NSArray *)searchDuplicateStopsWithStopID:(NSString *)stopID {
     
     NSString *stopName = [NSString new];
 
-    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stops"];
+    PFQuery *stopIDQuery = [PFQuery queryWithClassName:@"stations"];
     [stopIDQuery whereKey:@"stop_id" equalTo:stopID];
     [stopIDQuery selectKeys:@[@"stop_name"]];
     
@@ -130,7 +130,7 @@ static NSString * const stopNameKey = @"stopName";
         NSLog(@"%@", pfObject[@"stop_name"]);
     }
     
-    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stops"];
+    PFQuery *stopNameQuery = [PFQuery queryWithClassName:@"stations"];
     [stopNameQuery whereKey:@"stop_name" equalTo:stopName];
     
     NSArray *objectsNameArray = [[NSArray alloc] initWithArray:[stopNameQuery findObjects]];
@@ -148,7 +148,7 @@ static NSString * const stopNameKey = @"stopName";
 #pragma stopTimes Search
 - (void)pullStopTimesWithStopID:(NSNumber *) stopID {
 
-    PFQuery *stopTimesQuery = [PFQuery queryWithClassName:@"stop_times"];
+    PFQuery *stopTimesQuery = [PFQuery queryWithClassName:@"ltd_stop_times"];
     
     [stopTimesQuery whereKey:@"stop_id" equalTo:stopID];
     [stopTimesQuery whereKey:@"departure_time" greaterThanOrEqualTo:self.currentTime];
@@ -206,7 +206,7 @@ static NSString * const stopNameKey = @"stopName";
     
     for (NSDictionary *dictionary in self.trips)
     {
-        PFQuery *query = [PFQuery queryWithClassName:@"trips"];
+        PFQuery *query = [PFQuery queryWithClassName:@"ltd_trips"];
         NSString *string = [dictionary valueForKey:tripIDKey];
         [query whereKey:@"trip_id" equalTo:string];
         [query selectKeys:@[@"route_id",@"service_id"]];
@@ -237,15 +237,15 @@ static NSString * const stopNameKey = @"stopName";
 //    NSLog(@"Day of Week: %@ or: %ld",[daysOfWeek objectAtIndex:weekdayNumber], (long)weekdayNumber);
     
     if (weekdayNumber >= 2 && weekdayNumber <= 6) {    //Week days
-        self.todayServiceID = @4;
+        self.todayServiceID = @"4";
     }
     
     if (weekdayNumber == 1) {  //Sunday
-        self.todayServiceID = @3;
+        self.todayServiceID = @"3";
     }
     
     if (weekdayNumber == 7) { //Saturday
-        self.todayServiceID = @2;
+        self.todayServiceID = @"2";
     }
     
 //    NSLog(@"%ld", (long)self.todayServiceID);

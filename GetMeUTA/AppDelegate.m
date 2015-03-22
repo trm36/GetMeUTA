@@ -12,6 +12,7 @@
 #import "JourneyCalculator.h"
 
 #import "TripController.h"
+#import "StopController.h"
 
 static NSString *launchKey = @"launch";
 
@@ -61,6 +62,9 @@ static NSString *launchKey = @"launch";
     
 //    TripController *tripController = [TripController new];
 //    [tripController stopTimeSearchWithTripID:@2120219 startStation:@23113 endStation:@23071 ];
+    
+    StopController *stopController = [StopController new];
+    [stopController getStopDataWithStopID:@"23565"];
     
     return YES;
 }
