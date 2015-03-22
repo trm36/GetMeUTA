@@ -12,9 +12,8 @@
 #import "JourneyCalculator.h"
 #import "PlanController.h"
 
-#import "StopController.h"
 #import "TripController.h"
-
+#import "StopController.h"
 
 static NSString *launchKey = @"launch";
 

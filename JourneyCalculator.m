@@ -34,8 +34,8 @@ static NSString * const stopNameKey = @"stopName";
 //    [endStation removeMissedTrips:trips];
 //    [startStation removeMissedTrips:trips];
     
-    [self directionFilterForStartStation:startStation andEndStation:endStation];
-    [self directionFilterForStartStation:endStation andEndStation:startStation];
+//    [self directionFilterForStartStation:startStation andEndStation:endStation];
+//    [self directionFilterForStartStation:endStation andEndStation:startStation];
     
     NSLog(@"startStation Object: %@", startStation.trips);
     NSLog(@"endStation Object: %@", endStation.trips);
