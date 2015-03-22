@@ -10,8 +10,11 @@
 #import "NowViewController.h"
 #import <Parse/Parse.h>
 #import "JourneyCalculator.h"
+#import "PlanController.h"
 
 #import "StopController.h"
+#import "TripController.h"
+
 
 static NSString *launchKey = @"launch";
 
@@ -50,17 +53,25 @@ static NSString *launchKey = @"launch";
     
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    
+                                      
     self.window.rootViewController = [NowViewController new];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    
+// SELECTED CONTROLLERS TO RUN BEFORE APP LAUNCHES //
     
 //    [JourneyCalculator calculateJourney];
     
-    StopController *stopController = [StopController new];
-    [stopController getStopDataWithStopName:@"CENTRAL POINTE STATION"];
+    PlanController *planController = [PlanController new];
+    [planController searchStationsForName];
+    
+//    StopController *stopController = [StopController new];
+//    [stopController getStopDataWithStopName:@"CENTRAL POINTE STATION"];
+    TripController *tripController = [TripController new];
+    [tripController stopTimeSearchWithTripID:@"2065837"];
+
     
     return YES;
 }

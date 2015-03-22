@@ -21,7 +21,7 @@ static NSString * const stopNameKey = @"stopName";
 
 + (void)calculateJourney {
     StopController *startStation = [StopController new];
-    [startStation getStopDataWithStopName:@"CITY CENTER"];
+    [startStation getStopDataWithStopName:@"MURRAY CENTRAL STATION"];
     
     StopController *endStation = [StopController new];
     [startStation getStopDataWithStopName:@"CENTRAL POINTE STATION"];

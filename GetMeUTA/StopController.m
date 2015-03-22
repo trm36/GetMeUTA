@@ -43,7 +43,7 @@ static NSString * const stopNameKey = @"stopName";
     [self searchTrips];
     [self filterTrips];
     NSLog(@"The calculateRoute trips is: %@", self.trips);
-    NSLog(@"todaysServiceID %@", self.todayServiceID);
+//    NSLog(@"todaysServiceID %@", self.todayServiceID);
 
 }
 

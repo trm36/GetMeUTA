@@ -20,14 +20,16 @@ static NSString * const stopNameKey = @"stopName";
 
 
 #pragma stopTimes search with TRIPID
-- (void)stopTimeSearchWithTripID:(NSNumber *)tripID {
-    PFQuery *timesQuery = [PFQuery queryWithClassName:@"stop_times"];
+- (void)stopTimeSearchWithTripID:(NSString *)tripID {
+    PFQuery *timesQuery = [PFQuery queryWithClassName:@"ltd_stop_times"];
     [timesQuery whereKey:@"trip_id" equalTo:tripID];
     [timesQuery selectKeys:@[@"departure_time", @"stop_id", @"stop_sequence", @"trip_id",]];
     NSArray *timesArray = [[NSArray alloc] initWithArray:[timesQuery findObjects]];
     for (PFObject *timesObject in timesArray) {
         [self addToDictionaryStopTimes:timesObject[@"departure_time"] stopID:timesObject[@"stop_id"] stopSequence:timesObject[@"stop_sequence"] forTrip:timesObject[@"trip_id"]];
     }
+    
+    [self pullStopNamesForTrips];
 }
 
 -(void)addToDictionaryStopTimes:(NSString *)times stopID:(NSString *)stopID stopSequence:(NSString *)stopSequence forTrip:(NSString *)tripID {
@@ -59,6 +61,7 @@ static NSString * const stopNameKey = @"stopName";
             [self addToDictionary:dictionary stopNames:pfObject[@"stop_name"]];
         }
     }
+    NSLog(@"%@", self.timesForSelectedTrip);
     
 }
 

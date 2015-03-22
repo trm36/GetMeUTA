@@ -14,6 +14,15 @@ static NSString * const stopNameKey = @"stopName";
 
 @implementation PlanController
 
++ (PlanController *)sharedInstance {
+    static PlanController *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [PlanController new];
+    });
+    return sharedInstance;
+}
+
 - (void)searchStationsForName {
     
     PFQuery *stationsQuery = [PFQuery queryWithClassName:@"singleStations"];
@@ -23,6 +32,7 @@ static NSString * const stopNameKey = @"stopName";
     for (PFObject *pfObject in stationsArray) {
         [self addToDictionaryStopID:pfObject[@"stop_id"] stopName:pfObject[@"stop_name"]];
     }
+//    NSLog(@"%@", self.stationsList);
 }
 
 

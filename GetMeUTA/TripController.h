@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSArray *timesForSelectedTrip;
 
-- (void)stopTimeSearchWithTripID:(NSNumber *)tripID;
+- (void)stopTimeSearchWithTripID:(NSString *)tripID;
 
 @end
