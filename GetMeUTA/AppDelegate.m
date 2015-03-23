@@ -61,15 +61,15 @@ static NSString *launchKey = @"launch";
     
 // SELECTED CONTROLLERS TO RUN BEFORE APP LAUNCHES //
     
-//    [JourneyCalculator calculateJourney];
+    [JourneyCalculator calculateJourney];
     
-//    PlanController *planController = [PlanController new];
-//    [planController searchStationsForName];
-//    
+    PlanController *planController = [PlanController new];
+    [planController searchStationsForName];
+    
 //    StopController *stopController = [StopController new];
 //    [stopController getStopDataWithStopName:@"CENTRAL POINTE STATION"];
     TripController *tripController = [TripController new];
-    [tripController stopTimeSearchWithTripID:@"2065780" startStation:@"18406" endStation:@"18414"];
+    [tripController stopTimeSearchWithTripID:@"2064747" startStation:@"18413" endStation:@"18405"];
     
     return YES;
 }
