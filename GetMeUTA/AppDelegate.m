@@ -13,6 +13,7 @@
 
 #import "TripController.h"
 #import "StopController.h"
+#import "PlanController.h"
 
 static NSString *launchKey = @"launch";
 
@@ -58,10 +59,14 @@ static NSString *launchKey = @"launch";
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    
     [JourneyCalculator calculateJourney];
     
-//    TripController *tripController = [TripController new];
-//    [tripController stopTimeSearchWithTripID:@2120219 startStation:@23113 endStation:@23071 ];
+    TripController *tripController = [TripController new];
+    [tripController stopTimeSearchWithTripID:@2064747 startStation:@18413 endStation:@18405 ];
+    
+    PlanController *planController = [PlanController new];
+    [planController searchStationsForName];
     
 //    StopController *stopController = [StopController new];
 //    [stopController getStopDataWithStopID:@"23565"];
